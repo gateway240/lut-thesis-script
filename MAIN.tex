@@ -1,0 +1,134 @@
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% LaTeX-pohja LUT-kauppakorkeakoulun kandidaatintutkielmille 
+% Versio 1.0. 
+% 22.10.2020
+%
+% Alkuperäisen pohjan tehnyt Tuukka Pohjonen        
+% Pohjaa muokannut Maija Hujala                       
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage[left=2.5cm,top=3cm,right=2.5cm,bottom=3cm,bindingoffset=0.5cm]{geometry}
+\linespread{1.5}
+\usepackage{natbib}
+\usepackage{multicol}
+\usepackage[hyphens]{url}
+\usepackage{hyperref}  
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{verbatim}
+\usepackage[shortlabels]{enumitem}
+\usepackage{gensymb}
+\usepackage{siunitx}
+\usepackage{pdfpages}
+\usepackage{amsmath}
+\usepackage[autostyle]{csquotes} 
+\usepackage{tabularx}
+\usepackage{multirow} 
+\usepackage{ltablex}
+\usepackage{ltxtable} 
+% Loads also "colortbl"
+\usepackage[table]{xcolor} 
+\usepackage{pgf-pie}
+\usepackage{pgfplots}
+\usepackage[justification=centering]{caption}
+
+\setlist[itemize]{leftmargin=3mm,noitemsep,topsep=0pt,nosep}
+
+
+
+\begin{document}
+\thispagestyle{empty}
+\bibliographystyle{acm}
+% \bibliographystyle{agsm}
+% \setcitestyle{authoryear,open={(},close={)}}
+
+% Kansilehti alkaa tästä
+\begin{flushleft}
+% Yliopiston logo kuvat-kansiosta
+\includegraphics[width=5cm]{Images/lut5.jpg}
+
+% HUOM! Jos kirjoitat kandityösi englanniksi, vaihda alta kauppakorkeakoulun nimi yms. englanniksi
+\textbf{LUT School of Engineering Science}\\
+Master's Thesis WIP\\
+
+
+\end{flushleft}
+
+\begin{center}
+\vfill
+\textbf{Temporal Anomaly Detection in Time Series Data with Machine Learning}\\
+\vfill
+\end{center}
+
+\begin{flushright}
+\today \\ % tähän palautuspäivämäärä
+% HUOM! Jos kirjoitat kandityösi englanniksi, vaihda alta tekijä ja ohjaaja englanniksi.
+Author: Alex Beattie % nimiesi
+
+Professor: Pedro H. J. Nardelli\\ % ohjaajasi
+
+\end{flushright}
+\titlepage
+\pagenumbering{gobble}
+
+\newpage
+
+% Abstract-sivu alkaa tästä
+\noindent
+\begin{table}[]
+\begin{tabular}{lllll}
+\textbf{ABSTRACT} \\                                                                                    
+\\                                                                                                  
+% HUOM! Vaihda omat tietosi kohtiin: author, title, suuntautumisvaihtoehto englanniksi, supervisor ja keywordshttps://www.overleaf.com/project/6061f29d246ffa1ca52c5e04
+\textbf{Author}         &  &  &  & Alex Beattie\\
+\textbf{Title}          &  &  &  & Temporal Anomaly Detection in Time Series Data  \\
+                        &  &  &  & with Machine Learning  \\
+\textbf{School}         &  &  &  & LUT School of Engineering Science \\
+\textbf{Keywords}       &  &  &  & Anomaly Detection, Time Series, Matrix Profile \\
+
+\end{tabular}
+\end{table}
+
+\noindent 
+% TODO: Abstract
+ABSTRACT IN PROGRESS...
+
+\newpage
+
+\tableofcontents
+
+\newpage
+% Varsinainen kandityö alkaa tästä
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+\input{1Introduction}
+\newpage
+\input{2Background}
+\newpage
+\input{3Methods}
+\newpage
+\input{4Results}
+\newpage
+\input{5Discussion}
+\newpage
+\input{6Conclusion}
+\newpage
+
+\listoffigures
+\newpage
+\listoftables
+\newpage
+
+\Urlmuskip=0mu plus 1mu\relax
+\bibliographystyle{plain}
+\bibliography{bibliography.bib}
+
+\end{document}
+

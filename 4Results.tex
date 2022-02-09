@@ -1,0 +1,138 @@
+\section{Results}
+\label{ref_results}
+
+\subsection{Data Set Survey}
+In this section, the researchers surveyed 8 works focusing on streaming data outlier detection in machine learning. The datasets used in each paper were examined to determine which datasets were commonly used in the literature as shown in table \ref{tab:datasets_outlier_detection}. 
+
+\input{tables/datasets}
+
+Figure \ref{fig_dataset_lit} shows the most commonly occuring data sets in the literature from table \ref{tab:datasets_outlier_detection} are KDD\_CUP99 \cite{kdd1999} followed by Covertype-Forest \cite{covertype-dataset}. A data set is included in table \ref{tab:datasets_outlier_detection} and figure \ref{fig_dataset_lit} if there are 2 or more occurances of it in the literature surveyed. The most commonly used datasets found in the literature were originally created in the late 1990's. Most of the research surveyed has been conducted in the last 10 years but the standard benchmark datasets are from the late 90's. This suggests a lack of standardization in data sets to compare algorithm performance. Most papers surveyed included these seemingly standard datasets while also utilizing a wide variety of custom, private, or less well known datasets. Further research should be conducted to determine if the existing standard datasets are sufficient to benchmark performance for modern streaming outlier detection algorithms. If they are not, a standard test suite or data set should be proposed to uniformly evaluate performance across different works.
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}
+        \pie[sum=auto]{6/KDD\_CUP99, 4/Covertype-Forest, 3/Shuttle, 2/UCI\_Pendigit, 2/UCI\_Vowel}
+    \end{tikzpicture}
+    \caption{Data Set Occurrence in Literature }
+    \label{fig_dataset_lit}
+\end{figure}
+
+\subsubsection{Discussion with Experts}
+
+The author began a discussion on the Github Discussion Board \cite{RiverGithub2022} for the popular River \cite{2020river} Machine Learning library. The post discusses plans to include a streaming Local Outlier Factor (LOF) methodology to the library and test its effectiveness. Through this discussion the author realized that this approach is not the best solution for this given task. Through this discussion, the author was introduced to the BETH dataset \cite{beth-dataset}, which will be used as one of the experimental test datasets for the developed technique. Additionally, this discussion prompted the author of the BETH dataset, Kate Highnam, to add the dataset to a public repository at Imperial College London which provides easy access for researchers wishing to work on the dataset.
+
+The author also connected with private cyber security researcher Matti Bispham \cite{Bispham-email:private} at the National Composites Centre National Composites Centre (NCC) Group. Through this correspondence, Matti provided some practical issues with the most popular cited dataset, KDD\_CUP99, mostly corresponding to the age of the dataset includeing:
+
+\begin{itemize}[leftmargin=2cm]
+    \item Cyber-attacks have changed dramatically since 1999 (when KDD\_CUP99 was published). They have a different ontology and language (ex. Crypto mining, Ransomware, etc.)
+    \item New network protocols have been developed and eclipsed or significantly modified older standards (ex. HTTP)
+    \item System data logging has changed significantly
+\end{itemize}
+
+Matti also identified some potential shortcomings of the BETH dataset principally related to the data available including:
+
+\begin{itemize}[leftmargin=2cm]
+    \item The data was collected across many days, but only for a short period of consecutive time, around 5 hours.
+    \item The exploited vulnerability was an SSH one where the attacker was granted access as long as they entered any password. This immediately classifies the types of attackers who will try to access the system as unsophisticated actors.
+    \item Only DNS network logs (not SSH logs) are available.
+\end{itemize}
+
+The author additionally connected with Kate Highnam \cite{Highnam-email:private}, the creator of the BETH dataset to understand additional aspects of the datasets discussed previously. Her original paper states ``The KDD1999, NSLKDD, and ISCX datasets contain network traffic, while the DARPA1998 dataset also includes limited process calls. However, these datasets are at best almost a decade old, and are collected on in-premise servers \cite{beth-dataset}.'' In the BETH dataset, the honypots are deployed in a cloud environment because many major companies utilise compute through cloud providers. Therefore it is important to understand the attacks that are specifically scanning the cloud provider space compared to the prior datasets which are collected exclusively through on-prem servers. Additionally she expands that ``Typically one chooses a dataset for either of those reasons: to demonstrate the impact of a model in a specific area or the capabilities of the model (and thus extendable to other areas)  or the capabilities of the model (and thus extendable to other areas).'' The BETH dataset is designed in a way that machine learning researchers looking for applications can find it useful. In this work it is used in this way, by aproaching the anonmaly classification problem from a different angle than traditional machine learning techniques.
+
+\subsection{Anomaly Detection Results}
+
+\subsubsection{Hydraulic Simulation Data Set}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|l|}
+    \hline
+	\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\ \hline
+	m & 15 & Window Size \\ \hline
+	ts$\_$size & 30 & Time Series Size \\ \hline
+	std$\_$dev & 3 & Standard Deviation Multiplier \\ \hline
+	range & 3 & Rolling Range Multiplier\\ \hline
+\end{tabular}%
+\caption{Hydraulic Simulation Model Parameters}
+\label{tab:hydraulic_sim_params}
+\end{table}
+
+\begin{figure}[H]
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/mp_hist_Sim_Standard_force:1.pgf}}
+        \label{fig:mp_hist_standard_force}
+        \caption{Force Matrix Profile}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/mp_hist_Sim_Signal_force:1.pgf}}
+        \label{fig:mp_hist_signal_force}
+        \caption{Force Matrix Profile New CS}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/outlier_result_Sim_Standard_force:1.pgf}}
+        \label{fig:hydraulic_sim_standard_force}
+        \caption{Force Anomalies}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/outlier_result_Sim_Signal_force:1.pgf}}
+        \label{fig:hydraulic_sim_signal_force}
+        \caption{Force Anomalies New CS}
+    \end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/mp_hist_Sim_Standard_pA:1.pgf}}
+        \label{fig:mp_hist_standard_pressure}
+        \caption{Pressure Matrix Profile}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/mp_hist_Sim_Signal_pA:1.pgf}}
+        \label{fig:mp_hist_signal_pressure}
+        \caption{Pressure Matrix Profile New CS}
+    \end{minipage}
+\end{figure}
+
+
+\begin{figure}[H]
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/outlier_result_Sim_Standard_pA:1.pgf}}
+        \label{fig:hydraulic_sim_standard_pressure}
+        \caption{Pressure Anomalies}
+    \end{minipage}
+    \begin{minipage}[t]{0.5\linewidth}
+        \centering
+        \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/outlier_result_Sim_Signal_pA:1.pgf}}
+        \label{fig:hydraulic_sim_signal_pressure}
+        \caption{Pressure Anomalies New CS}
+    \end{minipage}
+\end{figure}
+
+\subsubsection{Power Electronic Converter Data Set}
+
+\begin{figure}[H]
+    \centering
+    \input{2_pec_sim/mp_hist_f_c.pgf}
+    \caption{PEC Matrix Profile}
+    \label{fig:pec_mp_hist}
+\end{figure}
+ 
+\begin{figure}[H]
+    \centering
+    \input{2_pec_sim/outlier_result_f_c.pgf}
+    \caption{PEC Outliers}
+    \label{fig:pec_outliers}
+\end{figure}
+
+\subsubsection{Cyber Security BETH Data Set}
+

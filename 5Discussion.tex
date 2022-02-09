@@ -1,0 +1,22 @@
+\section{Discussion}
+\label{sec:conclusion}
+
+\subsection{Hydraulic Simulation Data Set}
+The system has oscillation as shown in figure \ref{fig:pressure_og_cs}. The hydraulic fluid used in the system is acting as a spring which is what causes the oscillation. Equation \ref{eqn:k} models the spring constant for the system where V is the volume of the hose and cylinder, A is the surface area of the piston and $B_e$ is the effective bulk modulus. 
+
+\begin{equation}
+    k = B_e \left ( \frac{A^2}{V} \right)
+    \label{eqn:k}
+\end{equation}
+
+\subsubsection{Oscillation Reduction}
+
+One option for reducing oscillation is increasing the spring constant k. Analyzing equation \ref{eqn:k} shows this could be done by increasing the piston area, decreasing the hose and cylinder volume or increasing the effective bulk modulus. There are physical limits of the hydraulic fluid selected and other practical considerations that make this challenging. Selecting another hydraulic fluid can be complex, time consuming, and expensive so this is very uncommon after the system has been implemented. 
+
+Another option to reduce oscillation is to introduce dampers to the system. This could be modeled in the system with a simscape damper component. This component would need to be tuned correctly and then periodic oscillation could be reduced.
+
+Adding a control unit that combats oscillation by dynamically adjusting system pressure is another option for more robustly reducing oscillation. A PID control loop could be introduced to tune the system response and eliminate response thrashing. This PID control can also be tuned to achieve a desired system response and offer more consistent and reliable control.
+
+\subsection{Power Electronic Converter Data Set}
+
+\subsection{Cyber Security BETH Data Set}
