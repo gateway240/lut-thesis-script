@@ -1,5 +1,12 @@
 \section{Discussion}
-\label{sec:conclusion}
+\label{sec:discussion}
+This section will analyze discuss the results presented in section \ref{ref_results}. Following the analysis of each experiment, further developments and future applications will be proposed to continue this work and implement it in other contexts.
+
+Outliers and anomalies by nature are rare and fall significantly outside the normal distributions of data. Traditionally it is desired to minimize or eliminate outliers and anomalies in data to provide more regular and predictable performance. When focusing on outliers and anomalies given these characteristics, conventional algorithm metrics are not particularly helpful to analyze the success of a detection algorithm.
+
+In the cases in this study, a false positive does not carry the same implication as in a machine learning algorithm. In this case a detection will trigger further examination and an undetected positive carries a much higher consequence. If a fault occurs and is not detected, the operator of the system would be unaware and there could be significant consequences or damage to the system.
+
+For this reason it is more important to evaluate the true positive detection rate, which in all the experiments is 100\%. Additionally, the developed technique did not provide many false positives (only occurring in the BETH dataset) and was not noisy which provides a high degree of reliability. Utilizing this reference frame, the developed algorithm was very successful in identifying outliers in a wide variety of contexts.
 
 \subsection{Hydraulic Simulation Data Set}
 The system has oscillation as shown in figure \ref{fig:pressure_og_cs}. The hydraulic fluid used in the system is acting as a spring which is what causes the oscillation. Equation \ref{eqn:k} models the spring constant for the system where V is the volume of the hose and cylinder, A is the surface area of the piston and $B_e$ is the effective bulk modulus. 
@@ -17,6 +24,26 @@ Another option to reduce oscillation is to introduce dampers to the system. This
 
 Adding a control unit that combats oscillation by dynamically adjusting system pressure is another option for more robustly reducing oscillation. A PID control loop could be introduced to tune the system response and eliminate response thrashing. This PID control can also be tuned to achieve a desired system response and offer more consistent and reliable control.
 
+\subsubsection{Future Applications}
+
 \subsection{Power Electronic Converter Data Set}
 
+The detector was able to successfully detect all four faults with zero false positives in the PEC data set. In the case of the power grid, it is important to detect anomalies quickly so that remedial action can be taken quickly.  The detection of the event happened quickly and was usually within half of one window size or less than 125 time steps. The detector preformed well when faced with anomalies that have dramatically different characteristics and magnitude. Each anomaly in the data set is shaped significantly differently and the algorithm accurately detected the start and end of each one. This illustrates the robustness to scale of the algorithm.
+
+Additional anomalies which are not considered faults are present in the PEC dataset. In further experimentation, these anomalies can be examined and the algorithm can be tuned to detect them as well. Further experimentation could also be conducted using the multi-variate matrix profile on the three phase current or voltage inputs to detect anomalies. This was not preformed in this experiment because it is computationally much more expensive and the library does not currently offer a way to compute the multi-variate matrix profile iteratively as with the uni-variate matrix profile.
+
+This algorithm was also designed to be run in real time and was simulated as such. Each datapoint arrived in a simulated time series so that the algorithm was not aware of datapoints in front of it in time. It also utilizes a sliding window technique so it fits in a fixed memory window. Additionally the computations are efficient and scale well with the window size. This gives the algorithm strong potential in a real-time monitoring contexts.
+
+\subsubsection{Future Applications}
+In the future, the detection system can be implemented in MATLAB and used in a real-time monitoring and detection application. There is currently a MATLAB power grid control and monitoring interface for a real system and in order to integrate with it, a module for MATLAB must be created. This would involve creating an implementation of the matrix profile algorithm in MATLAB and utilizing that algorithm in tandem with the control system. With this setup it would be possible to test the real-time detection capacity of the algorithm. Once this is implemented, it would be possible to couple it with a classification algorithm to attempt to determine the type of fault. If a fault was determined, the appropriate correct action could be preformed depending on the classification. 
+
+Real-time detection and classification has significant implications in grid cyber-security and reliability. Attacks on the power grid are becoming more sophisticated and it is important to know whether the system is under attack or experiencing a fault condition. Furthermore, it is important to know that a fault is occurring so that automated or manual corrective action can be preformed so there is not damage to important system components and to ensure maximum system reliability and up time.
+
 \subsection{Cyber Security BETH Data Set}
+
+\subsubsection{Future Applications}
+
+\subsection{Future Algorithm Development}
+
+Convolve detector.
+

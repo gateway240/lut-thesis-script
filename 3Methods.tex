@@ -31,7 +31,7 @@ Data  analysis will be performed as follows:
     \item Compare performance of the algorithm to conventional methods (ex. PID control)
 \end{enumerate}
 
-\subsection{Measuring algorithms and methods}
+\subsection{Measuring Algorithms and Methods}
 
 There will always be phenomena the algorithm cannot detect or behavior that is not anomalous that the algorithm detects accidentally. The goal is to optimize these behaviors for the given task. Therefore, many existing algorithms and implementations are being compared. This comparison will identify which algorithms perform the best for the task and will help identify which techniques are best for which types of data. There are many existing implementations and there is not, until now, a comparison between batch and streaming data techniques. This will provide insight on the existing shortcomings in the field and will show where the algorithms can be improved.
 
@@ -48,10 +48,12 @@ In the preliminary research considerations the researchers are analyzing and det
 The researchers have access to a variety of computational resources from universities and research institutions across Europe. In Finland the group has access to the CSC supercomputer. The authors wish to acknowledge CSC – IT Center for Science, Finland, for computational resources. CSC provides supercomputer resources and hosted cloud services available for the project. Additionally, the researchers have access to limited computational resources via their personal computers. Additionally, Each university in the consortium has access to additional compute resources that can be utilized by their respective members.
 
 \subsection{Dataset Selection}
+\label{ref_datasets}
 
 In this research, three separate data sets will be used to test and evaluate the developed detection technique. The data sets span many fields of engineering and technology and provide a good survey of the generalizeability and applicability of the proposed detection technique.  
 
 \subsubsection{Hydraulic Simulation Dataset}
+\label{ref_hydraulic_dataset}
 
 It is possible to model hydraulic systems in a variety of ways. In this study, the Matlab software toolkit Simscape Multibody will be used to design a model of the hydraulic system outlined in figure \ref{fig:boom_structure}. This model will be used to study the behavior and response of the system to optimize behavior and system parameters. For this study, a mass m of 240 KG and a supply pressure of 185 bar is used. Table \ref{tab:points} shows the coordinate points for this study with the origin being at point A.
 
@@ -171,6 +173,8 @@ The Cylinder efficiency coefficient parameter is used in equation \ref{eqn:cylin
 Figures \ref{fig:force_og_cs} and \ref{fig:force_new_cs} show that the force changes in a relatively similar pattern to the pressure with a different magnitude. This is expected because of the force pressure relationship described in equation \ref{eqn:cylinder_force}.
 
 \subsubsection{Power Electronic Converter Dataset}
+\label{ref_pec_dataset}
+
  \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.65\textwidth]{Images/GFMSchema.pdf}
@@ -179,65 +183,56 @@ Figures \ref{fig:force_og_cs} and \ref{fig:force_new_cs} show that the force cha
 	\label{fig:sys}
 \end{figure}
 
-Transitioning from the conventional power systems to power electronics-dominated grids (PEDG) has increased demand for grid-forming converters (GFM) to facilitate operational reliability. Although significant research has been made on GFMs (as shown in Fig. \ref{fig:sys}) to expedite stability under different grid conditions, its operation during faults or large signal disturbances still remain a challenge. Compared to synchronous generators (SGs) that can support up to seven times over their rated current, power converters can only cope with a small percent of overcurrent (typically 20\%). Therefore, GFMs have to be protected against extreme faults (ex. short circuit, line-tripping/reclosing, etc) while being able to stay synchronized to the power system. Since the network infrastructure of power systems keeps expanding, it is important to classify these faults accurately under varying grid parameter uncertainties.
+Transitioning from the conventional power systems to power electronics-dominated grids (PEDG) has increased demand for grid-forming converters (GFM) to facilitate operational reliability. Although significant research has been made on GFMs (as shown in Fig. \ref{fig:sys}) to expedite stability under different grid conditions, its operation during faults or large signal disturbances still remain a challenge. Compared to synchronous generators (SGs) that can support up to seven times over their rated current, power converters can only cope with a small percent of overcurrent (typically 20\%). Therefore, GFMs have to be protected against extreme faults (ex. short circuit, line-tripping/reclosing, etc) while being able to stay synchronized to the power system. Since the network infrastructure of power systems keeps expanding, it is important to identify these faults accurately under varying grid parameter uncertainties.
 
-To demonstrate the  proposed optimization framework, we use the following variables (in Fig. \ref{fig:sys}) in the VSG controlled grid-forming converters (GFM):
-\begin{eqnarray}
-x = [v_g, i_o, \omega, v_{dc}, P, Q], \ u=[P_{ref}, Q_{ref}]
-\end{eqnarray}
-for the anomalies: (i) line-to-line faults, (ii) sensor faults, (iii) single-phase voltage sag and (iv) three-phase faults. Hence, we treat this problem as a multi-class classification task. 
-\begin{table}[H]
-\centering
-
-\begin{tabular}{|l|c|l|}
-    \hline
-	\textbf{Class} & \textbf{Label} & \textbf{Description} \\ \hline
-	4 & LL\_Fault & TBD\_SUBHAM \\ \hline
-	5 & Three-Phase\_Sensor\_Fault & TBD\_SUBHAM \\ \hline
-	11 & Single\_Phase\_Sag & TBD\_SUBHAM \\ \hline
-	12 & Three\_Phase\_Grid\_Fault & TBD\_SUBHAM \\ \hline
-\end{tabular}%
-\caption{Fault description}
-\label{fault_desc}
-\end{table}
+In this dataset there are four faults considered below. This study will examine the frequency ($f_c$) of the system throughout various fault conditions. Figure \ref{fig:pec_all} shows the entire $f_c$ signal. Each fault has significantly different characteristics and magnitude. The faults are magnified and explained individually below.
 
 \begin{figure}[H]
     \centering
     \input{2_pec_sim/base_sig_f_c_all.pgf}
-    \caption{PEC All}
+    \caption{PEC Data Set $f_c$ Signal}
     \label{fig:pec_all}
 \end{figure}
+
+Figure \ref{fig:pec_ll_fault} illustrates the frequency behavior during a line-to-line (LL) Fault. A LL Fault is also referred to as an unsymmetrical fault and occurs when there is a short circuit between two conductors. In three phase power, this can occur between two phases of the system. This fault causes a significant decrease in frequency that is orders of magnitude greater than the standard frequency of the system. 
 
 \begin{figure}[H]
     \centering
     \input{2_pec_sim/base_sig_f_c_f1.pgf}
-    \caption{PEC LL Fault}
+    \caption{PEC Data Set LL Fault}
     \label{fig:pec_ll_fault}
 \end{figure}
+
+Figure \ref{fig:pec_three_phase_sensor} shows the frequency behavior during a three phase sensor fault. In this fault condition, there is nothing wrong with the system itself but the sensor is faulty. This causes the detected frequency to rise slightly. This slight rise is significantly less than the other examined faults and is very close to the reference frequency of 50 Hz. 
 
 \begin{figure}[H]
     \centering
     \input{2_pec_sim/base_sig_f_c_f2.pgf}
-    \caption{PEC Three Phase Sensor Fault}
+    \caption{PEC Data Set Three Phase Sensor Fault}
     \label{fig:pec_three_phase_sensor}
 \end{figure}
+
+Figure \ref{fig:pec_three_phase_grid_fault} shows the frequency behavior of the system during a single phase voltage sag. When this occurs, the frequency oscillates continuously until the fault is over. This is a significant fault in the system and detection is critical to take remedial action. This is another fault where the magnitude is not very large in comparison to the LL Fault of the Three Phase Grid Fault.
 
 \begin{figure}[H]
     \centering
     \input{2_pec_sim/base_sig_f_c_f3.pgf}
-    \caption{PEC Single Phase Sag}
+    \caption{PEC Data Set Single Phase Sag}
     \label{fig:pec_single_phase_sag}
 \end{figure}
+
+Figure \ref{fig:pec_three_phase_grid_fault} shows the frequency behavior of the system during a Three Phase Grid Fault. This is another sever fault where there is a problem with the grid and corrective action needs to be taken promptly. In this fault there is a large magnitude drop in frequency for the duration of the fault. This is similar behavior to the Three Phase Sensor Fault but the frequency change of the difference is orders of magnitude larger and in the negative direction.
 
 \begin{figure}[H]
     \centering
     \input{2_pec_sim/base_sig_f_c_f4.pgf}
-    \caption{PEC Three Phase Grid Fault}
+    \caption{PEC Data Set Three Phase Grid Fault}
     \label{fig:pec_three_phase_grid_fault}
 \end{figure}
 
 
 \subsubsection{Cyber Security BETH Dataset}
+\label{ref_beth_dataset}
 
 The BPF-extended tracking honeypot (BETH) cyber security dataset was released in 2021 and is still under active development and testing. This makes it an attractive dataset for this study since it reflects the current state of the art in cybersecurity and is ``the first cyberscurity dataset for uncertainty and robustness benchmarking \cite{beth-dataset}.'' A cybersecurity honeypot is a set of computer resources that present a benefit to a hacker if they are exploited but are actively being monitored by an organization or individual. For this dataset, an ssh vulnerability is exploited where any password entered will allow a user to login. The system is running two auxillary containers to monitor traffic. The first is the Berkely Packet Filter (BPF) which examines OS process management calls. The second monitor logs DNS activity from the system. This data is collected and parsed over a series of trials to form the dataset.
 
@@ -251,6 +246,14 @@ The authors present a number of advantages of this dataset that make it attracti
     \item Each host contains benign activity and at most a single attack, which is ideal for behavioural analysis and other research tasks.
     \item Further data is currently being collected and analysed to add alternative attack vectors to the dataset
 \end{enumerate}
+
+Figure \ref{fig:beth_userid_all} shows the samples from the BETH dataset where there are labeled outliers. This study is examining the UserId parameter and using it as a continuous data stream. The spikes in the UserId parameter generally correspond with the labeled outliers.
+\begin{figure}[H]
+    \centering
+    \input{3_beth_sim/base_sig_userId_all.pgf}
+    \caption{BETH Data Set Signal}
+    \label{fig:beth_userid_all}
+\end{figure}
 
 
 \subsection{Algorithm Development}
