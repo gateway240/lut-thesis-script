@@ -9,105 +9,120 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[a4paper,12pt]{article}
+\documentclass[a4paper,12pt,numbers=noenddot]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
-\usepackage[left=2.5cm,top=3cm,right=2.5cm,bottom=3cm,bindingoffset=0.5cm]{geometry}
+\usepackage[left=3.5cm,top=3.5cm,right=2cm,bottom=2cm,bindingoffset=0.5cm]{geometry}
 \linespread{1.5}
-\usepackage{natbib}
+\usepackage{setspace}   %Allows double spacing with the \doublespacing command
 \usepackage{multicol}
-\usepackage[hyphens]{url}
-\usepackage{hyperref}  
+\usepackage{hyperref} % Cross reference linked elements 
 \usepackage{booktabs}
 \usepackage{float}
 \usepackage{verbatim}
 \usepackage[shortlabels]{enumitem}
-\usepackage{gensymb}
-\usepackage{siunitx}
-\usepackage{pdfpages}
-\usepackage{amsmath}
+\usepackage{textcomp, gensymb}
+% \usepackage{siunitx}
+% \usepackage{pdfpages}
+% \usepackage{amsmath}
 \usepackage[autostyle]{csquotes} 
-\usepackage{tabularx}
+% \usepackage{tabularx}
 \usepackage{multirow} 
-\usepackage{ltablex}
-\usepackage{ltxtable} 
+% \usepackage{ltablex}
+% \usepackage{ltxtable} 
+\usepackage{longtable}
 % Loads also "colortbl"
 \usepackage[table]{xcolor} 
 \usepackage{pgf-pie}
 \usepackage{pgfplots}
-\usepackage[justification=centering]{caption}
+\pgfplotsset{compat=1.18}
+\usepackage[singlelinecheck=false,justification=justified,labelsep=period]{caption}
+\usepackage{titlesec} %https://tex.stackexchange.com/questions/140447/changing-section-heading-style
+\usepackage{etoolbox}% http://ctan.org/pkg/etoolbox figure space
+\AtBeginEnvironment{figure}{\addvspace{5mm}}
+\usepackage[titles]{tocloft} %chapter heading fonts
+\usepackage[skip=24pt plus2pt]{parskip} % Paragraph spacing
 
-\setlist[itemize]{leftmargin=3mm,noitemsep,topsep=0pt,nosep}
+\usepackage{url}
+\usepackage[style=bath]{biblatex} % Bibliography
+\addbibresource{Bibliography/main.bib}
+\addbibresource{Bibliography/datasets.bib}
+\addbibresource{Bibliography/fireman.bib}
+\addbibresource{Bibliography/libraries.bib}
+\newcommand{\citel}[1]{(\cite{#1}.)} % long parenthetical citation
+% numerical ciations for tables
+% \DeclareCiteCommand{\citenum} 
+%   {}
+%   {\printfield{labelnumber}}
+%   {}
+%   {}
+
+\pagestyle{myheadings} % Sets number to top right 
+
+\setlength{\parindent}{0pt} % no first indent in document
+
+\setlist[itemize]{noitemsep} % Set itemize
+
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {\textbf{Table of Contents}}%
+    \renewcommand\cftsecfont{\mdseries}
+    \renewcommand\cfttoctitlefont{\normalsize\mdseries}
+    \renewcommand\cftlottitlefont{\normalsize}
+    \renewcommand\cftloftitlefont{\normalsize}
+    \renewcommand{\cftpnumalign}{r}
+}
 
 
-
+% --- START DOCUMENT ---
 \begin{document}
 \thispagestyle{empty}
-\bibliographystyle{acm}
-% \bibliographystyle{agsm}
-% \setcitestyle{authoryear,open={(},close={)}}
-
-% Kansilehti alkaa tästä
-\begin{flushleft}
-% Yliopiston logo kuvat-kansiosta
-\includegraphics[width=5cm]{Images/lut5.jpg}
-
-% HUOM! Jos kirjoitat kandityösi englanniksi, vaihda alta kauppakorkeakoulun nimi yms. englanniksi
-\textbf{LUT School of Engineering Science}\\
-Master's Thesis\\
 
 
-\end{flushleft}
+% Sets section heading style
+\titleformat{name=\section,numberless} % Abstract and Acknowledgements 
+{\normalfont\normalsize}{}{0em}{}
 
-\begin{center}
-\vfill
-\textbf{Detecting Temporal Anomalies in Time Series Data \\ utilizing the Matrix Profile }\\
-\vfill
-\end{center}
+\titleformat{name=\section} % Normal Section Headings
+  {\normalfont\Large}{\thesection}{1em}{}
+\titlespacing{\section}{0pt}{*4}{*4}
+  
+\titleformat{\subsection}
+  {\normalfont\large}{\thesubsection}{1em}{}
+\titlespacing{\subsection}{2em}{*4}{*4}
+  
+\titleformat{\subsubsection}
+  {\normalfont\normalsize}{\thesubsubsection}{1em}{}
+\titlespacing{\subsubsection}{4em}{*4}{*4}
 
-\begin{flushright}
-\today \\ % tähän palautuspäivämäärä
-% HUOM! Jos kirjoitat kandityösi englanniksi, vaihda alta tekijä ja ohjaaja englanniksi.
-Author: Alexander Beattie % nimiesi
 
-Advisors: Pedro H. J. Nardelli\\ % ohjaajasi
 
-\end{flushright}
-\titlepage
-\pagenumbering{gobble}
+\pagenumbering{arabic}
+
+\input{_TitlePage}
 
 \newpage
 
-% Abstract-sivu alkaa tästä
-\noindent
-\begin{table}[]
-\begin{tabular}{lllll}
-\textbf{ABSTRACT} \\                                                                                    
-\\                                                                                                  
-% HUOM! Vaihda omat tietosi kohtiin: author, title, suuntautumisvaihtoehto englanniksi, supervisor ja keywordshttps://www.overleaf.com/project/6061f29d246ffa1ca52c5e04
-\textbf{Author}         &  &  &  & Alexander Beattie\\
-\textbf{Title}          &  &  &  & Detecting Temporal Anomalies in Time Series Data  \\
-                        &  &  &  & utilizing the Matrix Profile  \\
-\textbf{School}         &  &  &  & LUT School of Engineering Science \\
-\textbf{Keywords}       &  &  &  & Anomaly Detection, Time Series, Matrix Profile \\
+\input{_Abstract}
 
-\end{tabular}
-\end{table}
+\newpage
 
-\noindent 
-% TODO: Abstract
-ABSTRACT IN PROGRESS...
+\input{_Acknowledgement}
 
 \newpage
 
 \tableofcontents
 
 \newpage
-% Varsinainen kandityö alkaa tästä
-\pagenumbering{arabic}
-\setcounter{page}{1}
 
+
+\listoffigures
+\newpage
+\listoftables
+\newpage
+
+\newpage
 \input{1Introduction}
 \newpage
 \input{2Background}
@@ -121,14 +136,9 @@ ABSTRACT IN PROGRESS...
 \input{6Conclusion}
 \newpage
 
-\listoffigures
-\newpage
-\listoftables
-\newpage
 
-\Urlmuskip=0mu plus 1mu\relax
-\bibliographystyle{plain}
-\bibliography{bibliography.bib}
+
+\printbibliography[title=\Large{References}] 
 
 \end{document}
 

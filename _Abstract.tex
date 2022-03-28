@@ -1,0 +1,33 @@
+\section*{\MakeUppercase{Abstract}}
+\phantomsection
+\addcontentsline{toc}{section}{\numberline{}Abstract}%
+\thispagestyle{empty}
+\begin{singlespace} 
+{
+Lappeenranta-Lahti University of Technology LUT \bigskip
+
+\parskip=0pt % Overide the paragraph skipping formatting
+
+LUT School of Engineering Science \bigskip
+
+Mechatronic System Design \bigskip
+
+Alexander Beattie \bigskip \bigskip
+
+\textbf{\MakeUppercase{Detecting Temporal Anomalies in Time Series Data}} \\
+\textbf{\MakeUppercase{Utilizing the Matrix Profile}} \bigskip\bigskip
+
+Master's thesis \bigskip
+
+\the\year{} \bigskip
+
+Examiners: Dr. Pedro H. J. Nardelli and Dr. Heikki Handroos \bigskip
+
+Keywords: Anomaly Detection, Time Series, Matrix Profile \bigskip\bigskip
+}
+This work provides a review of anomaly detection techniques and a practical implementation of the selected algorithm. The author conducted an additional review to determine the most used datasets in the literature. Following this review, the author consulted with industry experts to determine shortcomings of existing datasets.
+
+With the results from these two reviews, the experimental datasets and algorithm were selected for implementation. The author selected the matrix profile algorithm as a generalizeable method for detecting real-time anomalies in streaming time series data. The STUMPY python library implementation of the Iterative Matrix Profile was used for the development of the detector. The author additionally implemented a custom rolling range filter for the detector to tune its sensitivity to previous anomalies. 
+
+The author conducted three experiments with significantly different experimental conditions to demonstrate the generalizability and performance of the detector. The experimential datasets used in this study include a mechatronic simulation, Power Electronic Converter (PEC) simulation, and a cyber-security intrusion detection dataset.  With basic parameter tuning, the detector provided high detection accuracy and performance in a variety of difficult circumstances. In the future, the detector can be improved to increase precision in more complex and challenging circumstances. Additionally, the detector can be incorporated into a production system for real-time monitoring and decision making.
+\end{singlespace}

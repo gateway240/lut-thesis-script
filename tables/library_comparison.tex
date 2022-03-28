@@ -1,45 +1,56 @@
-\begin{tabularx}{\linewidth}{ llllX }
-    \caption{Outlier Detection Overview((\textbf{PA}): Point-wise Anomaly, (\textbf{CA}): Context-wise Anomaly, (\textbf{DD}): Drift Detection, (\textbf{S}): Segmentation)} \\
-    \toprule 
-    Library & Algorithm & Focus & Online & Description \\
-    \midrule 
-    PySAD \cite{pysad} & Individual Models &  \textbf{PA} & yes & Score anomalies \\
+\bigskip
+\begin{longtable}{llllp{2.75cm}}
+\caption{Outlier Detection Overview [(\textbf{PA}): Point-wise Anomaly, (\textbf{CA}): Context-wise Anomaly, (\textbf{DD}): Drift Detection, (\textbf{S}): Segmentation)]}\\
+\toprule
+\textbf{Library} & \textbf{Algorithm} & \textbf{Focus} & \textbf{Online} & \textbf{Description} \\
+\midrule
+\endfirsthead
+\multicolumn{5}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Library} & \textbf{Algorithm} & \textbf{Focus} & \textbf{Online} & \textbf{Description} \\
+\hline
+\endhead
+\hline \multicolumn{5}{r}{\textit{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+    PySAD\footcite{pysad} & Indivdidual Models &  \textbf{PA} & yes & Score anomalies \\
     & Probability Calibrators & \textbf{S} & yes & Convert raw scores to probabilities\\
     \midrule 
-    PyOD \cite{zhao2019pyod} & Individual Models &  \textbf{PA} & no & Score anomalies\\
+    PyOD\footcite{zhao2019pyod} & Individual Models &  \textbf{PA} & no & Score anomalies\\
     \midrule 
-    River \cite{2020river} & Individual Models &  \textbf{PA} & yes & Score anomalies\\
+    River\footcite{2020river} & Individual Models &  \textbf{PA} & yes & Score anomalies\\
     & Drift models & \textbf{DD} & yes & Detect concept drift \\
     & Time-series models & \textbf{S} & yes & Segment time-series data \\
     \midrule
-    STUMPY \cite{law2019stumpy} & Matrix Profile \cite{yeh2016matrix-profile-1} &  \textbf{CA} & yes & Time-series subsequence analysis\\
-    & Time Series Chains \cite{Zhu2017-time-series-chains} & \textbf{CA, DD} & no  & Motif drift detection \\
-    & FLUSS \& FLOSS \cite{2017-fluss-floss} & \textbf{CA, S} & yes & Time-series segmentation\\
+    STUMPY\footcite{law2019stumpy} & Matrix Profile \footcite{yeh2016matrix-profile-1} &  \textbf{CA} & yes & Time-series subsequence analysis\\
+    & Time Series Chains\footcite{Zhu2017-time-series-chains} & \textbf{CA, DD} & no  & Motif drift detection \\
+    & FLUSS \& FLOSS\footcite{2017-fluss-floss} & \textbf{CA, S} & yes & Time-series segmentation\\
     \midrule 
-    tsod \cite{tsod} & Simple Detectors &  \textbf{CA, PA} & partial & Gradient and range detectors \\
+    tsod\footcite{tsod} & Simple Detectors &  \textbf{CA, PA} & partial & Gradient and range detectors \\
     \midrule 
-    TODS \cite{Lai_2021_TODS} & Detection Algorithms &  \textbf{CA, PA} & partial & Detect anomalies\\
-    & Featuer Analysis & \textbf{S} & partial & Statistics based segmentation\\
+    TODS\footcite{Lai_2021_TODS} & Detection Algorithms &  \textbf{CA, PA} & partial & Detect anomalies\\
+    & Feature Analysis & \textbf{S} & partial & Statistics based segmentation\\
     \midrule 
-
-    Alibi Detect \cite{alibi-detect} & Outlier Detection & \textbf{CA, PA} & partial & Anomaly detection\\
+    Alibi Detect\footcite{alibi-detect} & Outlier Detection & \textbf{CA, PA} & partial & Anomaly detection\\
     & Adversarial Detection & \textbf{CA} & partial & Detect adversarial data \\
     & Drift Detection & \textbf{DD} & partial & Concept drift identifications \\
     \midrule 
-    banpei \cite{banpei} & Hotelling's Theory &  \textbf{PA} & yes & Outlier detection\\
+    banpei\footcite{banpei} & Hotelling's Theory &  \textbf{PA} & yes & Outlier detection\\
     & SST & \textbf{S} & yes & Change point detection \\
     \midrule 
-    SaxPy \cite{senin2018grammarviz-saxpy} & SAX &  \textbf{PA, S} & no & Symbolic Aggregate approXimation \\
+    SaxPy\footcite{senin2018grammarviz-saxpy} & SAX &  \textbf{PA, S} & no & Symbolic Aggregate approXimation \\
     & EMMA & \textbf{CA, S} & no & Time-series motif discovery\\
     \midrule 
-    Darts \cite{herzen2021darts} & Filtering Models & \textbf{CA} & no & Gaussian, Kalman, Moving Average Filter \\
+    Darts\footcite{herzen2021darts} & Filtering Models & \textbf{CA} & no & Gaussian, Kalman, Moving Average Filter \\
     & Forecasting Models & \textbf{S} & no & Predictive forecasting \\
     \midrule 
-    Merlion \cite{bhatnagar2021merlion} & Anomaly Algorithms &  \textbf{CA, PA} & yes & Anomaly Detection strategies \\
+    Merlion\footcite{bhatnagar2021merlion} & Anomaly Algorithms &  \textbf{CA, PA} & yes & Anomaly Detection strategies \\
     & Forecasting & \textbf{S} & yes & Predictive forecasting \\
     \midrule 
-    Luminaire \cite{chakraborty2020building-luminaire} & Structural Modeling &  \textbf{ PA } & yes & Anomaly detection \\
+    Luminaire\footcite{chakraborty2020building-luminaire} & Structural Modeling &  \textbf{ PA } & yes & Anomaly detection \\
     & Windowed Density Model & \textbf{CA, DD} & yes & Anomalous window detection using KL divergence \\
-    \bottomrule 
     \label{tab:anom_detect_lib}
-\end{tabularx}
+\end{longtable}
+

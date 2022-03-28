@@ -1,18 +1,12 @@
 \section{Methods}
 \label{ref_methods}
 
-\subsection{Qualitative methods}
-
 To understand and evaluate effective algorithms and techniques for outlier detection, a literature review will be conducted. This review will include both scientific literature, library api documentation, and online resources. The goal of this review will be to understand the cutting edge techniques and the logic behind the decision making of the algorithms. Additionally, the researchers will examine a variety of interdisciplinary methods (ex. statistics, Deep Learning, etc.) to compare ideal use cases in given scenarios to build an anomaly detection pipeline and toolkit.  
 
-The researchers will also survey the existing literature to determine the most popular and common datasets used to benchmark these anomaly detection techniques. Since anomalies are by nature rare, most datasets contain a very small number of them, and it is critical that the anomalies they do contain are a good representative sample. The researchers have conducted preliminary investigations in section \ref{ref_results} that show the most common datasets currently used in literature. This will be expanded to include more literature as the work progresses. Additionally, through a discussion on improving existing machine learnign techniques in python, the researchers have contacted experts in the field, a Ph.D candidate in machine learning at Imperial College London and an industry cyber-security expert to evaluate the shortcomings in the "standard" datasets for modern applications. 
+The researchers will also survey the existing literature to determine the most popular and common datasets used to benchmark these anomaly detection techniques. Since anomalies are by nature rare, most datasets contain a very small number of them, and it is critical that the anomalies they do contain are a good representative sample. The researchers have conducted preliminary investigations in section \ref{ref_results} that show the most common datasets currently used in literature.  Additionally, through a discussion on improving existing machine learnign techniques in python, the researchers have contacted experts in the field, a Ph.D candidate in machine learning at Imperial College London and an industry cyber-security expert to evaluate the shortcomings in the "standard" datasets for modern applications. 
 
-
-\subsection{Quantitative methods}
-
-\subsubsection{Data Collection}
 Data collection will be performed as follows:
-\begin{enumerate}
+\begin{enumerate}[leftmargin=2cm]
     \item Setup data processing pipelines for a variety of existing anomaly detection techniques.
     \item Create a simulation data set with pre-marked, simple anomalies (ex. sensor failure) 
     \item Graph the data to understand the different type of faults/anomalies to be detected
@@ -22,18 +16,16 @@ Data collection will be performed as follows:
     \item Add additional components (drift detection, etc) to the pipeline and record data results 
 \end{enumerate}
 
-\subsubsection{Data Analysis}
 Data  analysis will be performed as follows:
-\begin{enumerate}
+\begin{enumerate}[leftmargin=2cm]
     \item Compare results between different algorithms and techniques (ex. streaming vs. batch, statistical vs. streaming ML) methods for the dataset 
     \item Determine the benefits and shortcomings of each method using standard performance metrics and identify for what type of anomalies certain methods excel
     \item Implement the best methods for the given problem in a real-world control systems problem
-    \item Compare performance of the algorithm to conventional methods (ex. PID control)
 \end{enumerate}
 
 \subsection{Measuring Algorithms and Methods}
 
-There will always be phenomena the algorithm cannot detect or behavior that is not anomalous that the algorithm detects accidentally. The goal is to optimize these behaviors for the given task. Therefore, many existing algorithms and implementations are being compared. This comparison will identify which algorithms perform the best for the task and will help identify which techniques are best for which types of data. There are many existing implementations and there is not, until now, a comparison between batch and streaming data techniques. This will provide insight on the existing shortcomings in the field and will show where the algorithms can be improved.
+There will always be phenomena the algorithm cannot detect or behavior that is not anomalous that the algorithm detects accidentally. The goal is to optimize these behaviors for the given task. Therefore, many existing algorithms and implementations are being compared. This comparison will identify which algorithms perform the best for the task and will help identify which techniques are best for which types of data. This will provide insight on the existing shortcomings in the field and will show where the algorithms can be improved.
 
 There are industry standard ways of comparing machine learning techniques. Some of these include ROC curves which allow you to compare false positive and true positive rates. There are also conventional statistical techniques which can be utilized. The researchers will explore further to determine which metrics are most appropriate for the task.
 
@@ -45,7 +37,7 @@ In the preliminary research considerations the researchers are analyzing and det
 
 \subsection{Resources}
 
-The researchers have access to a variety of computational resources from universities and research institutions across Europe. In Finland the group has access to the CSC supercomputer. The authors wish to acknowledge CSC – IT Center for Science, Finland, for computational resources. CSC provides supercomputer resources and hosted cloud services available for the project. Additionally, the researchers have access to limited computational resources via their personal computers. Additionally, Each university in the consortium has access to additional compute resources that can be utilized by their respective members.
+The researchers have access to a variety of computational resources from universities and research institutions across Europe. In Finland the group has access to the CSC supercomputer. CSC provided some supercomputer resources and hosted cloud services available for the project. Additionally, the researchers have access to limited computational resources via their personal computers. Additionally, Each university in the consortium has access to additional compute resources that can be utilized by their respective members.
 
 \subsection{Dataset Selection}
 \label{ref_datasets}
@@ -55,17 +47,17 @@ In this research, three separate data sets will be used to test and evaluate the
 \subsubsection{Hydraulic Simulation Dataset}
 \label{ref_hydraulic_dataset}
 
-It is possible to model hydraulic systems in a variety of ways. In this study, the Matlab software toolkit Simscape Multibody will be used to design a model of the hydraulic system outlined in figure \ref{fig:boom_structure}. This model will be used to study the behavior and response of the system to optimize behavior and system parameters. For this study, a mass m of 240 KG and a supply pressure of 185 bar is used. Table \ref{tab:points} shows the coordinate points for this study with the origin being at point A.
+In this study, the Matlab software toolkit Simscape Multibody will be used to design a model of the hydraulic system outlined in figure \ref{fig:boom_structure}. This model will be used to study the behavior and response of the system to optimize behavior and system parameters. For this study, a mass m of 240 KG and a supply pressure of 185 bar is used. Table \ref{tab:points} shows the coordinate points for this study with the origin being at point A.
 
  \begin{figure}[H]
-    \centering
+    %\centering
     \includegraphics[width=0.8\textwidth]{1_hydraulic_sim/BoomStructure.PNG}
     \caption{Hydraulic Boom Lift Structure}
     \label{fig:boom_structure}
  \end{figure}
  
  \begin{table}[H]
-\centering
+%\centering
 \begin{tabular}{||c c c ||} 
  \hline
  Point & X Pos. & Y Pos. \\ [0.5ex] 
@@ -83,112 +75,110 @@ It is possible to model hydraulic systems in a variety of ways. In this study, t
 
 The control signal shown in figure \ref{fig:og_control_signal} is used for the original simulation of the hydraulic cylinder. The control signal shown in figure \ref{fig:modified_control_signal} is the modified control signal used for all plots labeled ``New''. This control signal is proportionally negative to the original control signal.
 
-\begin{figure}[H] \label{ fig-control-signal} 
-  \begin{minipage}[b]{0.5\linewidth}
-    \includegraphics[width=1\textwidth]{1_hydraulic_sim/normal_signal.png}
-    \caption{Original Control Signal}
-    \label{fig:og_control_signal}
-  \end{minipage} 
-  \begin{minipage}[b]{0.5\linewidth}
-    \includegraphics[width=1\linewidth]{1_hydraulic_sim/Neg_Signal.png} 
-    \caption{Modified Control Signal (CS)} 
-    \label{fig:modified_control_signal}
-  \end{minipage} 
-\end{figure}
+% \begin{figure}[H] \label{ fig-control-signal} 
+%   \begin{minipage}[b]{0.5\linewidth}
+%     \includegraphics[width=1\textwidth]{1_hydraulic_sim/normal_signal.png}
+%     \caption{Original Control Signal}
+%     \label{fig:og_control_signal}
+%   \end{minipage} 
+%   \begin{minipage}[b]{0.5\linewidth}
+%     \includegraphics[width=1\linewidth]{1_hydraulic_sim/Neg_Signal.png} 
+%     \caption{Modified Control Signal (CS)} 
+%     \label{fig:modified_control_signal}
+%   \end{minipage} 
+% \end{figure}
 
-\begin{figure}[H] \label{ fig-pressure-mod} 
-  \begin{minipage}[b]{0.5\linewidth}
-    \begin{tikzpicture}
-    \begin{axis}[xlabel=Time (s)]
-    \addplot table [x index=0, y=pA:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Standard.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \caption{Original Pressure}
-    \label{fig:pressure_og_cs}
-  \end{minipage} 
-  \begin{minipage}[b]{0.5\linewidth}
-    \begin{tikzpicture}
-    \begin{axis}[xlabel=Time (s)]
-    \addplot table [x index=0, y=pA:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Signal.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \caption{New CS Pressure }
-    \label{fig:pressure_new_cs}
-  \end{minipage} 
-\end{figure}
+% \begin{figure}[H] \label{ fig-pressure-mod} 
+%   \begin{minipage}[b]{0.5\linewidth}
+%     \begin{tikzpicture}
+%     \begin{axis}[xlabel=Time (s)]
+%     \addplot table [x index=0, y=pA:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Standard.csv};
+%     \end{axis}
+%     \end{tikzpicture}
+%     \caption{Original Pressure}
+%     \label{fig:pressure_og_cs}
+%   \end{minipage} 
+%   \begin{minipage}[b]{0.5\linewidth}
+%     \begin{tikzpicture}
+%     \begin{axis}[xlabel=Time (s)]
+%     \addplot table [x index=0, y=pA:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Signal.csv};
+%     \end{axis}
+%     \end{tikzpicture}
+%     \caption{New CS Pressure }
+%     \label{fig:pressure_new_cs}
+%   \end{minipage} 
+% \end{figure}
 
 Figures \ref{fig:pressure_og_cs} and \ref{fig:pressure_new_cs} show the pressure for the original and new system over time respectively. With the new control signal, the system pressure does not behave reciprocally and experiences a significant drop initially. The oscillation after the system has reached a resting state is then approximately reduced by half. This provides insight into the non-linear relationship between the control signal and the system behavior.
 
-\begin{figure}[H] \label{ fig-pos-mod} 
-  \begin{minipage}[b]{0.5\linewidth}
-    \begin{tikzpicture}
-    \begin{axis}[xlabel=Time (s)]
-    \addplot table[x index=0,y=pos:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Standard.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \caption{Original Position}
-    \label{fig:pos_og_cs}
-  \end{minipage} 
-  \begin{minipage}[b]{0.5\linewidth}
-    \begin{tikzpicture}
-    \begin{axis}[xlabel=Time (s)]
-    \addplot  table[x index=0,y=pos:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Signal.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \caption{New CS Position}
-    \label{fig:pos_new_cs}
-  \end{minipage} 
-\end{figure}
+% \begin{figure}[H] \label{ fig-pos-mod} 
+%   \begin{minipage}[b]{0.5\linewidth}
+%     \begin{tikzpicture}
+%     \begin{axis}[xlabel=Time (s)]
+%     \addplot table[x index=0,y=pos:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Standard.csv};
+%     \end{axis}
+%     \end{tikzpicture}
+%     \caption{Original Position}
+%     \label{fig:pos_og_cs}
+%   \end{minipage} 
+%   \begin{minipage}[b]{0.5\linewidth}
+%     \begin{tikzpicture}
+%     \begin{axis}[xlabel=Time (s)]
+%     \addplot  table[x index=0,y=pos:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Signal.csv};
+%     \end{axis}
+%     \end{tikzpicture}
+%     \caption{New CS Position}
+%     \label{fig:pos_new_cs}
+%   \end{minipage} 
+% \end{figure}
 
 Figures \ref{fig:pos_og_cs} and \ref{fig:pos_new_cs} further highlight the non-linear relationship between the control signal and the system behavior. It would be reasonable to assume introducing a proportionally negative signal would return the system from the top to it's initial position but this is not the case. Figure \ref{fig:pos_new_cs} shows that the boom returned to roughly halfway between the start and the top. This indicates that to achieve predictable system response, a more complex control methodology is required, like a PID loop.
 
-\begin{figure}[H] \label{ fig-force-mod} 
-  \begin{minipage}[b]{0.5\linewidth}
-    \begin{tikzpicture}
-    \begin{axis}[xlabel=Time (s)]
-    \addplot table [x index=0,y=force:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Standard.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \caption{Original Force}
-    \label{fig:force_og_cs}
-  \end{minipage} 
-  \begin{minipage}[b]{0.5\linewidth}
-    \begin{tikzpicture}
-    \begin{axis}[xlabel=Time (s)]
-    \addplot table [x index=0,y=force:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Signal.csv};
-    \end{axis}
-    \end{tikzpicture}
-    \caption{New CS Force}
-    \label{fig:force_new_cs}
-  \end{minipage} 
-\end{figure}
-
-
-The Cylinder efficiency coefficient parameter is used in equation \ref{eqn:cylinder_force} to calculate cylinder force.
+% \begin{figure}[H] \label{ fig-force-mod} 
+%   \begin{minipage}[b]{0.5\linewidth}
+%     \begin{tikzpicture}
+%     \begin{axis}[xlabel=Time (s)]
+%     \addplot table [x index=0,y=force:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Standard.csv};
+%     \end{axis}
+%     \end{tikzpicture}
+%     \caption{Original Force}
+%     \label{fig:force_og_cs}
+%   \end{minipage} 
+%   \begin{minipage}[b]{0.5\linewidth}
+%     \begin{tikzpicture}
+%     \begin{axis}[xlabel=Time (s)]
+%     \addplot table [x index=0,y=force:1,mark=none, col sep=comma] {1_hydraulic_sim/Sim_Signal.csv};
+%     \end{axis}
+%     \end{tikzpicture}
+%     \caption{New CS Force}
+%     \label{fig:force_new_cs}
+%   \end{minipage} 
+% \end{figure}
 
 \begin{equation}
     \label{eqn:cylinder_force}
-    F = (A_1 * p_A) - \dot{x}  | A_1 * p_A | (1 - \eta)
+    F = (A_1 \cdot p_A) - \dot{x}  | A_1 \cdot p_A | (1 - \eta)
 \end{equation}
-Figures \ref{fig:force_og_cs} and \ref{fig:force_new_cs} show that the force changes in a relatively similar pattern to the pressure with a different magnitude. This is expected because of the force pressure relationship described in equation \ref{eqn:cylinder_force}.
+
+The Cylinder efficiency coefficient parameter is used in Equation \ref{eqn:cylinder_force} to calculate cylinder force.
+
+Figures \ref{fig:force_og_cs} and \ref{fig:force_new_cs} show that the force changes in a relatively similar pattern to the pressure with a different magnitude. This is expected because of the force pressure relationship described in Equation \ref{eqn:cylinder_force}.
 
 \subsubsection{Power Electronic Converter Dataset}
 \label{ref_pec_dataset}
 
  \begin{figure}[H]
-	\begin{center}
-		\includegraphics[width=0.65\textwidth]{Images/GFMSchema.pdf}
-	\end{center}
+	\includegraphics[width=0.65\textwidth]{Images/GFMSchema.pdf}
 	\caption{Main circuit and control system structure of a grid-forming converter.}
 	\label{fig:sys}
 \end{figure}
 
-Transitioning from the conventional power systems to power electronics-dominated grids (PEDG) has increased demand for grid-forming converters (GFM) to facilitate operational reliability. Although significant research has been made on GFMs (as shown in Fig. \ref{fig:sys}) to expedite stability under different grid conditions, its operation during faults or large signal disturbances still remain a challenge. Compared to synchronous generators (SGs) that can support up to seven times over their rated current, power converters can only cope with a small percent of overcurrent (typically 20\%). Therefore, GFMs have to be protected against extreme faults (ex. short circuit, line-tripping/reclosing, etc) while being able to stay synchronized to the power system. Since the network infrastructure of power systems keeps expanding, it is important to identify these faults accurately under varying grid parameter uncertainties.
+Transitioning from the conventional power systems to power electronics-dominated grids (PEDG) has increased demand for grid-forming converters (GFM) to facilitate operational reliability. Although significant research has been made on GFMs (as shown in Figure \ref{fig:sys}) to expedite stability under different grid conditions, its operation during faults or large signal disturbances still remain a challenge. \enquote{Compared to synchronous generators (SGs) that can support up to seven times over their rated current, power converters can only cope with a small percent of overcurrent (typically 20\%). Therefore, GFMs have to be protected against extreme faults (ex. short circuit, line-tripping/reclosing, etc) while being able to stay synchronized to the power system.}\parencite{trainsient-stability-9523750} Since the network infrastructure of power systems keeps expanding, it is important to identify these faults accurately under varying grid parameter uncertainties.
 
 In this dataset there are four faults considered below. This study will examine the frequency ($f_c$) of the system throughout various fault conditions. Figure \ref{fig:pec_all} shows the entire $f_c$ signal. Each fault has significantly different characteristics and magnitude. The faults are magnified and explained individually below.
 
 \begin{figure}[H]
-    \centering
+    %\centering
     \input{2_pec_sim/base_sig_f_c_all.pgf}
     \caption{PEC Data Set $f_c$ Signal}
     \label{fig:pec_all}
@@ -197,7 +187,7 @@ In this dataset there are four faults considered below. This study will examine 
 Figure \ref{fig:pec_ll_fault} illustrates the frequency behavior during a line-to-line (LL) Fault. A LL Fault is also referred to as an unsymmetrical fault and occurs when there is a short circuit between two conductors. In three phase power, this can occur between two phases of the system. This fault causes a significant decrease in frequency that is orders of magnitude greater than the standard frequency of the system. 
 
 \begin{figure}[H]
-    \centering
+    %\centering
     \input{2_pec_sim/base_sig_f_c_f1.pgf}
     \caption{PEC Data Set LL Fault}
     \label{fig:pec_ll_fault}
@@ -206,7 +196,7 @@ Figure \ref{fig:pec_ll_fault} illustrates the frequency behavior during a line-t
 Figure \ref{fig:pec_three_phase_sensor} shows the frequency behavior during a three phase sensor fault. In this fault condition, there is nothing wrong with the system itself but the sensor is faulty. This causes the detected frequency to rise slightly. This slight rise is significantly less than the other examined faults and is very close to the reference frequency of 50 Hz. 
 
 \begin{figure}[H]
-    \centering
+    %\centering
     \input{2_pec_sim/base_sig_f_c_f2.pgf}
     \caption{PEC Data Set Three Phase Sensor Fault}
     \label{fig:pec_three_phase_sensor}
@@ -215,7 +205,7 @@ Figure \ref{fig:pec_three_phase_sensor} shows the frequency behavior during a th
 Figure \ref{fig:pec_three_phase_grid_fault} shows the frequency behavior of the system during a single phase voltage sag. When this occurs, the frequency oscillates continuously until the fault is over. This is a significant fault in the system and detection is critical to take remedial action. This is another fault where the magnitude is not very large in comparison to the LL Fault of the Three Phase Grid Fault.
 
 \begin{figure}[H]
-    \centering
+    %\centering
     \input{2_pec_sim/base_sig_f_c_f3.pgf}
     \caption{PEC Data Set Single Phase Sag}
     \label{fig:pec_single_phase_sag}
@@ -224,7 +214,7 @@ Figure \ref{fig:pec_three_phase_grid_fault} shows the frequency behavior of the 
 Figure \ref{fig:pec_three_phase_grid_fault} shows the frequency behavior of the system during a Three Phase Grid Fault. This is another sever fault where there is a problem with the grid and corrective action needs to be taken promptly. In this fault there is a large magnitude drop in frequency for the duration of the fault. This is similar behavior to the Three Phase Sensor Fault but the frequency change of the difference is orders of magnitude larger and in the negative direction.
 
 \begin{figure}[H]
-    \centering
+    %\centering
     \input{2_pec_sim/base_sig_f_c_f4.pgf}
     \caption{PEC Data Set Three Phase Grid Fault}
     \label{fig:pec_three_phase_grid_fault}
@@ -234,9 +224,9 @@ Figure \ref{fig:pec_three_phase_grid_fault} shows the frequency behavior of the 
 \subsubsection{Cyber Security BETH Dataset}
 \label{ref_beth_dataset}
 
-The BPF-extended tracking honeypot (BETH) cyber security dataset was released in 2021 and is still under active development and testing. This makes it an attractive dataset for this study since it reflects the current state of the art in cybersecurity and is ``the first cyberscurity dataset for uncertainty and robustness benchmarking \cite{beth-dataset}.'' A cybersecurity honeypot is a set of computer resources that present a benefit to a hacker if they are exploited but are actively being monitored by an organization or individual. For this dataset, an ssh vulnerability is exploited where any password entered will allow a user to login. The system is running two auxillary containers to monitor traffic. The first is the Berkely Packet Filter (BPF) which examines OS process management calls. The second monitor logs DNS activity from the system. This data is collected and parsed over a series of trials to form the dataset.
+The BPF-extended tracking honeypot (BETH) cyber security dataset was released in 2021 and is still under active development and testing. This makes it an attractive dataset for this study since it reflects the current state of the art in cybersecurity and is ``the first cyberscurity dataset for uncertainty and robustness benchmarking \parencite{beth-dataset}.'' A cybersecurity honeypot is a set of computer resources that present a benefit to a hacker if they are exploited but are actively being monitored by an organization or individual. For this dataset, an ssh vulnerability is exploited where any password entered will allow a user to login. The system is running two auxillary containers to monitor traffic. The first is the Berkely Packet Filter (BPF) which examines OS process management calls. The second monitor logs DNS activity from the system. This data is collected and parsed over a series of trials to form the dataset.
 
-The authors present a number of advantages of this dataset that make it attractive for modern machine learning and anomaly detection research \cite{beth-dataset}:
+The authors present a number of advantages of this dataset that make it attractive for modern machine learning and anomaly detection research \parencite{beth-dataset}:
 
 \begin{enumerate}
     \item At over eight million data points, this is one of the largest cyber security datasets available
@@ -248,8 +238,9 @@ The authors present a number of advantages of this dataset that make it attracti
 \end{enumerate}
 
 Figure \ref{fig:beth_userid_all} shows the samples from the BETH dataset where there are labeled outliers. This study is examining the UserId parameter and using it as a continuous data stream. The spikes in the UserId parameter generally correspond with the labeled outliers.
+
 \begin{figure}[H]
-    \centering
+    %\centering
     \input{3_beth_sim/base_sig_userId_all.pgf}
     \caption{BETH Data Set Signal}
     \label{fig:beth_userid_all}
@@ -258,21 +249,21 @@ Figure \ref{fig:beth_userid_all} shows the samples from the BETH dataset where t
 
 \subsection{Algorithm Development}
 
-The code development and experimentation for this work is contained in a Github Repository \cite{BeattieGithub2022}. Most of the figures and results presented in section \ref{ref_results} will be generated from this code. This section outlines how to final outlier detector was developed and some of the unsuccessful detection attempts along the way. Some of the datasets in the repository are private and as such cannot be included in the repository. The code to perform the analysis is included in the repository and can be adapted to fit similar datasets or problems.
+The code development and experimentation for this work is contained in a public Github Repository \parencite{BeattieGithub2022}. Most of the figures and results presented in section \ref{ref_results} will be generated from this code. This section outlines how the final outlier detector was developed and some of the unsuccessful detection attempts along the way. Some of the datasets in the repository are private and as such cannot be included in the repository. The code to perform the analysis is included in the repository and can be adapted to fit similar datasets or problems.
 
 \subsubsection{Unsuccessful Algorithms}
 
-The author experimented with many of the libraries and algorithms outlined in section \ref{ref_code_libraries}. The first iteration of development involved using techniques from the river ML \cite{2020river} and pysad \cite{pysad} libraries.  The tested algorithms in the pysad library include IForestASD, LODA, RSHash, xStream, and Robust Random Cut Forest. The tested (and only) algorithm from the river library includes Half Space Trees. Initial experimentation was performed and the algorithms performed well for point wise outliers on a simulated noisy sine wave. Following this, the algorithms were tested against the Power Electronics Dataset and all techniques performed poorly. These techniques are all well suited to point wise outliers. At this point, the author realized that the kind of anomalies present in the Power Electronics Dataset (and other datasets in this study) are not pointwise but are instead contextual shaplet outliers. A new detection methodology would be needed as the tested algorithms were unable to detect the contextual outliers.
+The author experimented with many of the libraries and algorithms outlined in section \ref{ref_code_libraries}. The first iteration of development involved using techniques from the river ML \parencite{2020river} and pysad \parencite{pysad} libraries.  The tested algorithms in the pysad library include IForestASD, LODA, RSHash, xStream, and Robust Random Cut Forest. The tested (and only) algorithm from the river library is Half Space Trees. Initial experimentation was performed and the algorithms demonstrated good performance for point wise outliers on a simulated noisy sine wave. Following this, the algorithms were tested against the Power Electronics Dataset and all techniques performed poorly. These techniques are all well suited to point wise outliers. At this point, the author realized that the kind of anomalies present in the Power Electronics Dataset (and other datasets in this study) are not pointwise but are instead contextual shaplet outliers. A new detection methodology would be needed as the tested algorithms were unable to detect the contextual outliers.
 
-The author then reexamined the available libraries and searched for ones that do not require training of a model or previous knowledge of the data, operate in a streaming context, and can use a windowed or fix memory and processing allocation. This significantly thins the list of available algorithms and libraries as many required model training and do not operate well outside a batch context. The author evaluated the banpei \cite{banpei} library's Singular Spectrum Transformation (SST) and Hotelling methods and the library was unable to detect the desired anomalies. The author also evaluated the Gradient and Difference detectors in TSOD \cite{tsod} and those algorithms were also unable to detect the contextual anomalies.
+The author then reexamined the available libraries and searched for ones that do not require training of a model or previous knowledge of the data, operate in a streaming context, and can use a windowed or fix memory and processing allocation. This significantly reduces the list of available algorithms and libraries as many required model training and do not operate well outside a batch context. The author evaluated the banpei \parencite{banpei} library's Singular Spectrum Transformation (SST) and Hotelling methods and the library was unable to detect the desired anomalies. The author also evaluated the Gradient and Difference detectors in TSOD \parencite{tsod} and those algorithms were also unable to detect the contextual anomalies.
 
 \subsubsection{Matrix Profile}
 
-Finally, the author found a suitable algorithm for contextual outlier detection called Matrix Profile from the stumpy library \cite{law2019stumpy}. Initial testing with the multivariate matrix profile demonstrated good performance but was very computationally expensive and slow. Additionally, the library didn't facilitate an iterative computation for this method so each iteration would need to recompute the entire matrix profile across the whole window. Subsequently, the author selected to use the univariate matrix profile, which was faster, and allowed for iterative updates to the matrix profile which can be preformed efficiently. Following successful initial experimentation, the author designed an outlier model class which would compute the matrix profile using the stumpy library on every iteration, and predict whether the current event was an outlier or not. 
+Finally, the author found a suitable algorithm for contextual outlier detection called Matrix Profile from the stumpy library \parencite{law2019stumpy}. Initial testing with the multivariate matrix profile demonstrated good performance but was very computationally expensive and slow. Additionally, the library didn't facilitate an iterative computation for this method so each iteration would need to recompute the entire matrix profile across the whole window. Subsequently, the author selected to use the univariate matrix profile, which was faster, and allowed for iterative updates to the matrix profile which can be preformed efficiently. Following successful initial experimentation, the author designed an outlier model class which would compute the matrix profile using the stumpy library on every iteration, and predict whether the current event was an outlier or not. 
 
 Initially the prediction metric was based on determining if the current mean value is greater then a multiplier of the standard deviation of the matrix profile. This worked well but often triggered false positives. This class was parameterized so the user can set the data window size, analysis window size, standard deviation multiplier, and other parameters. Filters were added to not trigger when the algorithm was still loading data into the analysis window and had recently triggered a fault to avoid redundant detection. An additional filter was added to ensure that the currently calculated metric minus the current max value is greater than zero. If it is not there is not enough information to conclude definitely the point is an outlier and it should not be flagged. This technique is used in section \ref{ref_results} to detect outliers in a variety of situations. It only requires adjusting three parameters based on the characteristics of the data being analyzed, much less than is traditionally required by machine learning techniques. Additionally it relies completely on mathematical calculations and statics and is therefore explainable in a way many machine learning techniques are not. 
 
 \subsubsection{Rolling Range Detector}
 
-The detector was fairly well tuned but in certain datasets, like the BETH dataset, performance was inadequate. There were too many false positives being reported from the detector. After analysis of the values computed during each iteration, %TODO: Graphic here
+The detector was fairly well tuned but in certain datasets, like the BETH dataset, performance was inadequate. There were many false positives being reported from the detector. After analysis of the values computed during each iteration,
 a rolling range calculation and filter was implemented. With this technique, every iteration the range in the window is computed by subtracting the maximum and minimum value. A ring buffer is implemented to store the rolling range values. In this buffer, only a set number of elements are allowed in the buffer and when a new element is inserted the oldest element is purged from the buffer. If the current range is greater than the average of the rolling range ring buffer multiplied by the standard deviation multiplier, then it is considered an anomaly. If this is the case the current range is appended to the rolling range ring buffer. This improved performance significantly for datasets like the hydraulic simulation and BETH dataset.
