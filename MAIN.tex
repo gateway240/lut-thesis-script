@@ -18,19 +18,14 @@
 \usepackage{setspace}   %Allows double spacing with the \doublespacing command
 \usepackage{multicol}
 \usepackage{hyperref} % Cross reference linked elements 
-\usepackage{booktabs}
+
 \usepackage{float}
-\usepackage{verbatim}
-\usepackage[shortlabels]{enumitem}
+% \usepackage{verbatim}
+\usepackage[shortlabels,inline]{enumitem}
 \usepackage{textcomp, gensymb}
-% \usepackage{siunitx}
-% \usepackage{pdfpages}
-% \usepackage{amsmath}
 \usepackage[autostyle]{csquotes} 
-% \usepackage{tabularx}
 \usepackage{multirow} 
-% \usepackage{ltablex}
-% \usepackage{ltxtable} 
+\usepackage{booktabs}
 \usepackage{longtable}
 % Loads also "colortbl"
 \usepackage[table]{xcolor} 
@@ -40,9 +35,18 @@
 \usepackage[singlelinecheck=false,justification=justified,labelsep=period]{caption}
 \usepackage{titlesec} %https://tex.stackexchange.com/questions/140447/changing-section-heading-style
 \usepackage{etoolbox}% http://ctan.org/pkg/etoolbox figure space
-\AtBeginEnvironment{figure}{\addvspace{5mm}}
+\AtBeginEnvironment{figure}{\bigskip}
+\AtBeginEnvironment{table}{\bigskip}
 \usepackage[titles]{tocloft} %chapter heading fonts
 \usepackage[skip=24pt plus2pt]{parskip} % Paragraph spacing
+
+
+% custom inline list
+\newlist{inlinelist}{enumerate*}{1}
+\setlist[inlinelist]{label=(\roman*)}
+
+\usepackage{array}
+\newcolumntype{P}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}p{#1}} % wide column in table
 
 \usepackage{url}
 \usepackage[style=bath]{biblatex} % Bibliography
@@ -51,12 +55,6 @@
 \addbibresource{Bibliography/fireman.bib}
 \addbibresource{Bibliography/libraries.bib}
 \newcommand{\citel}[1]{(\cite{#1}.)} % long parenthetical citation
-% numerical ciations for tables
-% \DeclareCiteCommand{\citenum} 
-%   {}
-%   {\printfield{labelnumber}}
-%   {}
-%   {}
 
 \pagestyle{myheadings} % Sets number to top right 
 
@@ -73,6 +71,10 @@
     \renewcommand\cftloftitlefont{\normalsize}
     \renewcommand{\cftpnumalign}{r}
 }
+\usepackage{lastpage} % Counter of pages, 
+\usepackage{xassoccnt} % Counter of tables, figure
+\RegisterTotalDocumentCounter{figure}
+\RegisterTotalDocumentCounter{table}
 
 
 % --- START DOCUMENT ---
@@ -135,8 +137,6 @@
 \newpage
 \input{6Conclusion}
 \newpage
-
-
 
 \printbibliography[title=\Large{References}] 
 

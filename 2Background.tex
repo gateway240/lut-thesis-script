@@ -1,45 +1,78 @@
 \section{Background}
-This work presents a review of existing algorithms, a new anomaly detector, and three experiments conducted with the proposed detector. This section provides an overview of the requisite technologies and algorithms. Additionally, this section provides a review of the current anomaly detection libraries for anomaly detection in python.
+This section presents a review of existing algorithms, an anomaly taxonomy, and evaluation of existing anomaly detection libraries. Additionally, this section includes an overview of the Work Packages (WPs) that define the deliverables of the FIREMAN project.
 
 \subsection{FIREMAN Work Packages}
+\label{ref_FIREMAN_WP}
 
-This subsection will outline the progress and overall goal of the three milestones or work packages that guide the FIREMAN project.
+This subsection will outline the progress and overall goal of the three milestones or work packages that guide the FIREMAN project. The interconnection and overview of the individual WPs is shown in Figure \ref{fig:wp-diagram}
+
+\begin{figure}[H]
+    \includegraphics[width=0.8\textwidth]{Images/FIREMAN_pert_diagram.png}
+    \caption{FIREMAN WP Diagram}
+    \label{fig:wp-diagram}
+\end{figure}
+
+This work will focus on WP6 by demonstrating an implementation of a theoretical algorithm for real-world anomaly detection.
 
 \subsubsection{Large Scale Data Acquisition (WP3)}
 
-The primary aim of this work package is \enquote{event-based modelling and traffic characterization techniques aiming for a reduced use of communication and storage resources. This pre-processing task is expected -among others- to optimize the subsequent data transmissions by injecting only relevant data in the network to reduce overhead and increase spectral efficiency.} \citel{wp3.1} In this portion of Fireman, the researchers examined a  variety of industrial data sets including the Tennessee Eastman Process, Electricity Metering, IEC-61850 Distribution Automation, and the EPFL Smart Grid Pilot. Modeling of transmission reduction techniques centered around the electricity modeling data set. Three approaches for reducing transmissions were presented including transmission on large spikes, transmissions on accumulated variance, and time interval defined transmission with a timeout to compensate for meter or network failure. These simulations have shown a large potential for reducing transmissions without significantly affecting the accuracy of the measured signal. The researchers then modeled a Markov-Modulated Poission Process to simulate these industrial processes for use in further stages of the project.
+This work package focuses on \enquote{event-based modelling and traffic characterization techniques aiming for a reduced use of communication and storage resources. This pre-processing task is expected -among others- to optimize the subsequent data transmissions by injecting only relevant data in the network to reduce overhead and increase spectral efficiency.} \citel{wp3.1}
+
+In this portion of FIREMAN, we examined a  variety of industrial data sets including the Tennessee Eastman Process, Electricity Metering, IEC-61850 Distribution Automation, and the EPFL Smart Grid Pilot. This data set is not heavily reliant on relational constraints or atomicity, consistency, isolation, durability (ACID) compliance. Because of this, we have selected a non-relational PostgreSQL database for storage because of its superior throughput and increased performance in data processing applications.
+
+The developed detection framework for rare events is shown in Figure \ref{fig:three-layer}. The sensors traditionally used in Cyber-Physical Systems do not have much compute or storage capacity which makes pre-processing of data at the sensor level challenging. Because of this, \enquote{compression is essential for reducing the challenge of data storage, collection, transmission, processing, and analysis at the local level \parencite{compression}.} Authors \cite{wp3.2} have shown that it is possible to achieve a 92.6\% compression rate which means that only 7.4\% of samples are transmitted. We have also used different methods including linear interpolation to de-compress the data and have measured the error using the root mean square technique. 
 
 \begin{figure}[H]
     % \centering
     \includegraphics[width=0.8\textwidth]{Images/three-layer-system.PNG}
-    \caption{Three layer framework for rare event detection - \parencite{three-layer-approach}}
+    \caption{Three layer framework for rare event detection \parencite{three-layer-approach}}
     \label{fig:three-layer}
 \end{figure}
-The importance of data pre-processing in the three-layer framework is shown \parencite{three-layer-approach} in figure \ref{fig:three-layer}. The sensors traditionally used in Cyber-Physical Systems do not have much compute or storage capacity which makes pre-processing of data at the sensor level challenging. \enquote{Because of this, compression is essential for reducing the challenge of data storage, collection, transmission, processing, and analysis at the local level \parencite{compression}} \parencite{wp3.2} have shown that it is possible to achieve a 92.60\% compression rate which means that only 7.4\% of samples are transmitted. The researchers have also used different methods including linear interpolation to de-compress the data and have measure the error using the root mean square technique. This data set is not heavily reliant on relational constraints or ACID compliance. Because of this, the researchers have selected a non-relational Postgres database for storage because of its superior throughput and increased performance in data processing applications.
+
+Modeling of transmission reduction techniques centered around the electricity modeling data set. Three approaches for reducing transmissions were presented including transmission on large spikes, transmissions on accumulated variance, and time interval defined transmission with a timeout to compensate for meter or network failure. These simulations have shown a large potential for reducing transmissions without significantly affecting the accuracy of the measured signal. We modeled a Markov-Modulated Poission Process to simulate these industrial processes for use in further stages of the project.
 
 \subsubsection{Big Data Fusion (WP4)}
 \label{ref_wp4}
-The goal of this task is \enquote{to show how a large number of sensors and their corresponding data can be  accommodated and aggregated at small cost for reliably detecting rare events \parencite{wp4.1}.} This task focuses on three primary objects: heterogeneous data aggregation in machine-type communications, signature-based cluster formation, and IoT platform and database selection. It is challenging to simultaneously connect a massive number of devices which is why data aggregation is important. This strategy outlined by  relies on the following principals of:
-\begin{enumerate}
-  \item \enquote{Shortening the distance in communication, while diminishing the power consumption of the machine type devices (MTDs)}\parencite{massive-machine}
-  \item \enquote{Reducing the number of connections to the core, thus decreasing the congestion}\parencite{massive-machine}
-  \item Extending the network coverage.
-\end{enumerate}
-The researchers also introduced a cluster formation scheme based on signatures that reduces the signalling overhead required for pee-discovery in the network. This technique utilizes signal aggregates to reduce traffic congestion to the central node. Additionally the researchers surveyed IoT experts to determine the most important properties and components of an IoT system. Then they compared the five most popular cloud IoT providers: AWS, Azure, GCP, IBM Watson, and Oracle IoT to create a comparison that can be used by businesses when selecting a cloud provider that suits their business needs. SEAT, an automotive component manufacturer, provided two use cases and accompanying data sets to the researchers. The first involves early failure detection of mechanical components in the drive chain in the Paint shop which causes axial displacement. The second involves detecting early failure of the spindle on a CNC machine which ensures lineal movement over a surface. In both of these situations detecting failure early will help SEAT detect problems and solve them before they begin to impact production components and eventually reduce production downtime to zero. 
+The goal of this task is \enquote{to show how a large number of sensors and their corresponding data can be  accommodated and aggregated at small cost for reliably detecting rare events \parencite{wp4.1}.} This task focuses on three primary objects: 
+\begin{inlinelist}
+    \item heterogeneous data aggregation in machine-type communications;
+    \item signature-based cluster formation; and
+    \item IoT platform and database selection.
+\end{inlinelist}
+
+It is challenging to simultaneously connect a massive number of devices which is why data aggregation is important.
+This strategy outlined by Authors \cite{massive-machine} relies on the following principals:
+\begin{inlinelist}
+  \item decreasing communication distance and power consumption of connected devices;
+  \item utilizing an efficient distributed node routing network to decrease bandwidth congestion of central nodes; and
+  \item extending the network coverage.
+\end{inlinelist}
+The researchers also introduced a cluster formation scheme based on signatures that reduces the signalling overhead required for peer-discovery in the network. This technique utilizes signal aggregates to reduce traffic congestion to the central node.
+
+Additionally we surveyed IoT experts to determine the most important properties and components of an IoT system. This survey compared the five most popular cloud IoT providers: AWS, Azure, GCP, IBM Watson, and Oracle IoT to create a comparison that can be used by businesses when selecting a cloud provider that suits their business needs.
+
+SEAT, an automotive component manufacturer, provided two use cases and accompanying data sets for the FIREMAN project. The first involves early failure detection of mechanical components in the drive chain in the Paint shop which causes axial displacement. The second involves detecting early failure of the spindle on a CNC machine which ensures lineal movement over a surface. In both of these situations detecting failure early will help SEAT detect problems and solve them before they begin to impact production components and eventually reduce production downtime to zero. 
 
 \subsubsection{Machine Intelligence for Industrial Rare-event Provisioning (WP5)}
 
-The goal of this task is to utilize machine intelligence techniques to predict indicators of health for a machine, component, or entire industrial process to determine health and detect premature failure. The main technique proposed in this task is Quantitative Association Rule Mining Algorithm (QARMA) and the researchers applied it to the datasets discussed in \ref{ref_wp4}. \enquote{QARMA is a family of algorithms for extracting all (or, depending on user inputs, an important subset of) valid non-dominated quantitative association rules that hold in a dataset, that can then be used for further data analysis such as deriving rule-based classifier ensembles or as explainers of classification results of other black-box classifiers.}\citel{wp5.1}  This technique is one of the most human understandable techniques for machine intelligence and has shown promise for this application. The researchers have analyzed traditional methods for pruning the rules created by the algorithm (as many of them can be extraneous or unreliable). They found that the fastest open source Mixed-Integer Programming (MIP) tool was able to solve the problem in 19 seconds while their parallelized hybrid search algorithm solved the problem 240 times faster when using 24 threads. Reference \parencite{wp5.1} used a breadth first search approach to compute a ``small'' subset of rules that cover the majority of instances in a training dataset covered by the totality of rules extracted by QARMA applied on it. The researchers also experimented with Deep Neural Networks on a synthetic power grid fault diagnostic dataset and discovered that QARMA is able to handle noisy data better than certain neural networks because of overfitting of training data. The rule based methods generated by QARMA produce human understandable rules which is beneficial in the present push for explainable AI.
+The goal of this task is to utilize machine intelligence techniques to predict indicators of health for a machine, component, or entire industrial process to determine health and detect premature failure. The main technique proposed in this task is Quantitative Association Rule Mining Algorithm (QARMA).
 
-\subsection{Black Box Algorithm Explainability}
+\enquote{QARMA is a family of algorithms for extracting all (or, depending on user inputs, an important subset of) valid non-dominated quantitative association rules that hold in a dataset, that can then be used for further data analysis such as deriving rule-based classifier ensembles or as explainers of classification results of other black-box classifiers.}\citel{wp5.1}  This technique is one of the most human understandable techniques for machine intelligence and has shown promise for this application. In this WP, QARMA is tested on the SEAT dataset discussed in \ref{ref_wp4}.
 
-Certain high-risk use cases for machine learning algorithms demand a high level of explainability and confidence in the algorithm outputs to use in fields of decision making. Usually an algorithm will make a classification or decision but there will not be a clear explanation as to why the algorithm made that decision. In the field of power electronics, understanding why a data-driven controller is making a decision is critical to incorporating it into real world power distribution scenarios. The fundamental questions for the field of power electronics this work explores are as follows:
-\begin{enumerate}
-    \item \enquote{How can the prediction of an AI/ML algorithm be \textit{trusted} for power electronics \parencite{black-box-explainability}?}
-    \item \enquote{How can the physical insights behind these black box tools be \textit{explained} for power electronics \parencite{black-box-explainability}?}
-\end{enumerate}
+Traditional methods for pruning the rules created by the algorithm were analyzed in this WP as many of them can be extraneous or unreliable. The fastest open source Mixed-Integer Programming (MIP) tool was able to solve this problem in 19 seconds while the parallelized hybrid search algorithm proposed in this WP solved the problem 240 times faster when using parallel threads.
 
-Answering these questions is complex and there are a few approaches to achieving this goal. Authors \parencite{black-box-explainability} propose using conditional entropy to determine how each input is related to each output. The generated plots are then compared to the physical insights of the system and outlier, adversarial data that falls outside the plot is identified and removed. The model is then retrained. This technique is helpful for identifying and removing adversarial data that falls outside the range of accepted values but it would not identify data overloading in a specific portion of the graph which would create an incorrect classification.
+Authors \cite{wp5.1} used a breadth first search approach to compute a `small' subset of rules that cover the majority of instances in a training dataset covered by the totality of rules extracted by QARMA applied on it. Through experimentation on a synthetic power grid fault diagnostic dataset QARMA performs better than certain neural networks with noisy data. This is because of the over-fitting of training data with Deep Neural Network architectures. The rule based methods generated by QARMA produce human understandable rules which is beneficial in creating explainable AI.
+
+\subsubsection{Proof-of-Concept Trails and Pilots (WP6)}
+\label{ref_wp6}
+
+% TODO
+
+\subsection{Algorithm Explainability}
+
+Certain high-risk use cases for machine learning algorithms demand a high level of explainability and confidence in the algorithm outputs to use in fields of decision making. In many cases an algorithm makes a classification decision but there is not a clear explanation as to why the algorithm made that decision. In the field of power electronics, understanding why a data-driven controller is making a decision is critical to incorporating it into real world power distribution scenarios. 
+
+Answering these questions is complex and there are a few approaches to achieving this goal. Authors \cite{black-box-explainability} propose using conditional entropy to determine how each input is related to each output. The generated plots are then compared to the physical insights of the system and outlier, adversarial data that falls outside the plot is identified and removed. The model is then retrained. This technique is helpful for identifying and removing adversarial data that falls outside the range of accepted values but it would not identify data overloading in a specific portion of the graph which would create an incorrect classification.
 
 \subsubsection{Model Uncertainty}
 When analyzing uncertainty, it is important to distinguish between the two types discussed below.
@@ -51,13 +84,15 @@ When analyzing uncertainty, it is important to distinguish between the two types
 
 Aleatoric uncertainty describes phenomenon that arise inline with a given probability distribution. So if you have a signal that has noise inline with a given probability distribution, having more data on that signal will not change the noise probability distribution. Another way to think about it would be if you are at a train station recording audio and there will be 3 announcements that occur each hour that will disrupt your recording but you do not know when they will come. Having more data (hours) will not change the amount of announcements that occur. There are indeed some cases where having more data would reduce uncertainty but that is not what this property is discussing. It does not reference the data distribution itself but the distribution of random errors in the data.
 
-With deep learning algorithms, it is important to know the level of confidence the model is predicting the outcome with. Reference \parencite{explaining-adversarial-examples} explain that adding simple adversarial data (like small noise to a photo) will make an image recognition algorithm incorrectly classify one animal as a completely different one. This is further concerning since adversarial data does not need to be tailored to a specific algorithm. The transferability of this type of adversarial data allows it to be applied to many black box algorithms to achieve an unintended or potentially malicious result. 
+With deep learning algorithms, it is important to know the level of confidence the model is predicting the outcome with. cite{explaining-adversarial-examples} explain that adding simple adversarial data (like small noise to a photo) will make an image recognition algorithm incorrectly classify one animal as a completely different one. This is further concerning since adversarial data does not need to be tailored to a specific algorithm. The transferability of this type of adversarial data allows it to be applied to many black box algorithms to achieve an unintended or potentially malicious result. 
 
 A malfunctioning sensor or bad connection can generate noise (a type of aleatoric uncertainty), which cannot be fixed by more measurements or more data. Data imputation can be used as a technique to correct for or understand this type of uncertainty. If you can identify that the uncertainty is present, then you can use data imputation to form a well educated guess as to what the value should actually be. The significance of identifying it as aleatoric uncertainty is that no amount of model tuning or data collection can fix the underlying issue, so data imputation presents an opportunity to move forward that standard techniques would not.
 
-Bayseaian techniques can be used to create a probability distribution over the weights to determine a level of uncertainty for the weights. Unfortunately, retraining a large number of models on a variety of data sets is computationally expensive and time consuming. Reference \parencite{gal2016dropout} proposed using a dropout technique to approximate the Bayseaian representation. In this technique, which avoids over-fitting, network nodes are randomly sampled and dropped across many different training iterations. This dropout will randomly zero neurons in accordance with a Bernoulli distribution which was shown to be equivalent to the Bayesian approximation of the Gaussian process. It is important to perform the dropout technique while training and testing the algorithm and then compute the variance to determine the uncertainty. This enables researchers to determine that for specific values the algorithm is providing a best guess answer with high levels of uncertainty, which could then signal the need for human intervention or review in decision making.  
+Bayseaian techniques can be used to create a probability distribution over the weights to determine a level of uncertainty for the weights. Unfortunately, retraining a large number of models on a variety of data sets is computationally expensive and time consuming. Authors \cite{gal2016dropout} proposed using a dropout technique to approximate the Bayseaian representation. This technique avoids over-fitting by randomly sampling and dropping network nodes across many different training iterations.
 
-\subsection{Types of Outliers}
+It is important to perform the dropout technique while training and testing the algorithm and then compute the variance to determine the uncertainty. This enables researchers to determine that for specific values the algorithm is providing a best guess answer with high levels of uncertainty, which could then signal the need for human intervention or review in decision making.  
+
+\subsection{Outlier Taxonomy}
 
 The term `outlier' or `anomaly' can have a variety of interpretations and meanings depending on the context. In order to select and evaluate appropriate techniques for outlier detection, it is essential to understand and define the various types of outliers that can be present in a dataset. There are conventionally three ways that outliers are categorized in literature visualized graphically in figure \ref{fig:outliers-graphic} and described below:
 \blockquote{
@@ -103,10 +138,12 @@ Pattern-wise outliers can fall into 3 categories: shaplet, seasonal, and trend o
     \label{fig:contextual-outliers}
 \end{figure}
 
-\subsection{Current Time Series Techniques}
+\subsection{Anomaly Detection Algorithms}
+\label{ref_anomaly_detection_alg}
+
 Numerous outlier detection techniques currently exist each is traditionally applied to one domain specific problem. These techniques are very versatile (especially unsupervised ones) and as such can be applied in a much more general sense. This section will focus on current developments and advances across all disciplines in anomaly detection techniques.
 
-While there are many new and state-of-the-art developments, corresponding code to a publication is often not included. This makes reproducing the results presented in the paper difficult and in order to utilize these techniques in practice, the algorithm has to be implemented based on pseudo-code, a time consuming process. As such, this will serve primarily as a survey of promising techniques. Section \ref{ref_code_libraries} will examine existing implementations of some of these techniques. If one of the non-implemented techniques is proposed to have superior performance, the researchers will examine implementing and adding it to an appropriate existing open source machine learning library.
+While there are many new and state-of-the-art developments, corresponding code to a publication is often not included. This makes reproducing the results presented in the paper difficult and in order to utilize these techniques in practice, the algorithm has to be implemented based on pseudo-code, a time consuming process. As such, this will serve primarily as a survey of promising techniques. Section \ref{ref_code_libraries} examines existing implementations of some of these algorithms.
 
 \subsubsection{Streaming Half Space Trees (HST)}
 \enquote{Streaming Half-Space Trees (HST) are a fast one-class anomaly detector for evolving data streams.}\parencite{fast-anomaly-detection-streaming} It is an efficient method for point-wise outlier detection and is implemented in a variety of anomaly detection libraries. This technique relies on ensembleing HS-Trees which are full binary trees, where all leaves are at the same depth. It is fast, relatively efficient with a time and space complexity of $O(1)$, and is suitable for handling streaming data.
@@ -151,19 +188,24 @@ Using this technique, it is easy to extract information from the data. Motifs wh
 
 \subsection{Anomaly Detection Libraries}
 \label{ref_code_libraries}
- Techniques were surveyed from a variety of github repositories and online sources using comprehensive tools and frameworks lists \parencite{medico2020-ts-list}. The most relevant and promising libraries are selected and their performance will be evaluated with the sample data sets. Certain exclusion criteria was applied to narrow the list of frameworks.This list includes:
- \begin{itemize}
-     \item Not supporting python
-     \item Does not run on specific platforms (ex. only Ubuntu)
-     \item No longer being maintained (explicitly or no git commits within 2 years)
-     \item Non-suitability for the provided task (focused on forecasting, point-wise outliers, etc. )
-     \item Focused on a specific non-applicable domain (like image processing)
-     \item Designed primarily for creating a production workflow
-
- \end{itemize}
- In further research the production oriented libraries may be considered to implement a production outlier detection pipeline as many of them use the underlying libraries described here for detection. 
+ Libraries and algorithms were surveyed from a variety of Github repositories, online sources, and a comprehensive framework list from Author \cite{medico2020-ts-list}. The most relevant libraries were selected and their performance is evaluated against the sample data sets in Section \ref{ref_results}. The following criteria was required for a framework to be selected for analysis:
+ \begin{inlinelist}
+     \item written for Python
+     \item compatibility with MacOS, Windows, and Linux operating systems
+     \item actively maintained with git commits within the past two years
+     \item suitable for context-wise anomaly detection on signals
+     \item quality documentation
+     \item over 100 stars on Github.
+ \end{inlinelist}
  
- Table \ref{tab:anom_detect_lib} at the end of the section presents a summary and comparison of the algorithms and libraries discussed in the following subsections. It also highlights the techniques that work well for point-wise outlier detection, context-wise time-series detection, drift detection, and segmentation. 
+ 
+Some libraries were excluded from selection because their focus on production environments makes them difficult to test and perform research with. In further research these libraries may be considered to implement a production outlier detection pipeline. Many of them use the underlying algorithms described in Section \ref{ref_anomaly_detection_alg} for detection. 
+ 
+Table \ref{tab:anom_detect_lib} compares the selected outlier detection libraries in a systematic way. This table can be used to quickly compare and evaluate libraries for use in implementation. The specific algorithms for each library are classified into a category with a description.
+ 
+Each method is classified according to how suitable it is for online learning and its primary use case. For the algorithm to have a yes in the online learning category, the algorithm must be able to iteratively update the model efficiently, and predict specific instance one at a time. Partially in the online category means that there is a pre-trained model, with individual instance detection. No in the online category means that the algorithm is not suited for online detection. 
+
+\input{tables/library_comparison}
 
 \subsubsection{PySAD}
 
@@ -248,8 +290,8 @@ The differentiating factors of the library are:
 
 \enquote{Luminaire is a python package that provides ML-driven solutions for monitoring time series data. Luminaire provides several anomaly detection and forecasting capabilities that incorporate correlational and seasonal patterns as well as uncontrollable variations in the data over time.}\citel{chakraborty2020building-luminaire} This library provides a technique to monitor data points over a window of time which is helpful in detecting context-wise outliers in a streaming context.
 
-\subsection{Algorithm and Library Comparison}
 
-Table \ref{tab:anom_detect_lib} compares the various outlier detection methodologies described in Section \ref{ref_code_libraries} a systematic way. Each specific sub-technique for each library is classified into a category with a description. Additionally the method is classified according to how suitable it is for online learning. For the online learning category to be a yes, the technique must be able to iteratively update the model efficiently, and predict specific instance one at a time. Partially online means that there is a pre-trained model, with individual instance detection. This table can be used to quickly compare and evaluate techniques for algorithm implementation.
 
-\input{tables/library_comparison}
+
+
+

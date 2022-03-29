@@ -1,7 +1,7 @@
 \section{Results}
 \label{ref_results}
 
-The results from the the two literature reviews are presented here. Additionally, the results of the experiments with the STUMPY python library implementation of the Iterative Matrix Profile detector are presented.
+The results from the the two literature reviews and the development of the anomaly detector are presented here. The anomaly detector was created in Python with the STUMPY library implementation of the Iterative Matrix Profile detector. It is tested against three experimental data sets with different properties and anomaly types. 
 
 \subsection{Data Set Survey}
 In this section, the researchers surveyed 8 works focusing on streaming data outlier detection in machine learning. The datasets used in each paper were examined to determine which datasets were commonly used in the literature as shown in Table \ref{tab:datasets_outlier_detection}. 
@@ -10,7 +10,7 @@ In this section, the researchers surveyed 8 works focusing on streaming data out
 
 Figure \ref{fig_dataset_lit} shows the most commonly occurring data sets in the literature from table \ref{tab:datasets_outlier_detection} are KDD\_CUP99 \parencite{kdd1999} followed by Covertype-Forest \parencite{covertype-dataset}. A data set is included in table \ref{tab:datasets_outlier_detection} and figure \ref{fig_dataset_lit} if there are 2 or more occurrences of it in the literature surveyed. The most commonly used datasets found in the literature were originally created in the late 1990's. Most of the research surveyed has been conducted in the last 10 years but the standard benchmark datasets are from the late 90's. This suggests a lack of standardization in data sets to compare algorithm performance. Most papers surveyed included these seemingly standard datasets while also utilizing a wide variety of custom, private, or less well known datasets. Further research should be conducted to determine if the existing standard datasets are sufficient to benchmark performance for modern streaming outlier detection algorithms. If they are not, a standard test suite or data set should be proposed to uniformly evaluate performance across different works.
 
-\begin{figure}[h]
+\begin{figure}[H]
     %%\centering
     \begin{tikzpicture}
         \pie[sum=auto]{6/KDD\_CUP99, 4/Covertype-Forest, 3/Shuttle, 2/UCI\_Pendigit, 2/UCI\_Vowel}
@@ -23,7 +23,7 @@ Figure \ref{fig_dataset_lit} shows the most commonly occurring data sets in the 
 
 The author began a discussion on the Github Discussion Board \parencite{RiverGithub2022} for the popular River \parencite{2020river} Machine Learning library. The post discusses plans to include a streaming Local Outlier Factor (LOF) methodology to the library and test its effectiveness. Through this discussion the author realized that this approach is not the best solution for this given task. Through this discussion, the author was introduced to the BETH dataset \parencite{beth-dataset}, which will be used as one of the experimental test datasets for the developed technique. Additionally, this discussion prompted the author of the BETH dataset, Kate Highnam, to add the dataset to a public repository at Imperial College London which provides easy access for researchers wishing to work on the dataset.
 
-The author also connected with private cyber security researcher Matti Bispham \parencite{Bispham-email:private} at the National Composites Centre National Composites Centre (NCC) Group. Through this correspondence, Matti provided some practical issues with the most popular cited dataset, KDD\_CUP99, mostly corresponding to the age of the dataset including:
+The author also connected with private cyber security researcher Matti Bispham \parencite{Bispham-email:private} at the National Composites Centre National Composites Centre (NCC) Group. Through this correspondence, Matti provided some insight on practical issues with the most popular cited dataset, KDD\_CUP99, mostly corresponding to the age of the dataset including:
 
 \begin{itemize}[leftmargin=2cm]
     \item Cyber-attacks have changed dramatically since 1999 (when KDD\_CUP99 was published). They have a different ontology and language (ex. Crypto mining, Ransomware, etc.)
@@ -49,8 +49,18 @@ In this section, the datasets from section \ref{ref_datasets} are tested using t
 \label{ref_results_hydraulic_sim}
 The hydraulic simulation data set presented in section \ref{ref_hydraulic_dataset} is used to perform this simulation. Table \ref{tab:hydraulic_sim_params} specifies the parameters used with the anomaly detector to obtain the results in this section. This is the smallest dataset tested in this study and it outlines the performance and characteristics of the anomaly detector at small window sizes. The standard deviation multiplier is the default for the detector. If the data follows a standard Gaussian distribution, the detected points would fall outside 99.7\% of the data present in the window, which would represent a significant outlier comparative to the rest of the data. The same principal applies to the rolling range multiplier. The recent range detection debounce multiplier is also standard given the small window size and ensures that there are not over-noisy or duplicate detections.
 
+This experiment demonstrate that the developed detector is robust to changes in scale. Figure \ref{fig:hydraulic_result_fp} shows that the pressure and force signals in the system have similar shape but different magnitude. 
+
+\begin{equation}
+    \label{eqn:cylinder_force}
+    F = (A_1 \cdot p_A) - \dot{x}  | A_1 \cdot p_A | (1 - \eta)
+\end{equation}
+
+This relationship in the shape of the pressure and force signals is derived from the force pressure relationship described in Equation \ref{eqn:cylinder_force}. As the pressure increases, the force exerted by the hydraulic cylinder increase proportionally. Since the boom arm and end effector in the system are fixed, the end effector moves proportionally to the change in force. Figure \ref{fig:hydraulic_result_fp} shows small differences between the force and pressure which is a result of the modeling of the hydraulic boom arm as a flexible body, which introduces additional oscillation which affects the pressure.
+
 \begin{table}[H]
 %%\centering
+\caption{Hydraulic Simulation Detector Parameters}
 \begin{tabular}{|l|c|l|}
     \hline
 	\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\ \hline
@@ -60,77 +70,26 @@ The hydraulic simulation data set presented in section \ref{ref_hydraulic_datase
 	range & 3 & Rolling Range Multiplier\\ \hline
 	recent & 2 & Recent Detection Debounce\\ \hline
 \end{tabular}
-\caption{Hydraulic Simulation Detector Parameters}
 \label{tab:hydraulic_sim_params}
 \end{table}
 
-Figures \ref{fig:hydraulic_sim_standard_force} and \ref{fig:hydraulic_sim_signal_force} show the original control signal with the anomaly detections from the experiment highlighted with red lines. In this case, the detector was able to locate all of the inflection points where the signal changed for both control signals without false positives. This is a 100\% accuracy rate for the two different control signals presented with the same detector parameters.
+Figure \ref{fig:hydraulic_result_fp} shows the force and pressure with the anomaly detections from the experiment highlighted with red lines. In this case, the detection points represent motif changes in the signals. The detector was able to locate all of these inflection points without false positives. This is a 100\% accuracy rate for the detector. The amplitude and waveform of the signals presented here are identical to the force signal presented above. The primary difference is the different amplitudes. The pressure signal is two orders of magnitude larger in amplitude. Which illustrates the detector is robust to scale variations.
 
-% \begin{figure}[H]
-%     \begin{minipage}[t]{0.5\linewidth}
-%         %%\centering
-%         \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/outlier_result_Sim_Standard_force:1.pgf}}
-%         \caption{Force Anomalies}
-%         \label{fig:hydraulic_sim_standard_force}
-%     \end{minipage}
-%     \begin{minipage}[t]{0.5\linewidth}
-%         %%\centering
-%         \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/outlier_result_Sim_Signal_force:1.pgf}}
-%         \caption{Force Anomalies New CS}
-%         \label{fig:hydraulic_sim_signal_force}
-%     \end{minipage}
-% \end{figure}
+\begin{figure}[H]
+    %\centering
+    \input{1_hydraulic_sim/results/outlier_result_scale_variant_detection.pgf}
+    \caption{Hydraulic Crane Motif Changes}
+    \label{fig:hydraulic_result_fp}
+\end{figure}
 
-Figures \ref{fig:mp_hist_standard_force} and \ref{fig:mp_hist_signal_force} shows the values calculated during the matrix profile for the force generated by the system with the original control signal (figure \ref{fig:hydraulic_sim_standard_force}) and modified control signal (figure \ref{fig:hydraulic_sim_signal_force}) respectively. The values remain relatively similar until the differences in the two signals occur near time step 150. This reveals how the detector is operating and provides an explanation for the system output. 
+Figure \ref{fig:hydraulic_mp_hist_fp} shows the values calculated during the matrix profile for the force and pressure of the system with the control signal in figure \ref{fig:hydraulic_cs}. The shape of the matrix profile value signals is nearly identical for the force and pressure values. The two signals have dramatically different magintudes but similar shapes. This shows the algorithm is robust to different macro data scales and explains the results obtained in \ref{fig:hydraulic_result_fp}.
+\begin{figure}[H]
+    %\centering
+    \input{1_hydraulic_sim/results/mp_hist_scale_variant_pressure_force.pgf}
+    \caption{Hydraulic Simulation Matrix Profile Values}
+    \label{fig:hydraulic_mp_hist_fp}
+\end{figure}
 
-% \begin{figure}[H]
-%     \begin{minipage}[t]{0.5\linewidth}
-%         %%\centering
-%         \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/mp_hist_Sim_Standard_force:1.pgf}}
-%         \caption{Force Matrix Profile}
-%         \label{fig:mp_hist_standard_force}
-%     \end{minipage}
-%     \begin{minipage}[t]{0.5\linewidth}
-%         %%\centering
-%         \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/mp_hist_Sim_Signal_force:1.pgf}}
-%         \caption{Force Matrix Profile New CS}
-%         \label{fig:mp_hist_signal_force}
-%     \end{minipage}
-% \end{figure}
-
-Figures \ref{fig:hydraulic_sim_standard_pressure} and \ref{fig:hydraulic_sim_signal_pressure} show the original control signal with the anomaly detections from the experiment highlighted with red lines. In this case, the detector was able to locate all of the inflection points in the same locations as previously detected. This provides a 100\% accuracy rate for the two different control signals as is above. The amplitude and waveform of the signals presented here are identical to the force signal presented above. The primary difference is the different amplitudes. The pressure signal is two orders of magnitude larger in amplitude. Which illustrates the detector is robust to scale variations. 
-
-% \begin{figure}[H]
-%     \begin{minipage}[t]{0.5\linewidth}
-%         %%\centering
-%         \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/outlier_result_Sim_Standard_pA:1.pgf}}
-%         \caption{Pressure Anomalies}
-%         \label{fig:hydraulic_sim_standard_pressure}
-%     \end{minipage}
-%     \begin{minipage}[t]{0.5\linewidth}
-%         %%\centering
-%         \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/outlier_result_Sim_Signal_pA:1.pgf}}
-%         \caption{Pressure Anomalies New CS}
-%         \label{fig:hydraulic_sim_signal_pressure}
-%     \end{minipage}
-% \end{figure}
-
-Figures \ref{fig:mp_hist_standard_pressure} and \ref{fig:mp_hist_signal_pressure} shows the values calculated during the matrix profile for the pressure generated by the system with the original control signal (figure \ref{fig:hydraulic_sim_standard_pressure}) and modified control signal (figure \ref{fig:hydraulic_sim_signal_pressure}) respectively. As in the previous signal, the values remain relatively similar until the differences in the two signals occur near time step 150. The waveform of the matrix profile values is identical to the previous force plots with the difference in the magnitude as is noted above. This provides insight into the robustness of the algorithm against different macro data scales of signals with the same shape.
-
-% \begin{figure}[H]
-%     \begin{minipage}[t]{0.5\linewidth}
-%         %%\centering
-%         \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/mp_hist_Sim_Standard_pA:1.pgf}}
-%         \caption{Pressure Matrix Profile}
-%         \label{fig:mp_hist_standard_pressure}
-%     \end{minipage}
-%     \begin{minipage}[t]{0.5\linewidth}
-%         %%\centering
-%         \resizebox{\linewidth}{!}{\input{1_hydraulic_sim/results/mp_hist_Sim_Signal_pA:1.pgf}}
-%         \caption{Pressure Matrix Profile New CS}
-%         \label{fig:mp_hist_signal_pressure}
-%     \end{minipage}
-% \end{figure}
 
 \subsubsection{Power Electronic Converter Data Set}
 \label{ref_results_pec_sim}
@@ -138,6 +97,7 @@ The Power Electronic Converter (PEC) data set presented in section \ref{ref_pec_
 
 \begin{table}[H]
 %%\centering
+\caption{PEC Data Set Detector Parameters}
 \begin{tabular}{|l|c|l|}
     \hline
 	\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\ \hline
@@ -147,7 +107,6 @@ The Power Electronic Converter (PEC) data set presented in section \ref{ref_pec_
 	range & 0 & Rolling Range Multiplier\\ \hline
 	recent & 1 & Recent Detection Debounce\\ \hline
 \end{tabular}
-\caption{PEC Data Set Detector Parameters}
 \label{tab:pec_sim_params}
 \end{table}
 
@@ -175,6 +134,7 @@ The Cyber Security BETH data set presented in section \ref{ref_beth_dataset} is 
 
 \begin{table}[H]
 %%\centering
+\caption{BETH Data Set Model Parameters}
 \begin{tabular}{|l|c|l|}
     \hline
 	\textbf{Parameter} & \textbf{Value} & \textbf{Description} \\ \hline
@@ -184,7 +144,6 @@ The Cyber Security BETH data set presented in section \ref{ref_beth_dataset} is 
 	range & 2 & Rolling Range Multiplier\\ \hline
 	recent & 2 & Recent Detection Debounce\\ \hline
 \end{tabular}
-\caption{BETH Data Set Model Parameters}
 \label{tab:beth_sim_params}
 \end{table}
 
