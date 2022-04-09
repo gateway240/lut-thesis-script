@@ -1,5 +1,5 @@
 \bigskip
-\begin{longtable}{llllP{2.75cm}}
+\begin{longtable}{lP{3cm}llP{4cm}}
 \caption{Outlier Detection Overview [(\textbf{PA}): Point-wise Anomaly, (\textbf{CA}): Context-wise Anomaly, (\textbf{DD}): Drift Detection, (\textbf{S}): Segmentation)]}\\
 \toprule
 \textbf{Library} & \textbf{Algorithm} & \textbf{Focus} & \textbf{Online} & \textbf{Description} \\
@@ -46,8 +46,8 @@
     Darts\footcite{herzen2021darts} & Filtering Models & \textbf{CA} & no & Gaussian, Kalman, Moving Average Filter \\
     & Forecasting Models & \textbf{S} & no & Predictive forecasting \\
     \midrule 
-    Merlion\footcite{bhatnagar2021merlion} & Anomaly Algorithms &  \textbf{CA, PA} & yes & Anomaly Detection strategies \\
-    & Forecasting & \textbf{S} & yes & Predictive forecasting \\
+    Merlion\footcite{bhatnagar2021merlion} & Anomaly Algorithms &  \textbf{CA, PA} & partial & Anomaly Detection strategies \\
+    & Forecasting & \textbf{S} & partial & Predictive forecasting \\
     \midrule 
     Luminaire\footcite{chakraborty2020building-luminaire} & Structural Modeling &  \textbf{ PA } & yes & Anomaly detection \\
     & Windowed Density Model & \textbf{CA, DD} & yes & Anomalous window detection using KL divergence \\

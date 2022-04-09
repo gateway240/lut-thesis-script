@@ -8,7 +8,27 @@ In the cases in this study, a false positive does not carry the same implication
 
 For this reason it is more important to evaluate the true positive detection rate, which in all the experiments is 100\%. Additionally, the developed technique did not provide many false positives (only occurring in the BETH dataset) and was not noisy which provides a high degree of reliability. Utilizing this reference frame, the developed algorithm was very successful in identifying outliers in a wide variety of contexts.
 
-\subsection{Hydraulic Simulation Data Set}
+\subsection{Problems with Datasets}
+Additionally, through a discussion on improving existing machine learning techniques in python, the researchers have contacted experts in the field,  .
+
+In this section, discussions with industry experts on the shortcomings of the `standard' datasets for modern applications and analysis of the datasets surveyed in Section \ref{ref_dataset_survey} are presented. Most papers surveyed included these seemingly standard datasets while also utilizing a wide variety of custom, private, or less well known datasets. Further research should be conducted to determine if the existing standard datasets are sufficient to benchmark performance for modern streaming outlier detection algorithms. If they are not, a standard test suite or dataset should be proposed to uniformly evaluate performance across different works.
+
+There are practical issues with the most popular cited dataset, KDD\_CUP99. These include:
+\begin{inlinelist}
+    \item the landscape of cyber-attacks has significantly changed since 1999 (when KDD\_CUP99 was published);
+    \item Computer and network architectures are different with new technologies like Web3;
+    \item Modern network protocols are not included in older datasets; and
+    \item Logging of network requests and data has changed significantly.
+\end{inlinelist}
+
+Modern datasets also face shortcomings. There are some practical issues with the BETH dataset including:
+\begin{inlinelist}
+    \item The data was collected across many days, but only for a short period of consecutive time, around 5 hours.
+    \item The SSH vulnerability exploited in the dataset allowed an attacker access if they entered any password. This characterizes the types of attackers who are targeting this system as unsophisticated.
+    \item Only DNS, not comprehensive system logs, are available
+\end{inlinelist}
+
+\subsection{Hydraulic Simulation Dataset}
 
 In this dataset, there are not faults specifically but instead macroscopic changes in the signal. The algorithm effectively detected all these macroscopic changes for both the original and modified control signal. This is a very small dataset comparatively and the detector is operating on very small window sizes and consequently very little data in each window. This indicates that the technique is effective at various window sizes from small to large. The implications of the detector in mechatronic systems is wide ranging and is described in the next section.
 
@@ -29,9 +49,9 @@ Another option to reduce oscillation is to introduce dampers to the system. This
 Adding a control unit that combats oscillation by dynamically adjusting system pressure is another option for more robustly reducing oscillation. A PID control loop could be introduced to tune the system response and eliminate response thrashing. This PID control can also be tuned to achieve a desired system response and offer more consistent and reliable control. This PID controller can be coupled with the algorithm result to determine the start and end of oscillation in the signal and to progressively adjust the PID values to create a dynamic PID controller.
 
 
-\subsection{Power Electronic Converter Data Set}
+\subsection{Power Electronic Converter Dataset}
 
-The detector was able to successfully detect all four faults with zero false positives in the PEC data set. In the case of the power grid, it is important to detect anomalies quickly so that remedial action can be taken quickly.  The detection of the event happened quickly and was usually within half of one window size or less than 125 time steps. The detector preformed well when faced with anomalies that have dramatically different characteristics and magnitude. Each anomaly in the data set is shaped significantly differently and the algorithm accurately detected the start and end of each one. This illustrates the robustness to scale of the algorithm.
+The detector was able to successfully detect all four faults with zero false positives in the PEC dataset. In the case of the power grid, it is important to detect anomalies quickly so that remedial action can be taken quickly.  The detection of the event happened quickly and was usually within half of one window size or less than 125 time steps. The detector preformed well when faced with anomalies that have dramatically different characteristics and magnitude. Each anomaly in the dataset is shaped significantly differently and the algorithm accurately detected the start and end of each one. This illustrates the robustness to scale of the algorithm.
 
 Additional anomalies which are not considered faults are present in the PEC dataset. In further experimentation, these anomalies can be examined and the algorithm can be tuned to detect them as well. Further experimentation could also be conducted using the multi-variate matrix profile on the three phase current or voltage inputs to detect anomalies. This was not preformed in this experiment because it is computationally much more expensive and the library does not currently offer a way to compute the multi-variate matrix profile iteratively as with the uni-variate matrix profile.
 
@@ -42,11 +62,11 @@ In the future, the detection system can be implemented in MATLAB and used in a r
 
 Real-time detection and classification has significant implications in grid cyber-security and reliability. Attacks on the power grid are becoming more sophisticated and it is important to know whether the system is under attack or experiencing a fault condition. Furthermore, it is important to know that a fault is occurring so that automated or manual corrective action can be preformed so there is not damage to important system components and to ensure maximum system reliability and up time.
 
-\subsection{Cyber Security BETH Data Set}
+\subsection{Cyber Security BETH Dataset}
 
 As the most complex and largest dataset, the BETH dataset presents challenges to any anomaly detection technique. The matrix profile anomaly detector presented here performed well, not missing any of the evil outliers. When the detector signals an anomaly, that can trigger a set of automated actions as well as a manual audit of the system to examine malicious or suspicious behavior around the time of detection. This technique can also be used to examine past or historical data to identify outliers. The matrix profile technique can be fine tuned even further when the entire window or dataset is known at once, which can benefit researchers analyzing previous attacks. 
 
-The largest improvement for this dataset would be to include multiple data streams in the detector. Currently the detector is only analyzing one of the over 10 data streams available in the data set. By adding the ability to process additional streams, the algorithm could be tuned for higher accuracy and performance. Adding more streams is challenging because the multi-variate matrix profile is computationally expensive and currently not iterative. A solution to this could be to run multiple uni-variate matrix profiles in parallel and aggregate the results into a unified metric. 
+The largest improvement for this dataset would be to include multiple data streams in the detector. Currently the detector is only analyzing one of the over 10 data streams available in the dataset. By adding the ability to process additional streams, the algorithm could be tuned for higher accuracy and performance. Adding more streams is challenging because the multi-variate matrix profile is computationally expensive and currently not iterative. A solution to this could be to run multiple uni-variate matrix profiles in parallel and aggregate the results into a unified metric. 
 
 \subsubsection{Future Applications}
 
@@ -61,4 +81,7 @@ From an algorithm standpoint, there are many opportunities to improve performanc
 This detector can also be combined with other machine learning techniques to form a pipeline for more specific detection applications. For example with the PEC dataset, this detector can be combined with a categorical detector that is trained to detect various common faults usually present in the power grid. The anomaly detector signals the beginning and end of a fault, and during a fault, the categorical detector will classify the fault. Then the appropriate action can be taken to rectify the fault to ensure reliability and up-time of the grid. If the categorical detector is unable to classify the fault, it could be a cyber-attack or rare fault that requires manual intervention and overview. In this case, the relevant system operators can be notified and they can take corrective action. This is much better than having catastrophic system failure or compromise because of an undetected intrusion or problem. 
 
 
-
+% TODO: Add to further work or something
+% \begin{enumerate}
+%     \item Compare results between different algorithms and techniques (ex. streaming vs. batch, statistical vs. streaming ML) methods for the dataset 
+% \end{enumerate}

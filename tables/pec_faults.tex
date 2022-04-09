@@ -1,0 +1,35 @@
+\bigskip
+\begin{longtable}{P{2cm} P{3.5cm} l}
+\caption{PEC Dataset Classifications} \\
+\toprule
+\textbf{Fault} & \textbf{Description} & \textbf{Frequency Shape} \\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}%
+{\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
+\hline
+\textbf{Fault} & \textbf{Description} & \textbf{Frequency Shape} \\
+\hline
+\endhead
+\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+    Line-to-Line (LL) Fault & This fault occurs when there is a short circuit between two conductors. & 
+    \raisebox{-0.9\totalheight}{\resizebox{8cm}{!}{\input{"2_pec_sim/base_sig_f_c_f1.pgf"}}}
+      \\
+    \midrule
+    Three-Phase Sensor Fault & This fault occurs when there is nothing wrong with the system itself but their is a faulty sensor. & 
+    \raisebox{-0.9\totalheight}{\resizebox{8cm}{!}{\input{"2_pec_sim/base_sig_f_c_f2.pgf"}}}
+      \\
+    \midrule
+    Single-Phase Voltage Sag & In this fault, the frequency oscillates continuously until the fault is over. & 
+    \raisebox{-0.9\totalheight}{\resizebox{8cm}{!}{\input{"2_pec_sim/base_sig_f_c_f3.pgf"}}}
+      \\
+    \midrule
+    Three-Phase Grid Fault & In this fault, there is a large magnitude drop in frequency for the duration of the fault. & 
+    \raisebox{-0.9\totalheight}{\resizebox{8cm}{!}{\input{"2_pec_sim/base_sig_f_c_f4.pgf"}}}
+      \\
+\label{tab:pec_faults}
+\end{longtable}
+
