@@ -1,9 +1,9 @@
 \section{Methods}
 \label{ref_methods}
 
-To understand and evaluate effective algorithms and techniques for outlier detection, a literature review is presented in this study. This review includes scientific literature, library documentation, and online resources. The goal of this review is to understand the cutting edge techniques and the logic behind the decision making of the algorithms. Additionally, a variety of interdisciplinary methods (ex. statistics, Deep Learning, etc.) are used to compare ideal use cases for building an anomaly detection pipeline and toolkit.  
+To understand and evaluate effective algorithms and techniques for outlier detection, a literature review is presented in this study. This review includes scientific literature, library documentation, and online resources. The goal of this review is to understand the cutting edge techniques and the logic behind the decision-making of the algorithms. Additionally, a variety of interdisciplinary methods (ex. statistics, Deep Learning, etc.) are used to compare ideal use cases for building an anomaly detection pipeline and toolkit.
 
-A review is also presented that determines the most common datasets used to benchmark anomaly detection techniques. Since anomalies are by nature rare, most datasets contain a very small number of them. It is critical that the anomalies they do contain are a good representative sample. Results in Section \ref{ref_dataset_survey} show the most common datasets currently used in literature.   
+A review is also presented that determines the most common datasets used to benchmark anomaly detection techniques. Since anomalies are by nature rare, most datasets contain a very small number of them. It is critical that the anomalies they do contain are a good representative sample. Results in Section \ref{ref_dataset_survey} show the most common datasets currently used in literature.
 
 Data collection is performed using the following procedure:
 \begin{enumerate}
@@ -14,14 +14,13 @@ Data collection is performed using the following procedure:
     \item Collect and graph the results for anomaly detection analysis
 \end{enumerate}
 
-Data  analysis is performed by comparing the results of the detector against the experimental datasets. Through this analysis the benefits and shortcomings of each method can be understood. This analysis can also determine what type of detection methodology works best for the anomalies in this study. Using this analysis, the best method can be implemented for solving real-world interdisciplinary problems.
+Data analysis is performed by comparing the results of the detector against the experimental datasets. Through this analysis the benefits and shortcomings of each method can be understood. This analysis can also determine what type of detection methodology works best for the anomalies in this study. Using this analysis, the best method can be implemented for solving real-world interdisciplinary problems.
 
 \subsection{Measuring Algorithms and Methods}
 
 Algorithms are susceptible to missed detections from challenging to detect phenomena or false positives from non-anomalous phenomena. The goal is to minimize these false detections while prioritizing missed detections. If a detection is missed that is much more significant than a false positive because a false positive can be ignored but a missed detection can not be identified. Because of this, many existing algorithms and implementations are being compared to identify the best performing algorithms for the contextual outliers present in the studied datasets. This provides insight on the existing shortcomings in the field and shows where the algorithms can be improved.
 
 There are industry standard ways of comparing machine learning techniques. Some of these include ROC metrics which allow you to compare false positive and true positive rates. There are also conventional statistical techniques which can be utilized. The most significant metrics for this study are true positive detection rate. For a detector to be considered successful, it needs to have a 100\% true-positive identification rate. False positive detection rate is also important to ensure the detector is not too noisy.
-
 
 \subsection{Resources}
 
@@ -30,7 +29,7 @@ The researchers have access to a variety of computational resources from univers
 \subsection{Dataset Survey}
 \label{ref_dataset_survey}
 
-In this section, the researchers surveyed 8 works focusing on streaming data outlier detection in machine learning. The datasets used in each paper were examined to determine which datasets were commonly used in the literature as shown in Table \ref{tab:datasets_outlier_detection}. 
+In this section, the researchers surveyed 8 works focusing on streaming data outlier detection in machine learning. The datasets used in each paper were examined to determine which datasets were commonly used in the literature as shown in Table \ref{tab:datasets_outlier_detection}.
 
 \input{tables/datasets}
 
@@ -48,12 +47,12 @@ Figure \ref{fig_dataset_lit} shows the most commonly occurring datasets in the l
 
 The most commonly used datasets found in the literature were originally created in the late 1990's. Most of the research surveyed has been conducted in the last 10 years but the standard benchmark datasets are over two decades old. This data was collected when the landscape of cyber-attacks and computing looked much different than today and is therefore not sufficient to benchmark performance against modern, sophisticated attacks. This suggests a lack of standardization in datasets to compare algorithm performance.
 
-After analysis of the existing datasets, we have determined appropriate datasets for the experiments. The current industry standard datasets are not sufficient for benchmarking performance in relation to the use cases presented in this study. In the subsequent section, we select appropriate and diverse datasets to benchmark specific outlier phenomenon that can be generalized to real world phenomena. 
+After analysis of the existing datasets, we have determined appropriate datasets for the experiments. The current industry standard datasets are not sufficient for benchmarking performance in relation to the use cases presented in this study. In the subsequent section, we select appropriate and diverse datasets to benchmark specific outlier phenomenon that can be generalized to real world phenomena.
 
 \subsection{Dataset Selection}
 \label{ref_datasets}
 
-In this research, three separate datasets are used to test and evaluate the developed detection technique. The datasets span many fields of engineering and technology and provide a good survey of the generalizeability and applicability of the proposed detection technique.  
+In this research, three separate datasets are used to test and evaluate the developed detection technique. The datasets span many fields of engineering and technology and provide a good survey of the generalizeability and applicability of the proposed detection technique.
 
 \subsubsection{Hydraulic Simulation Dataset}
 \label{ref_hydraulic_dataset}
@@ -62,25 +61,25 @@ In this study, the Matlab software toolkit Simscape Multibody is used to design 
 
 \begin{figure}[H]
     %\centering
-    \includegraphics[width=\textwidth]{1_hydraulic_sim/BoomStructure.PNG}
+    \includegraphics[width=0.8\textwidth]{1_hydraulic_sim/BoomStructure.PNG}
     \caption{Hydraulic Boom Lift Structure}
     \label{fig:boom_structure}
 \end{figure}
 
 
-The control signal shown in Figure \ref{fig:hydraulic_cs} is used as input to the simulation of the hydraulic cylinder. The control signal represents an approximate square wave profile. It stays at a neutral voltage of 0 until 0.2 seconds into the simulation. At 0.2 seconds, the control signal is at its maximum of 10 volts for 0.4 seconds. Then it falls to become proportionally negative at 0.7 seconds. After another 0.4 seconds elapsed, the signal returns to the neural position of 0 volts begenning at 1.1 seconds. 
+The control signal shown in Figure \ref{fig:hydraulic_cs} is used as input to the simulation of the hydraulic cylinder. The control signal represents an approximate square wave profile. It stays at a neutral voltage of 0 until 0.2 seconds into the simulation. At 0.2 seconds, the control signal is at its maximum of 10 volts for 0.4 seconds. Then it falls to become proportionally negative at 0.7 seconds. After another 0.4 seconds elapsed, the signal returns to the neural position of 0 volts begenning at 1.1 seconds.
 
 \begin{figure}[H]
-    %\centering
+        %\centering
     \input{1_hydraulic_sim/results/input_sig_u.pgf}
     \caption{Hydraulic System Control Signal}
     \label{fig:hydraulic_cs}
 \end{figure}
 
-Figure \ref{fig:hydraulic_pos} shows the pressure for the system over time. Introducing a proportionally negative signal does not cause the end effector to return to its initial position. As the control signal is varied inversely, the position of the end effector only returns halfway to its initial position. This indicates the system exhibits a non-linear relationship between the control signal and the end effector position.    The system experiences mild oscillation after coming to rest when the control signal is back to zero at the end of the simulation. To achieve predictable system response and reduce oscillation, a more complex control methodology would be required.
+Figure \ref{fig:hydraulic_pos} shows the pressure for the system over time. Introducing a proportionally negative signal does not cause the end effector to return to its initial position. As the control signal is varied inversely, the position of the end effector only returns halfway to its initial position. This indicates the system exhibits a non-linear relationship between the control signal and the end effector position. The system experiences mild oscillation after coming to rest when the control signal is back to zero at the end of the simulation. To achieve predictable system response and reduce oscillation, a more complex control methodology would be required.
 
 \begin{figure}[H]
-    %\centering
+        %\centering
     \input{1_hydraulic_sim/results/input_sig_pos.pgf}
     \caption{Hydraulic Crane End Effector Position}
     \label{fig:hydraulic_pos}
@@ -109,9 +108,9 @@ In this dataset there are four faults considered. This study examines the freque
 %     \label{fig:pec_all}
 % \end{figure}
 
-A line-to-line (LL) fault is also referred to as an unsymmetrical fault and occurs when there is a short circuit between two conductors. In three phase power, this can occur between two phases of the system. This fault causes a significant decrease in frequency that is orders of magnitude greater than the standard frequency of the system. 
+A line-to-line (LL) fault is also referred to as an unsymmetrical fault and occurs when there is a short circuit between two conductors. In three phase power, this can occur between two phases of the system. This fault causes a significant decrease in frequency that is orders of magnitude greater than the standard frequency of the system.
 
-During a three phase sensor fault, there is nothing wrong with the system itself but there is faulty sensor in the system. This causes the detected frequency to rise slightly. This slight rise is significantly less than the other examined faults and is very close to the reference frequency of 50 Hz. 
+During a three phase sensor fault, there is nothing wrong with the system itself but there is faulty sensor in the system. This causes the detected frequency to rise slightly. This slight rise is significantly less than the other examined faults and is very close to the reference frequency of 50 Hz.
 
 During a single phase voltage sag, the frequency oscillates continuously until the fault is over. This is a significant fault in the system and detection is critical to take remedial action. This is another fault where the magnitude is not very large in comparison to the LL Fault of the Three Phase Grid Fault.
 
@@ -120,9 +119,9 @@ A three phase grid fault is a severe fault where there is a problem with the gri
 \subsubsection{Cyber Security BETH Dataset}
 \label{ref_beth_dataset}
 
-On the Github Discussion Board \parencite{RiverGithub2022} for the popular River \parencite{2020river} Machine Learning library, I proposed using a streaming Local Outlier Factor (LOF) methodology for outlier detection. This method is not the most suitable for this type of outliers because it is not focused on contextual detection.  Through this discussion, the Authors of the BETH dataset \parencite{beth-dataset}, added it to a public repository at Imperial College London which provides easy access for researchers wishing to work on the dataset.
+On the Github Discussion Board \parencite{RiverGithub2022} for the popular River \parencite{2020river} Machine Learning library, I proposed using a streaming Local Outlier Factor (LOF) methodology for outlier detection. This method is not the most suitable for this type of outliers because it is not focused on contextual detection. Through this discussion, the Authors of the BETH dataset \parencite{beth-dataset}, added it to a public repository at Imperial College London which provides easy access for researchers wishing to work on the dataset.
 
-The BPF-extended tracking honeypot (BETH) cyber security dataset \parencite{beth-dataset} was released in 2021 and is still under active development and testing. A cybersecurity honeypot is a set of computer resources that present a benefit to a hacker if they are exploited but are actively being monitored by an organization or individual. This makes it an attractive dataset for this study since it reflects the current state of the art in cybersecurity and is one of the first to be designed for uncertainty analysis and anomaly detection. 
+The BPF-extended tracking honeypot (BETH) cyber security dataset \parencite{beth-dataset} was released in 2021 and is still under active development and testing. A cybersecurity honeypot is a set of computer resources that present a benefit to a hacker if they are exploited but are actively being monitored by an organization or individual. This makes it an attractive dataset for this study since it reflects the current state of the art in cybersecurity and is one of the first to be designed for uncertainty analysis and anomaly detection.
 
 For this dataset, an ssh vulnerability is exploited where any password entered allows a user to login. The system is running two auxillary containers to monitor traffic. The first is the Berkely Packet Filter (BPF) which examines OS process management calls. The second monitor logs DNS activity from the system. This data is collected and parsed over a series of trials to form the dataset.
 
@@ -136,7 +135,7 @@ Authors \cite{beth-dataset} present a number of advantages of this dataset that 
 Figure \ref{fig:beth_userid_all} shows the samples from the BETH dataset for the UserID parameter that is used in this study. This parameter is treated as a continuous data stream that corresponds with the measurement time. The spikes in the UserID parameter generally correspond with the labeled outliers.
 
 \begin{figure}[H]
-    %\centering
+        %\centering
     \input{3_beth_sim/base_sig_userId_all.pgf}
     \caption{BETH Dataset Signal}
     \label{fig:beth_userid_all}
@@ -150,18 +149,17 @@ In the BETH dataset, the honypots are deployed in a cloud environment because ma
 The BETH dataset is designed in a way that machine learning researchers looking for applications can find it useful. In this work it is used in this way, by approaching the anomaly classification problem from a different angle than traditional machine learning techniques.
 
 \subsection{Algorithm Development}
-    % \item Create a simulation dataset with pre-marked, simple anomalies (ex. sensor failure) 
-    % \item Setup an algorithm pipeline to run the data through multiple streaming and non-streaming techniques and collect results
-    % \item Select a real dataset and identify or use pre-identified markers for anomalies
-    % \item Run the datasets through the algorithm pipeline and collect results
-    % \item Add additional components (drift detection, etc) to the pipeline and record data results 
+% \item Create a simulation dataset with pre-marked, simple anomalies (ex. sensor failure)
+% \item Setup an algorithm pipeline to run the data through multiple streaming and non-streaming techniques and collect results
+% \item Select a real dataset and identify or use pre-identified markers for anomalies
+% \item Run the datasets through the algorithm pipeline and collect results
+% \item Add additional components (drift detection, etc) to the pipeline and record data results
 
-The code development and experimentation for this work is uploaded to a public GitHub repository \parencite{BeattieGithub2022}. The figures and results presented in Section \ref{ref_results} are generated using this code. This Section outlines how the final outlier detector was developed and some of the unsuccessful detection attempts along the way. Some of the datasets in the repository are private and as such cannot be included in the repository. The code to perform the analysis is included in the repository and can be adapted to fit similar datasets or problems.
-
+The code development and experimentation for this work is uploaded to a public GitHub repository \parencite{BeattieGithub2022}. The Figures and results presented in section \ref{ref_results} are generated using this code. This section outlines how the final outlier detector was developed and some of the unsuccessful detection attempts along the way. Some of the datasets in the repository are private and as such cannot be included in the repository. The code to perform the analysis is included in the repository and can be adapted to fit similar datasets or problems.
 
 \subsubsection{Unsuccessful Attempts}
 
-Many libraries and algorithms outlined in Section \ref{ref_code_libraries} were tested in this study. The first attempt utilized techniques from the river ML \parencite{2020river} and pysad \parencite{pysad} libraries.  The tested algorithms in the pysad library include IForestASD, LODA, RSHash, xStream, and Robust Random Cut Forest. The tested (and only) algorithm from the river library is Half Space Trees.
+Many libraries and algorithms outlined in Section \ref{ref_code_libraries} were tested in this study. The first attempt utilized techniques from the river ML \parencite{2020river} and pysad \parencite{pysad} libraries. The tested algorithms in the pysad library include IForestASD, LODA, RSHash, xStream, and Robust Random Cut Forest. The tested (and only) algorithm from the river library is Half Space Trees.
 
 The algorithms demonstrated good performance for point-wise outliers on a simulated noisy sine wave. The algorithms was then tested against the contextual outliers in the Power Electronics Dataset and all techniques performed poorly. The outliers present in the dataets in this study are not pointwise but contextual shaplet outliers.
 % I think this is an important poit, and you may tell the reader what is the difference of these "anomalies" in a nutshell.
@@ -176,7 +174,7 @@ New techniques were selected from libraries that met the following criteria:
     \item does not require training of a model or previous knowledge of the data.
     \item operates in a streaming context
     \item can use a windowed or fix memory and processing allocation
-\end{inlinelist}. 
+\end{inlinelist}.
 
 This significantly reduces the list of available algorithms and libraries as many required model training and do not operate well outside a batch context. The author evaluated the banpei \parencite{banpei} library's Singular Spectrum Transformation (SST) and Hotelling methods and the library was unable to detect the desired anomalies. The author also evaluated the Gradient and Difference detectors in TSOD \parencite{tsod} and those algorithms were also unable to detect the contextual anomalies.
 
@@ -184,9 +182,9 @@ This significantly reduces the list of available algorithms and libraries as man
 
 The Matrix Profile algorithm for contextual outlier detection from the STUMPY library \parencite{law2019stumpy} was selected for implementation. Initial testing with the multivariate matrix profile demonstrated good performance but was very computationally expensive and slow. Additionally, the library did not facilitate an iterative computation for this method so each iteration would need to recompute the entire matrix profile across the whole window.
 
-Subsequently, the univariate matrix profile is used in this study as it is faster and allows for iterative updates to the matrix which is significantly more efficient. Following successful initial experimentation, an outlier model class was created to compute the matrix profile for each iteration and predict whether the current event was an outlier. 
+Subsequently, the univariate matrix profile is used in this study as it is faster and allows for iterative updates to the matrix which is significantly more efficient. Following successful initial experimentation, an outlier model class was created to compute the matrix profile for each iteration and predict whether the current event was an outlier.
 
-This technique is used in Section \ref{ref_results} to detect outliers in a variety of situations. It requires adjusting three parameters based on the characteristics of the data being analyzed. This is much less than the traditional number of parameters required by most machine learning techniques. Additionally it relies completely on mathematical calculations and statics and is therefore explainable without reverse engineering. 
+This technique is used in Section \ref{ref_results} to detect outliers in a variety of situations. It requires adjusting three parameters based on the characteristics of the data being analyzed. This is much less than the traditional number of parameters required by most machine learning techniques. Additionally it relies completely on mathematical calculations and statics and is therefore explainable without reverse engineering.
 
 \begin{equation}
     \label{eqn:mp_decission}
@@ -194,7 +192,7 @@ This technique is used in Section \ref{ref_results} to detect outliers in a vari
 \end{equation}
 
 
-Let $ \alpha$ be the standard deviation ($\sigma$) multiplication factor in Equation \eqref{eqn:mp_decission}. This equation is used to calculate anomalies by determining the current mean value and comparing if it is greater then or equal to a multiplier of the standard deviation of the matrix profile. This class is parameterized so the user can set the data window size, analysis window size, standard deviation multiplier, and other parameters to avoid false positive detection. Optional filters are included to not trigger the detector while it is still loading data into the analysis window and not trigger on recent faults to avoid redundant detection. 
+Let $ \alpha$ be the standard deviation ($\sigma$) multiplication factor in Equation \eqref{eqn:mp_decission}. This equation is used to calculate anomalies by determining the current mean value and comparing if it is greater then or equal to a multiplier of the standard deviation of the matrix profile. This class is parameterized so the user can set the data window size, analysis window size, standard deviation multiplier, and other parameters to avoid false positive detection. Optional filters are included to not trigger the detector while it is still loading data into the analysis window and not trigger on recent faults to avoid redundant detection.
 
 \begin{equation}
     \label{eqn:mp_geq_zero}
@@ -218,7 +216,7 @@ If the current range is greater than the average of the rolling range ring buffe
 
 \begin{equation}
     \label{eqn:mp_cumulative}
-        \text{anomaly}_{[i]}= 
+    \text{anomaly}_{[i]}=
     \begin{cases}
         true,& \text{if } \epsilon_{[i]} \land \lambda_{[i]} \land \gamma_{[i]}\\
         false,              & \text{otherwise}
