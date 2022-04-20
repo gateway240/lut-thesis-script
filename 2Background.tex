@@ -4,15 +4,15 @@ This section presents a review of existing algorithms, an anomaly taxonomy, and 
 \subsection{FIREMAN Work Packages}
 \label{ref_FIREMAN_WP}
 
-This subsection will outline the progress and overall goal of the three milestones or work packages that guide the FIREMAN project. The interconnection and overview of the individual WPs is shown in Figure \ref{fig:wp-diagram}
+This subsection outlines the progress and overall goal of the three milestones or work packages that guide the FIREMAN project. The interconnection and overview of the individual WPs is shown in Figure \ref{fig:wp-diagram}
 
 \begin{figure}[H]
-    \includegraphics[width=0.8\textwidth]{Images/FIREMAN_pert_diagram.png}
-    \caption{FIREMAN WP Diagram}
+    \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+    \caption{FIREMAN WP Diagram \parencite{fireman-homepage}}
     \label{fig:wp-diagram}
 \end{figure}
 
-This work will focus on WP6 by demonstrating an implementation of a theoretical algorithm for real-world anomaly detection.
+This work focuses on Proof-of-Concept Trails and Pilots (WP6) by demonstrating an implementation of a theoretical algorithm for real-world anomaly detection.
 
 \subsubsection{Large Scale Data Acquisition (WP3)}
 
@@ -24,12 +24,12 @@ The sensors traditionally used in Cyber-Physical Systems do not have much comput
 
 % \begin{figure}[H]
 %     % \centering
-%     \includegraphics[width=0.8\textwidth]{Images/three-layer-system.PNG}
+%     \includegraphics[width=\textwidth]{Images/three-layer-system.PNG}
 %     \caption{Three layer framework for rare event detection \parencite{three-layer-approach}}
 %     \label{fig:three-layer}
 % \end{figure}
 
-Modeling of transmission reduction techniques centered around the electricity modeling dataset. Three approaches for reducing transmissions were presented including transmission on large spikes, transmissions on accumulated variance, and time interval defined transmission with a timeout to compensate for meter or network failure. These simulations have shown a large potential for reducing transmissions without significantly affecting the accuracy of the measured signal. We modeled a Markov-Modulated Poission Process to simulate these industrial processes for use in further stages of the project.
+Modeling of transmission reduction techniques centered around the electricity modeling dataset \parencite{elect-model-dataset-9694611}. Three approaches for reducing transmissions were presented including transmission on large spikes, transmissions on accumulated variance, and time interval defined transmission with a timeout to compensate for meter or network failure. These simulations have shown a large potential for reducing transmissions without significantly affecting the accuracy of the measured signal. We modeled a Markov-Modulated Poission Process to simulate these industrial processes for use in further stages of the project.
 
 \subsubsection{Big Data Fusion (WP4)}
 \label{ref_wp4}
@@ -49,9 +49,9 @@ This strategy outlined by Authors \cite{massive-machine} relies on the following
 \end{inlinelist}
 The researchers also introduced a cluster formation scheme based on signatures that reduces the signalling overhead required for peer-discovery in the network. This technique utilizes signal aggregates to reduce traffic congestion to the central node.
 
-Additionally we surveyed IoT experts to determine the most important properties and components of an IoT system. This survey compared the five most popular cloud IoT providers: AWS, Azure, GCP, IBM Watson, and Oracle IoT to create a comparison that can be used by businesses when selecting a cloud provider that suits their business needs.
+Additionally we surveyed IoT experts to determine the most important properties and components of an IoT system. This survey compared the five most popular cloud IoT providers: AWS, Azure, GCP, IBM Watson, and Oracle IoT to create a comparison that can be used by businesses when selecting a cloud provider that suits their business needs \parencite{choose-iot-9110590}.
 
-SEAT, an automotive component manufacturer, provided two use cases and accompanying datasets for the FIREMAN project. The first involves early failure detection of mechanical components in the drive chain in the Paint shop which causes axial displacement. The second involves detecting early failure of the spindle on a CNC machine which ensures lineal movement over a surface. In both of these situations detecting failure early will help SEAT detect problems and solve them before they begin to impact production components and eventually reduce production downtime to zero. 
+SEAT, an automotive component manufacturer, provided two use cases and accompanying datasets for the FIREMAN project. The first involves early failure detection of mechanical components in the drive chain in the Paint shop which causes axial displacement. The second involves detecting early failure of the spindle on a CNC machine which ensures lineal movement over a surface. In both of these situations detecting failure early helps SEAT detect problems and solve them before they begin to impact production components and eventually reduce production downtime to zero. 
 
 \subsubsection{Machine Intelligence for Industrial Rare-event Provisioning (WP5)}
 
@@ -61,7 +61,7 @@ The goal of this task is to utilize machine intelligence techniques to predict i
 
 Traditional methods for pruning the rules created by the algorithm were analyzed in this WP as many of them can be extraneous or unreliable. The fastest open source Mixed-Integer Programming (MIP) tool was able to solve this problem in 19 seconds while the parallelized hybrid search algorithm proposed in this WP solved the problem 240 times faster when using parallel threads.
 
-Authors \cite{wp5.1} used a breadth first search approach to compute a `small' subset of rules that cover the majority of instances in a training dataset covered by the totality of rules extracted by QARMA applied on it. Through experimentation on a synthetic power grid fault diagnostic dataset QARMA performs better than certain neural networks with noisy data. This is because of the over-fitting of training data with Deep Neural Network architectures. The rule based methods generated by QARMA produce human understandable rules which is beneficial in creating explainable AI.
+Authors \cite{wp5.1} used a breadth first search approach to compute a `small' subset of rules that cover the majority of instances in a training dataset covered by the totality of rules extracted by QARMA applied on it. Through experimentation on a synthetic power grid fault diagnostic dataset QARMA performs better than certain neural networks with noisy data \parencite{ml-performance-power-trans}. This is because of the over-fitting of training data with Deep Neural Network architectures. The rule based methods generated by QARMA produce human understandable rules which is beneficial in creating explainable AI.
 
 \subsubsection{Proof-of-Concept Trails and Pilots (WP6)}
 \label{ref_wp6}
@@ -89,7 +89,7 @@ For illustration, suppose someone is recording audio at a train station. There a
 
 \subsubsection{Combating Model Uncertainty}
 
-With deep learning algorithms, it is important to know the level of confidence the model is predicting the outcome with. cite{explaining-adversarial-examples} explain that adding simple adversarial data (like small noise to a photo) will make an image recognition algorithm incorrectly classify one animal as a completely different one. This is further concerning since adversarial data does not need to be tailored to a specific algorithm. The transferability of this type of adversarial data allows it to be applied to many black box algorithms to achieve an unintended or potentially malicious result. 
+With deep learning algorithms, it is important to know the level of confidence the model is predicting the outcome with. Authors \cite{explaining-adversarial-examples} explain that adding simple adversarial data (like small noise to a photo) makes an image recognition algorithm incorrectly classify one animal as a completely different one. This is further concerning since adversarial data does not need to be tailored to a specific algorithm. The transferability of this type of adversarial data allows it to be applied to many black box algorithms to achieve an unintended or potentially malicious result. 
 
 A malfunctioning sensor or bad connection can generate noise (a type of aleatoric uncertainty), which cannot be fixed by more measurements or more data. Data imputation can be used as a technique to correct for or understand this type of uncertainty. If you can identify that the uncertainty is present, then you can use data imputation to form a well educated guess as to what the value should actually be. The significance of identifying it as aleatoric uncertainty is that no amount of model tuning or data collection can fix the underlying issue, so data imputation presents an opportunity to move forward that standard techniques would not.
 
@@ -109,10 +109,37 @@ These three types of outliers are illustrated graphically in Figure \ref{fig:out
 
 \begin{figure}[H]
     % \centering
-    \includegraphics[width=0.8\textwidth]{Images/outliers_graphic.PNG}
+    \includegraphics[width=\textwidth]{Images/outliers_graphic.PNG}
     \caption{[Point, Contextual, and Collective] Outliers \parencite{lai2021revisiting}}
     \label{fig:outliers-graphic}
 \end{figure}
+
+\begin{figure}[H]
+     \centering
+     \begin{subfigure}[b]{0.3\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         \caption{Point Outlier}
+         \label{fig:shaplet}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.3\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         \caption{Contextual Outlier}
+         \label{fig:seasonal}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.3\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         \caption{Collective Outlier}
+         \label{fig:trend}
+     \end{subfigure}
+        \caption{Outlier Taxonomy Adapted from \cite{lai2021revisiting}}
+        \label{fig:outliers-graphic}
+\end{figure}
+
 
 Point outliers are single points that are anomalous in respect to the global dataset. This can cause many problems in machine learning algorithms and a large body of outlier detection research is focused around this area.These outliers can be non-temporal or temporal in nature and often represent phenomenon like intermittent sensor failure. 
 
@@ -133,9 +160,35 @@ Since collective outliers are the focus of this study, it is possible to further
 This subset of anomalies represents various anomalous sub-sequences of the data in a given context. Figure \ref{fig:contextual-outliers} represents these phenomenon graphically. 
 
 \begin{figure}[H]
+     \centering
+     \begin{subfigure}[b]{0.3\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         \caption{Shaplet Outlier}
+         \label{fig:shaplet}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.3\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         \caption{Seasonal Outlier}
+         \label{fig:seasonal}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.3\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         \caption{Trend Outlier}
+         \label{fig:trend}
+     \end{subfigure}
+        \caption{Collective Outliers Adapted from \cite{lai2021revisiting}}
+        \label{fig:contextual-outliers}
+\end{figure}
+
+\begin{figure}[H]
     % \centering
-    \includegraphics[width=0.8\textwidth]{Images/contextual_outliers_graphic.PNG}
-    \caption{Three types of Pattern-wise Outliers \parencite{lai2021revisiting}}
+    \includegraphics[width=\textwidth]{Images/contextual_outliers_graphic.PNG}
+    \caption{Three types of Pattern-wise Outliers  \parencite{lai2021revisiting}}
     \label{fig:contextual-outliers}
 \end{figure}
 Shaplet outliers are classified by a shaplet or pattern that significantly differs from the normal data pattern. This outlier type classifies abrupt faults in a system and is an important outlier type for this study.
@@ -147,9 +200,9 @@ Trend outliers are classified by a sub-sequence of the dataset that modifies the
 \subsection{Anomaly Detection Algorithms}
 \label{ref_anomaly_detection_alg}
 
-Numerous outlier detection techniques currently exist each is traditionally applied to one domain specific problem. These techniques are very versatile (especially unsupervised ones) and as such can be applied in a much more general sense. This section will focus on current developments and advances across all disciplines in anomaly detection techniques.
+Numerous outlier detection techniques currently exist each is traditionally applied to one domain specific problem. These techniques are very versatile (especially unsupervised ones) and as such can be applied in a much more general sense. This section focuses on current developments and advances across all disciplines in anomaly detection techniques.
 
-While there are many new and state-of-the-art developments, corresponding code to a publication is often not included. This makes reproducing the results presented in the paper difficult and in order to utilize these techniques in practice, the algorithm has to be implemented based on pseudo-code, a time consuming process. As such, this will serve primarily as a survey of promising techniques. Section \ref{ref_code_libraries} examines existing implementations of some of these algorithms.
+While there are many new and state-of-the-art developments, corresponding code to a publication is often not included. This makes reproducing the results presented in the paper difficult and in order to utilize these techniques in practice, the algorithm has to be implemented based on pseudo-code, a time consuming process. As such, this serves primarily as a survey of promising techniques. Section \ref{ref_code_libraries} examines existing implementations of some of these algorithms.
 
 \subsubsection{Streaming Half Space Trees (HST)}
 Authors \cite{fast-anomaly-detection-streaming} introduce Streaming Half Space Trees (HST) as a single-class detection technique for changing data streams. It is an efficient method for point-wise outlier detection and is implemented in a variety of anomaly detection libraries. This technique relies on ensembleing HS-Trees which are full binary trees, where all leaves are at the same depth. It is fast and efficient with a time and space complexity of $O(1)$, and is suitable for handling streaming data.
@@ -233,9 +286,9 @@ The libraries from Table \ref{tab:anom_detect_lib} are presented and analyzed fo
 
 \textbf{STUMPY} \parencite{law2019stumpy} is a library used to compute the uni-variate or multi-variate matrix profile for provided time series data created by U.S. based investment firm TD Ameritrade. In its simplest form, the algorithm compares element-wise distances between each sub-sequence for each point, known as a self-similarity join. This naive method is very computationally expensive with a complexity of $O(n^2m)$. STUMPY introduces a computationally efficient way to compute the matrix profile defined in Section \ref{ref_matrix-profile-alg}. The library incorporates various gpu-accelerated methods to further improve performance.
 
-With over 2,000 stars on GitHub the libaray is gaining popularity. It is versatile for a variety of anomaly detection tasks and can operate in an online or real-time context. STUMPY is a good choice for this study because its focus on contextual anomalies and its ability to run incrementally in resource constrained environments. Specifically it is well suited to analyzing the pattern-wise contextual outliers present in the datasets and finding anomalies, called discords in this library. This library will be used to create and analyze a uni-variate Matrix Profile detector for the sample datasets. 
+With over 2,000 stars on GitHub the libaray is gaining popularity. It is versatile for a variety of anomaly detection tasks and can operate in an online or real-time context. STUMPY is a good choice for this study because its focus on contextual anomalies and its ability to run incrementally in resource constrained environments. Specifically it is well suited to analyzing the pattern-wise contextual outliers present in the datasets and finding anomalies, called discords in this library. This library is used to create and analyze a uni-variate Matrix Profile detector for the sample datasets. 
 
-\textbf{tsod} \parencite{tsod} is a library focused on anomaly detection in relation to water. Although it is designed for the water domain, the techniques can be analyzed and used in a variety of other domains. It includes a gradient detection technique for detecting abrupt changes that will be explored. tsod includes a contextual anomaly detection method but is only partially online. This library is experimentally tested in this study.
+\textbf{tsod} \parencite{tsod} is a library focused on anomaly detection in relation to water. Although it is designed for the water domain, the techniques can be analyzed and used in a variety of other domains. It includes a gradient detection technique for detecting abrupt changes that was ultimately unsuccessful for detecting the contextual outliers in this study. tsod includes a contextual anomaly detection method but is only partially online. This library is experimentally tested in this study.
 
 \textbf{TODS} \parencite{Lai_2021_TODS} provides techniques for partially online, multi-variate anomaly detection. It is still gaining popularity with slightly more than 500 stars. Although it includes many modern techniques and optimizations, it requires the training models and the creation of complex pipelines. Because of this, TODS is not an ideal choice for this study.
 
@@ -254,7 +307,10 @@ It implements the Singular spectrum transformation (SST) algorithm for change po
 
 \textbf{Luminaire} \parencite{chakraborty2020building-luminaire} is a library developed by the U.S. real estate company Zillow. It includes many anomaly detection features for point-wise and contextual outliers. This library provides a technique to monitor data points over a window of time which is helpful in detecting context-wise outliers. Similar to the Merlion library, Luminaire requires prior training of models but can run inference in a streaming enviornment which makes it unsuitable for this study.
 
+\subsection{Summary}
+In this chapter we presented few methofs, and also explained blablabal. Now we are ready to describe the specific methods used in this thesis....
 
+Something to make the transition of chapter smoothier
 
 
 

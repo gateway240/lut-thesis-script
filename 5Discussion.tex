@@ -1,10 +1,10 @@
 \section{Discussion}
 \label{sec:discussion}
-This section will analyze discuss the results presented in section \ref{ref_results}. Following the analysis of each experiment, further developments and future applications will be proposed to continue this work and implement it in other contexts.
+This section provides analysis and discussion of the results presented in Section \ref{ref_results}. Following the analysis of each experiment, further developments and future applications are proposed to continue this work and implement it in other contexts.
 
 Outliers and anomalies by nature are rare and fall significantly outside the normal distributions of data. Traditionally it is desired to minimize or eliminate outliers and anomalies in data to provide more regular and predictable performance. When focusing on outliers and anomalies given these characteristics, conventional algorithm metrics are not particularly helpful to analyze the success of a detection algorithm.
 
-In the cases in this study, a false positive does not carry the same implication as in a machine learning algorithm. In this case a detection will trigger further examination and an undetected positive carries a much higher consequence. If a fault occurs and is not detected, the operator of the system would be unaware and there could be significant consequences or damage to the system.
+In the cases in this study, a false positive does not carry the same implication as in a machine learning algorithm. In this case, a detection triggers further examination and an undetected positive carries a much higher consequence. If a fault occurs and is not detected, the operator of the system would be unaware and there could be significant consequences or damage to the system.
 
 For this reason it is more important to evaluate the true positive detection rate, which in all the experiments is 100\%. Additionally, the developed technique did not provide many false positives (only occurring in the BETH dataset) and was not noisy which provides a high degree of reliability. Utilizing this reference frame, the developed algorithm was very successful in identifying outliers in a wide variety of contexts.
 
@@ -35,14 +35,16 @@ In this dataset, there are not faults specifically but instead macroscopic chang
 
 \subsubsection{Future Application - Oscillation Reduction}
 
-The system has oscillation as shown in figure \ref{fig:hydraulic_result_fp}. The hydraulic fluid used in the system is acting as a spring which is what causes the oscillation. Equation \ref{eqn:k} models the spring constant for the system where V is the volume of the hose and cylinder, A is the surface area of the piston and $B_e$ is the effective bulk modulus. 
+The system has oscillation as shown in figure \ref{fig:hydraulic_result_fp}. The hydraulic fluid used in the system is acting as a spring which is what causes the oscillation. 
 
 \begin{equation}
     k = B_e \left ( \frac{A^2}{V} \right)
     \label{eqn:k}
 \end{equation}
 
-One option for reducing oscillation is increasing the spring constant k. Analyzing equation \ref{eqn:k} shows this could be done by increasing the piston area, decreasing the hose and cylinder volume or increasing the effective bulk modulus. There are physical limits of the hydraulic fluid selected and other practical considerations that make this challenging. Selecting another hydraulic fluid can be complex, time consuming, and expensive so this is very uncommon after the system has been implemented. 
+Equation \eqref{eqn:k} models the spring constant for the system where $V$ is the volume of the hose and cylinder, $A$ is the surface area of the piston and $B_e$ is the effective bulk modulus. 
+
+One option for reducing oscillation is increasing the spring constant [$k$]. Analyzing Equation \eqref{eqn:k} shows this could be done by increasing the piston area, decreasing the hose and cylinder volume or increasing the effective bulk modulus. There are physical limits of the hydraulic fluid selected and other practical considerations that make this challenging. Selecting another hydraulic fluid can be complex, time consuming, and expensive so this is very uncommon after the system has been implemented. 
 
 Another option to reduce oscillation is to introduce dampers to the system. This component would need to be tuned correctly and then periodic oscillation could be reduced. A dynamic damper could also be implemented that used the output of the algorithm to dynamically adjust the damping coefficient for different vibration cases 
 
@@ -70,7 +72,7 @@ The largest improvement for this dataset would be to include multiple data strea
 
 \subsubsection{Future Applications}
 
-In cyber-security, it is critical to detect and stop attacks as soon as possible. This detector can be developed to provide a real-time intrusion and monitoring system. Various system metrics can be collected and fed to the detection pipeline. If an anomaly is detected, the system will output a warning and appropriate handlers can be configured to monitor and mediate the intrusion. This system can help generate less false positives than current monitoring solutions and provide real-time insights into potential system intrusions. 
+In cyber-security, it is critical to detect and stop attacks as soon as possible. This detector can be developed to provide a real-time intrusion and monitoring system. Various system metrics can be collected and fed to the detection pipeline. If an anomaly is detected, the system outputs a warning and appropriate handlers can be configured to monitor and mediate the intrusion. This system can help generate less false positives than current monitoring solutions and provide real-time insights into potential system intrusions. 
 
 \subsection{Future Algorithm Development}
 
@@ -78,10 +80,12 @@ There are many possibilities to develop the algorithm further, and combine it wi
 
 From an algorithm standpoint, there are many opportunities to improve performance and usability. Implementing the detector for use in other languages, like MATLAB, allows for broader implementations of the detector, like in the PEC use case. For use in real-time monitoring, detection methodologies have to be closely coupled with the system they are interacting with. For this reason, implementation of theoretical algorithms and concepts is key to the successful adoption of the techniques presented here and in other works.
 
-This detector can also be combined with other machine learning techniques to form a pipeline for more specific detection applications. For example with the PEC dataset, this detector can be combined with a categorical detector that is trained to detect various common faults usually present in the power grid. The anomaly detector signals the beginning and end of a fault, and during a fault, the categorical detector will classify the fault. Then the appropriate action can be taken to rectify the fault to ensure reliability and up-time of the grid. If the categorical detector is unable to classify the fault, it could be a cyber-attack or rare fault that requires manual intervention and overview. In this case, the relevant system operators can be notified and they can take corrective action. This is much better than having catastrophic system failure or compromise because of an undetected intrusion or problem. 
+This detector can also be combined with other machine learning techniques to form a pipeline for more specific detection applications. For example with the PEC dataset, this detector can be combined with a categorical detector that is trained to detect various common faults usually present in the power grid. The anomaly detector signals the beginning and end of a fault, and during a fault, the categorical detector classifies the fault. Then the appropriate action can be taken to rectify the fault to ensure reliability and up-time of the grid. If the categorical detector is unable to classify the fault, it could be a cyber-attack or rare fault that requires manual intervention and overview. In this case, the relevant system operators can be notified and they can take corrective action. This is much better than having catastrophic system failure or compromise because of an undetected intrusion or problem. 
 
 
 % TODO: Add to further work or something
 % \begin{enumerate}
 %     \item Compare results between different algorithms and techniques (ex. streaming vs. batch, statistical vs. streaming ML) methods for the dataset 
 % \end{enumerate}
+
+\subsection{Summary}

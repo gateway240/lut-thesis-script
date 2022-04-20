@@ -20,33 +20,6 @@ Detecting anomalies in production systems is critical because current industrial
 
 In this domain, it is critical to provide algorithmic explainability to confirm the algorithms react in a predictable way to adversarial inputs. If an algorithm produces an unpredictable output it could create an attack vector. If a unpredictable input or cyber-attack exploits this, it can lead to significant safety hazards and financial implications.
 
-\subsection{Research Problem}
-
-There are many existing techniques for outlier detection in a variety of disciplines from batch machine learning to conventional statistical approaches. These techniques are generally incompatible and siloed. This research proposes to break that barrier and utilize the best techniques and approaches for the problem.
-
-An emerging area of research is applying machine learning techniques to data streams. Streaming or `online' machine learning algorithms are unable to look at the data multiple times and must act on and update the model as new datapoints arrive. There is a research gap in implementing and testing these algorithms against existing methods for stream anomaly detection (ex. Half-Space Trees) in popular libraries as many of them are two or three years behind current breakthroughs.
-
-These techniques for anomaly detection and machine learning in general are also new in the field of power electronics. Using a machine learning pipeline to improve over an existing static controlled system presents many opportunities. Many machine learning algorithms rely on a black box that will output answers provided inputs. This presents challenges for system critical applications, like power systems, where it is essential to understand why an algorithm is making a specific decision. The algorithms explainability will be analyzed and methods will be proposed so that it is precisely clear why the algorithm is making certain decisions based on input data. This will also be used to analyze what happens when adversarial data enters the system and analyzed from a cyber-security standpoint to design a controller that can defend against potential threats from adversarial inputs.
-
-The resultant algorithm will provide an explainable model that can be used to control industrial processes. The goal is to detect adversarial or anomalous data, and take preventative measures to mitigate its impact.
-
-
-\subsection{Research Questions}
-This work answers the following questions:
-\begin{itemize}
-    \item Why do machine learning techniques lack general adoption in the power systems domain
-    \item How can machine learning techniques be used to enable increased explainability, performance, and security in system critical applications?
-    \item What existing machine learning libraries are available for streaming time series analysis and how can their performance be improved?
-    \item Why is there a lack of standardization in modern datasets to test and benchmark anomaly detection machine learning algorithms?
-    \item How can different anomaly detection techniques (conventional statistics, deep learning, etc.) be combined (ensembled) to increase overall prediction capability and accuracy?
-\end{itemize}
-
-The fundamental questions for the field of power electronics proposed by Authors \cite{black-box-explainability} that this work explores are:
-\begin{inlinelist}
-    \item How can researchers ensure \textit{trust} and \textit{confidence} in the output of machine learning algorithms in power electronics?
-    \item How does the physical power electronics system correspond to the output of machine learning algorithms.
-\end{inlinelist}
-
 
 \subsection{The FIREMAN Project}
 
@@ -69,7 +42,36 @@ Throughout the project, it is important to ensure that all stakeholders remain i
 
 Aalborg University and LUT University have collaborated to implement and test the theoretical work developed in FIREMAN on a real-world problem. Aalborg has a Power Electronics Converter simulation environment where different anomalies and perturbations can be introduced into a real-world system. The inputs and outputs of the system are recorded and a collection of these trials has been used to create the Power Electronic Converter (PEC) Dataset referenced in this work.
 
-This work creates the foundation for the implementation of a production, real-time anomaly detection solution. The preliminary anomaly detector and results on the PEC dataset serve as a feasibility study for further implementation. In the future, this work can be expanded to a production solution for real power electronic systems.
+This work creates the foundation for the implementation of a production, real-time anomaly detection solution. The preliminary anomaly detector and results on the PEC dataset serve as a feasibility study for further implementation. In the future, this work can be expanded to a production solution for real power electronic systems. Many of the research problems and questions posed below were formulated through the FIREMAN collaboration.
+
+\subsection{Research Problem}
+
+There are many existing techniques for outlier detection in a variety of disciplines from batch machine learning to conventional statistical approaches. These techniques are generally incompatible and siloed. This research proposes to break that barrier and utilize the best techniques and approaches for the problem.
+
+An emerging area of research is applying machine learning techniques to data streams. Streaming or `online' machine learning algorithms are unable to look at the data multiple times and must act on and update the model as new datapoints arrive. There is a research gap in implementing and testing these algorithms against existing methods for stream anomaly detection (ex. Half-Space Trees) in popular libraries as many of them are two or three years behind current breakthroughs.
+
+These techniques for anomaly detection and machine learning in general are also new in the field of power electronics. Using a machine learning pipeline to improve over an existing static controlled system presents many opportunities. Many machine learning algorithms rely on a black box that outputs answers provided inputs. This presents challenges for system critical applications, like power systems, where it is essential to understand why an algorithm is making a specific decision. The algorithms explainability is analyzed and methods are proposed so that it is precisely clear why the algorithm is making certain decisions based on input data. This is used to analyze what happens when adversarial data enters the system and analyzed from a cyber-security standpoint to design a controller that can defend against potential threats from adversarial inputs.
+
+The resultant algorithm provides an explainable model that can be used to control industrial processes. The goal is to detect adversarial or anomalous data, and take preventative measures to mitigate its impact.
+
+
+\subsection{Research Questions}
+This work answers the following questions:
+\begin{itemize}
+    \item Why do machine learning techniques lack general adoption in the power systems domain?
+    \item How can machine learning techniques be used to enable increased explainability, performance, and security in system critical applications?
+    \item What existing machine learning libraries are available for streaming time series analysis and how can their performance be improved?
+    \item Why is there a lack of standardization in modern datasets to test and benchmark anomaly detection machine learning algorithms?
+    \item How can different anomaly detection techniques (conventional statistics, deep learning, etc.) be combined (ensembled) to increase overall prediction capability and accuracy?
+\end{itemize}
+
+The fundamental questions for the field of power electronics proposed by Authors \cite{black-box-explainability} that this work explores are:
+\begin{inlinelist}
+    \item How can researchers ensure \textit{trust} and \textit{confidence} in the output of machine learning algorithms in power electronics?
+    \item How does the physical power electronics system correspond to the output of machine learning algorithms?
+\end{inlinelist}
+
+
 
 
 

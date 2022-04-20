@@ -1,37 +1,11 @@
 \section{Results}
 \label{ref_results}
 
-The results from the the two literature reviews and the development of the anomaly detector are presented here. The anomaly detector was created in Python with the STUMPY library implementation of the Iterative Matrix Profile detector. It is tested against three experimental datasets with different properties and anomaly types. 
+The results from the the two literature reviews and the development of the anomaly detector are utilized here. The anomaly detector was created in Python with the STUMPY library implementation of the Iterative Matrix Profile detector. In this section, the datasets from Section \ref{ref_datasets} are tested using the developed matrix profile anomaly detection technique against different properties and anomaly types. The parameters for each trail are listed and the results are explain. Further analysis is performed in Section \ref{sec:discussion}.
 
-\subsection{Dataset Survey}
-\label{ref_dataset_survey}
-
-In this section, the researchers surveyed 8 works focusing on streaming data outlier detection in machine learning. The datasets used in each paper were examined to determine which datasets were commonly used in the literature as shown in Table \ref{tab:datasets_outlier_detection}. 
-
-\input{tables/datasets}
-
-Figure \ref{fig_dataset_lit} shows the most commonly occurring datasets in the literature from table \ref{tab:datasets_outlier_detection} are KDD\_CUP99 \parencite{kdd1999} followed by Covertype-Forest \parencite{covertype-dataset}. A dataset is included in table \ref{tab:datasets_outlier_detection} and figure \ref{fig_dataset_lit} if there are 2 or more occurrences of it in the literature surveyed.
-
-\begin{figure}[H]
-    %%\centering
-    \begin{tikzpicture}
-        \pie[sum=auto]{6/KDD\_CUP99, 4/Covertype-Forest, 3/Shuttle, 2/UCI\_Pendigit, 2/UCI\_Vowel}
-    \end{tikzpicture}
-    \caption{Dataset Occurrence in Literature }
-    \label{fig_dataset_lit}
-\end{figure}
-
-
-The most commonly used datasets found in the literature were originally created in the late 1990's. Most of the research surveyed has been conducted in the last 10 years but the standard benchmark datasets are over two decades old. This data was collected when the landscape of cyber-attacks and computing looked much different than today and is therefore not sufficient to benchmark performance against modern, sophisticated attacks. This suggests a lack of standardization in datasets to compare algorithm performance.
-
-
-\subsection{Anomaly Detection Results}
-
-In this section, the datasets from section \ref{ref_datasets} are tested using the developed matrix profile anomaly detection technique. The parameters for each trail are listed and the results are explain. Further analysis is performed in section \ref{sec:discussion}.
-
-\subsubsection{Hydraulic Simulation Dataset}
+\subsection{Hydraulic Simulation Dataset}
 \label{ref_results_hydraulic_sim}
-The hydraulic simulation dataset presented in section \ref{ref_hydraulic_dataset} is used to perform this simulation. Table \ref{tab:hydraulic_sim_params} specifies the parameters used with the anomaly detector to obtain the results in this section. This is the smallest dataset tested in this study and it outlines the performance and characteristics of the anomaly detector at small window sizes. The standard deviation multiplier is the default for the detector. If the data follows a standard Gaussian distribution, the detected points would fall outside 99.7\% of the data present in the window, which would represent a significant outlier comparative to the rest of the data. The same principal applies to the rolling range multiplier. The recent range detection debounce multiplier is also standard given the small window size and ensures that there are not over-noisy or duplicate detections.
+The hydraulic simulation dataset presented in Section \ref{ref_hydraulic_dataset} is used to perform this simulation. Table \ref{tab:hydraulic_sim_params} specifies the parameters used with the anomaly detector to obtain the results in this section. This is the smallest dataset tested in this study and it outlines the performance and characteristics of the anomaly detector at small window sizes. The standard deviation multiplier is the default for the detector. If the data follows a standard Gaussian distribution, the detected points would fall outside 99.7\% of the data present in the window, which would represent a significant outlier comparative to the rest of the data. The same principal applies to the rolling range multiplier. The recent range detection debounce multiplier is also standard given the small window size and ensures that there are not over-noisy or duplicate detections.
 
 This experiment demonstrate that the developed detector is robust to changes in scale. Figure \ref{fig:hydraulic_result_fp} shows that the pressure and force signals in the system have similar shape but different magnitude. 
 
@@ -62,11 +36,11 @@ Figure \ref{fig:hydraulic_result_fp} shows the force and pressure with the anoma
 \begin{figure}[H]
     %\centering
     \input{1_hydraulic_sim/results/outlier_result_scale_variant_detection.pgf}
-    \caption{Hydraulic Crane Motif Changes}
+    \caption{Hydraulic Crane Results [Red Line = Motif Change]}
     \label{fig:hydraulic_result_fp}
 \end{figure}
 
-Figure \ref{fig:hydraulic_mp_hist_fp} shows the values calculated during the matrix profile for the force and pressure of the system with the control signal in figure \ref{fig:hydraulic_cs}. The shape of the matrix profile value signals is nearly identical for the force and pressure values. The two signals have dramatically different magintudes but similar shapes. This shows the algorithm is robust to different macro data scales and explains the results obtained in Figure \ref{fig:hydraulic_result_fp}.
+Figure \ref{fig:hydraulic_mp_hist_fp} shows the values calculated during the matrix profile for the force and pressure of the system with the control signal in Figure \ref{fig:hydraulic_cs}. The shape of the matrix profile value signals is nearly identical for the force and pressure values. The two signals have dramatically different magintudes but similar shapes. This shows the algorithm is robust to different macro data scales and explains the results obtained in Figure \ref{fig:hydraulic_result_fp}.
 \begin{figure}[H]
     %\centering
     \input{1_hydraulic_sim/results/mp_hist_scale_variant_pressure_force.pgf}
@@ -75,9 +49,9 @@ Figure \ref{fig:hydraulic_mp_hist_fp} shows the values calculated during the mat
 \end{figure}
 
 
-\subsubsection{Power Electronic Converter Dataset}
+\subsection{Power Electronic Converter Dataset}
 \label{ref_results_pec_sim}
-The Power Electronic Converter (PEC) dataset presented in section \ref{ref_pec_dataset} is used to perform this simulation. Table \ref{tab:pec_sim_params} specifies the parameters used with the anomaly detector to obtain the results in this section. This dataset is significantly larger than the previous, containing approximately 300,000 time steps (~83 hour of signal data). This dataset outlines the scenarios at which this detector excels and its performance for medium window sizes. The standard deviation multiplier is significant. If the data follows a standard Gaussian distribution, the detected points would fall outside 99.999\% of the data present in the window, which would represent a significant outlier comparative to the rest of the data. The rolling range multiplier is disabled for this experiment since the outliers are not relational to each other. There are 4 different types of outliers which all have radically different behaviors and signal shapes, so it is not desired to compare or remember them in the context of the next outlier. The recent range detection debounce multiplier is only one due to the larger size of the time series window and overall window size.
+The Power Electronic Converter (PEC) dataset presented in Section \ref{ref_pec_dataset} is used to perform this simulation. Table \ref{tab:pec_sim_params} specifies the parameters used with the anomaly detector to obtain the results in this section. This dataset is significantly larger than the previous, containing approximately 300,000 time steps (~83 hour of signal data). This dataset outlines the scenarios at which this detector excels and its performance for medium window sizes. The standard deviation multiplier is significant. If the data follows a standard Gaussian distribution, the detected points would fall outside 99.999\% of the data present in the window, which would represent a significant outlier comparative to the rest of the data. The rolling range multiplier is disabled for this experiment since the outliers are not relational to each other. There are 4 different types of outliers which all have radically different behaviors and signal shapes, so it is not desired to compare or remember them in the context of the next outlier. The recent range detection debounce multiplier is only one due to the larger size of the time series window and overall window size.
 
 \begin{table}[H]
 %%\centering
@@ -103,18 +77,18 @@ Figure \ref{fig:pec_mp_hist} shows the computed matrix profile values during the
     \label{fig:pec_mp_hist}
 \end{figure}
 
-Figure \ref{fig:pec_outliers} shows the anomalies detected by the algorithm in red, over the manually labeled anomaly (true/false values) start and end periods. The detector accurately determined the start and end of each anomaly (100\% detection rate) with no false positives (0\% error rate). It detected the start of each anomaly almost immediately quickly detected the end of the corresponding anomaly once it was over, although this takes more time in certain cases. By nature, anomalies are rare so interpreting the detection and false positive rates in a traditional way is not possible. The interpretation of the results and significance will be provided in section \ref{sec:discussion}.
+Figure \ref{fig:pec_outliers} shows the anomalies detected by the algorithm in red, over the manually labeled anomaly (true/false values) start and end periods. The detector accurately determined the start and end of each anomaly (100\% detection rate) with no false positives (0\% error rate). It detected the start of each anomaly almost immediately quickly detected the end of the corresponding anomaly once it was over, although this takes more time in certain cases. By nature, anomalies are rare so interpreting the detection and false positive rates in a traditional way is not possible. The interpretation of the results and significance are provided in Section \ref{sec:discussion}.
  
 \begin{figure}[H]
     %%\centering
     \input{2_pec_sim/outlier_result_f_c.pgf}
-    \caption{PEC Dataset Anomalies}
+    \caption{PEC Dataset Anomalies [Red Line = Anomaly]}
     \label{fig:pec_outliers}
 \end{figure}
 
-\subsubsection{Cyber Security BETH Dataset}
+\subsection{Cyber Security BETH Dataset}
 \label{ref_results_beth_sim}
-The Cyber Security BETH dataset presented in section \ref{ref_beth_dataset} is used to perform this simulation. Table \ref{tab:beth_sim_params} specifies the parameters used with the anomaly detector to obtain the results in this section. This dataset is the largest of all in this study, containing approximately 800,000 time steps (~9 days of signal data). This dataset outlines the most challenging of the test scenarios for the detector and its performance for large window sizes. The standard deviation multiplier is the default. If the data follows a standard Gaussian distribution, the detected points would fall outside 99.7\% of the data present in the window, which would represent a significant outlier comparative to the rest of the data. The rolling range multiplier is set to one below the standard deviation multiplier for this experiment which provides some recall of previous outliers, but provides more weight to the present outlier detection score. The attacks have been manually labelled and although there are different kinds of attacks, the baseline signal (userId) remains the same. The recent range detection debounce multiplier is two due to the nature and volatility of the data.
+The Cyber Security BETH dataset presented in Section \ref{ref_beth_dataset} is used to perform this simulation. Table \ref{tab:beth_sim_params} specifies the parameters used with the anomaly detector to obtain the results in this section. This dataset is the largest of all in this study, containing approximately 800,000 time steps (~9 days of signal data). This dataset outlines the most challenging of the test scenarios for the detector and its performance for large window sizes. The standard deviation multiplier is the default. If the data follows a standard Gaussian distribution, the detected points would fall outside 99.7\% of the data present in the window, which would represent a significant outlier comparative to the rest of the data. The rolling range multiplier is set to one below the standard deviation multiplier for this experiment which provides some recall of previous outliers, but provides more weight to the present outlier detection score. The attacks have been manually labelled and although there are different kinds of attacks, the baseline signal (userId) remains the same. The recent range detection debounce multiplier is two due to the nature and volatility of the data.
 
 \begin{table}[H]
 %%\centering
@@ -140,22 +114,23 @@ Figure \ref{fig:beth_mp_hist} shows the computed matrix profile values for this 
     \label{fig:beth_mp_hist}
 \end{figure}
 
-Figure \ref{fig:beth_sus_outliers} shows the algorithms detection results compared to the values considered suspicious by the creators of the BETH dataset. The BETH dataset researchers determined that many of the data points that are considered suspicious are not actually dangerous or evil as shown in figure \ref{fig:beth_evil_outliers}. In this case, the detector is able to discern fairly well where the evil outlier lie among the very noisy suspicious data points. This is the most challenging dataset analyzed thus far and as such the results do not provide 100\% accuracy with no false positives.
+Figure \ref{fig:beth_sus_outliers} shows the algorithms detection results compared to the values considered suspicious by Authors \cite{beth-dataset} of the BETH dataset. They determined that many of the data points that are considered suspicious are not actually dangerous (evil in their taxonomy) as shown in Figure \ref{fig:beth_evil_outliers}. In this case, the detector is able to discern where the dangerous outliers lie among the very noisy suspicious data points. This is the most challenging dataset analyzed thus far and as such the results do not provide 100\% accuracy with no false positives.
 
 % TODO: Redo axis labels
  \begin{figure}[H]
     %%\centering
     \input{3_beth_sim/outlier_result_sus_userId.pgf}
-    \caption{BETH Suspicious Outliers}
+    \caption{BETH Suspicious Outliers [Red Line = Anomaly]}
     \label{fig:beth_sus_outliers}
 \end{figure}
 
-Figure \ref{fig:beth_evil_outliers} shows the algorithms detection results compared to the values considered evil by the creators of the BETH dataset. The algorithm was able to detect the starts of the outliers within the debounce threshold and was able to detect the end of the faults with some delay. There are 2 false positives from the detector, which correspond to high UserID values in the dataset. These two locations are marked as suspicious so in this case the false positive would still be worth investigating even if it is deemed not evil.
+Figure \ref{fig:beth_evil_outliers} shows the algorithms detection results compared to the values considered evil by the creators of the BETH dataset. The algorithm was able to detect the starts of the outliers within the debounce threshold and was able to detect the end of the faults with some delay. There are 2 false positives from the detector, which correspond to high UserID values in the dataset. These two locations are marked as suspicious so in this case the false positive would still be worth investigating even if it is deemed not dangerous.
  
 \begin{figure}[H]
     %%\centering
     \input{3_beth_sim/outlier_result_evil_userId.pgf}
-    \caption{BETH Evil Outliers}
+    \caption{BETH Dangerous Outliers [Red Line = Anomaly]}
     \label{fig:beth_evil_outliers}
 \end{figure}
 
+\subsection{Summary}
