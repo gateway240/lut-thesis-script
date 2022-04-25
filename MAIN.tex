@@ -1,12 +1,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-% LaTeX-template LUT 
-% Version 2.0. 
+% LaTeX-template LUT
+% Version 2.0.
 % 1.04.2022
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[a4paper,12pt,numbers=noenddot]{article}
+\documentclass[a4paper,12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{graphicx}
@@ -14,20 +14,20 @@
 \linespread{1.5}
 \usepackage{setspace}   %Allows double spacing with the \doublespacing command
 \usepackage{multicol}
-\usepackage{hyperref} % Cross reference linked elements 
+\usepackage{hyperref} % Cross reference linked elements
 \usepackage{amsmath} % special math stuff for equations
 \usepackage{float}
 % \usepackage{verbatim}
 \usepackage[shortlabels,inline]{enumitem}
 \usepackage{textcomp, gensymb}
-\usepackage[autostyle]{csquotes} 
-\usepackage{multirow} 
+\usepackage[autostyle]{csquotes}
+\usepackage{multirow}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{subcaption}
 
 % Loads also "colortbl"
-\usepackage[table]{xcolor} 
+\usepackage[table]{xcolor}
 % \usepackage{pgf-pie}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
@@ -57,7 +57,7 @@
 \addbibresource{Bibliography/libraries.bib}
 \newcommand{\citel}[1]{(\cite{#1}.)} % long parenthetical citation
 
-\pagestyle{myheadings} % Sets number to top right 
+\pagestyle{myheadings} % Sets number to top right
 
 \setlength{\parindent}{0pt} % no first indent in document
 
@@ -72,7 +72,7 @@
     \renewcommand\cftloftitlefont{\normalsize}
     \renewcommand{\cftpnumalign}{r}
 }
-\usepackage{lastpage} % Counter of pages, 
+\usepackage{lastpage} % Counter of pages,
 \usepackage{xassoccnt} % Counter of tables, figure
 \RegisterTotalDocumentCounter{figure}
 \RegisterTotalDocumentCounter{table}
@@ -84,17 +84,17 @@
 
 
 % Sets section heading style
-\titleformat{name=\section,numberless} % Abstract and Acknowledgements 
+\titleformat{name=\section,numberless} % Abstract and Acknowledgements
 {\normalfont\normalsize}{}{0em}{}
 
 \titleformat{name=\section} % Normal Section Headings
   {\normalfont\Large}{\thesection}{1em}{}
 \titlespacing{\section}{0pt}{*4}{*4}
-  
+
 \titleformat{\subsection}
   {\normalfont\large}{\thesubsection}{1em}{}
 \titlespacing{\subsection}{2em}{*4}{*4}
-  
+
 \titleformat{\subsubsection}
   {\normalfont\normalsize}{\thesubsubsection}{1em}{}
 \titlespacing{\subsubsection}{4em}{*4}{*4}
@@ -139,7 +139,7 @@
 \input{6Conclusion}
 \newpage
 
-\printbibliography[title=\Large{References}] 
+\printbibliography[title=\Large{References}]
 
 \end{document}
 

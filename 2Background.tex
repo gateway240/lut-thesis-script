@@ -20,7 +20,7 @@ This work package focuses on \enquote{event-based modelling and traffic characte
 
 In this portion of FIREMAN, we examined a  variety of industrial datasets including the Tennessee Eastman Process, Electricity Metering, IEC-61850 Distribution Automation, and the EPFL Smart Grid Pilot. This dataset is not heavily reliant on relational constraints or atomicity, consistency, isolation, durability (ACID) compliance. Because of this, we have selected a non-relational PostgreSQL database for storage because of its superior throughput and increased performance in data processing applications.
 
-The sensors traditionally used in Cyber-Physical Systems do not have much compute or storage capacity which makes pre-processing of data at the sensor level challenging. Because of this, \enquote{compression is essential for reducing the challenge of data storage, collection, transmission, processing, and analysis at the local level}\parencite{compression}. Authors \cite{wp3.2} have shown that it is possible to achieve a 92.6\% compression rate which means that only 7.4\% of samples are transmitted. We have also used different methods including linear interpolation to de-compress the data and have measured the error using the root mean square technique. 
+The sensors traditionally used in Cyber-Physical Systems do not have much compute or storage capacity which makes pre-processing of data at the sensor level challenging. Because of this, \enquote{compression is essential for reducing the challenge of data storage, collection, transmission, processing, and analysis at the local level}\parencite{compression}. Authors \cite{wp3.2} have shown that it is possible to achieve a 92.6\% compression rate which means that only 7.4\% of samples are transmitted. We have also used different methods including linear interpolation to de-compress the data and have measured the error using the root mean square technique.
 
 % \begin{figure}[H]
 %     % \centering
@@ -33,7 +33,7 @@ Modeling of transmission reduction techniques centered around the electricity mo
 
 \subsubsection{Big Data Fusion (WP4)}
 \label{ref_wp4}
-The goal of this task is \enquote{to show how a large number of sensors and their corresponding data can be  accommodated and aggregated at small cost for reliably detecting rare events}\parencite{wp4.1}. This task focuses on three primary objects: 
+The goal of this task is \enquote{to show how a large number of sensors and their corresponding data can be  accommodated and aggregated at small cost for reliably detecting rare events}\parencite{wp4.1}. This task focuses on three primary objects:
 \begin{inlinelist}
     \item heterogeneous data aggregation in machine-type communications;
     \item signature-based cluster formation; and
@@ -51,7 +51,7 @@ The researchers also introduced a cluster formation scheme based on signatures t
 
 Additionally we surveyed IoT experts to determine the most important properties and components of an IoT system. This survey compared the five most popular cloud IoT providers: AWS, Azure, GCP, IBM Watson, and Oracle IoT to create a comparison that can be used by businesses when selecting a cloud provider that suits their business needs \parencite{choose-iot-9110590}.
 
-SEAT, an automotive component manufacturer, provided two use cases and accompanying datasets for the FIREMAN project. The first involves early failure detection of mechanical components in the drive chain in the Paint shop which causes axial displacement. The second involves detecting early failure of the spindle on a CNC machine which ensures lineal movement over a surface. In both of these situations detecting failure early helps SEAT detect problems and solve them before they begin to impact production components and eventually reduce production downtime to zero. 
+SEAT, an automotive component manufacturer, provided two use cases and accompanying datasets for the FIREMAN project. The first involves early failure detection of mechanical components in the drive chain in the Paint shop which causes axial displacement. The second involves detecting early failure of the spindle on a CNC machine which ensures lineal movement over a surface. In both of these situations detecting failure early helps SEAT detect problems and solve them before they begin to impact production components and eventually reduce production downtime to zero.
 
 \subsubsection{Machine Intelligence for Industrial Rare-event Provisioning (WP5)}
 
@@ -70,7 +70,7 @@ Authors \cite{wp5.1} used a breadth first search approach to compute a `small' s
 
 \subsection{Algorithm Explainability}
 
-Certain high-risk use cases for machine learning algorithms demand a high level of explainability and confidence in the algorithm outputs to use in fields of decision making. In many cases an algorithm makes a classification decision but there is not a clear explanation as to why the algorithm made that decision. In the field of power electronics, understanding why a data-driven controller is making a decision is critical to incorporating it into real world power distribution scenarios. 
+Certain high-risk use cases for machine learning algorithms demand a high level of explainability and confidence in the algorithm outputs to use in fields of decision making. In many cases an algorithm makes a classification decision but there is not a clear explanation as to why the algorithm made that decision. In the field of power electronics, understanding why a data-driven controller is making a decision is critical to incorporating it into real world power distribution scenarios.
 
 Answering these questions is complex and there are a few approaches to achieving this goal. Authors \cite{black-box-explainability} propose using conditional entropy to determine how each input is related to each output. The generated plots are then compared to the physical insights of the system and outlier, adversarial data that falls outside the plot is identified and removed. The model is then retrained. This technique is helpful for identifying and removing adversarial data that falls outside the range of accepted values but it would not identify data overloading in a specific portion of the graph which would create an incorrect classification.
 
@@ -81,21 +81,21 @@ It is often necessary to determine sources of uncertainty in a model or system. 
     \item aleatoric uncertainty.
 \end{inlinelist}
 
-Epistemic uncertainty results from inadequate training data. With this type, the training data is not sufficient to provide enough or accurate date to the model. This can be a result of unbalanced or lack of training data. Increasing the amount of training data or decreasing class imbalance can help reduce this type of uncertainty. 
+Epistemic uncertainty results from inadequate training data. With this type, the training data is not sufficient to provide enough or accurate date to the model. This can be a result of unbalanced or lack of training data. Increasing the amount of training data or decreasing class imbalance can help reduce this type of uncertainty.
 
 Aleatoric uncertainty arise from probabilistic errors in sampling that follow a specific probability distribution. This type of uncertainty is independent to the amount of data collected and therefore cannot be corrected with more training data. If a signal has noise inline with a given probability distribution, having more data on that signal does not change the noise probability distribution. This type of uncertainty references the distribution of random errors in the data and not the data distribution itself.
 
-For illustration, suppose someone is recording audio at a train station. There are three announcements each hour that disrupt the recording but you do not know when in the hour they occur. Having more data (hours), does not change the amount of announcements that occur. 
+For illustration, suppose someone is recording audio at a train station. There are three announcements each hour that disrupt the recording but you do not know when in the hour they occur. Having more data (hours), does not change the amount of announcements that occur.
 
 \subsubsection{Combating Model Uncertainty}
 
-With deep learning algorithms, it is important to know the level of confidence the model is predicting the outcome with. Authors \cite{explaining-adversarial-examples} explain that adding simple adversarial data (like small noise to a photo) makes an image recognition algorithm incorrectly classify one animal as a completely different one. This is further concerning since adversarial data does not need to be tailored to a specific algorithm. The transferability of this type of adversarial data allows it to be applied to many black box algorithms to achieve an unintended or potentially malicious result. 
+With deep learning algorithms, it is important to know the level of confidence the model is predicting the outcome with. Authors \cite{explaining-adversarial-examples} explain that adding simple adversarial data (like small noise to a photo) makes an image recognition algorithm incorrectly classify one animal as a completely different one. This is further concerning since adversarial data does not need to be tailored to a specific algorithm. The transferability of this type of adversarial data allows it to be applied to many black box algorithms to achieve an unintended or potentially malicious result.
 
 A malfunctioning sensor or bad connection can generate noise (a type of aleatoric uncertainty), which cannot be fixed by more measurements or more data. Data imputation can be used as a technique to correct for or understand this type of uncertainty. If you can identify that the uncertainty is present, then you can use data imputation to form a well educated guess as to what the value should actually be. The significance of identifying it as aleatoric uncertainty is that no amount of model tuning or data collection can fix the underlying issue, so data imputation presents an opportunity to move forward that standard techniques would not.
 
 Bayseaian techniques can be used to create a probability distribution over the weights to determine a level of uncertainty for the weights. Unfortunately, retraining a large number of models on a variety of datasets is computationally expensive and time consuming. Authors \cite{gal2016dropout} proposed using a dropout technique to approximate the Bayseaian representation. This technique avoids over-fitting by randomly sampling and dropping network nodes across many different training iterations.
 
-It is important to perform the dropout technique while training and testing the algorithm and then compute the variance to determine the uncertainty. This enables researchers to determine that for specific values the algorithm is providing a best guess answer with high levels of uncertainty, which could then signal the need for human intervention or review in decision making.  
+It is important to perform the dropout technique while training and testing the algorithm and then compute the variance to determine the uncertainty. This enables researchers to determine that for specific values the algorithm is providing a best guess answer with high levels of uncertainty, which could then signal the need for human intervention or review in decision making.
 
 \subsection{Outlier Taxonomy}
 
@@ -134,13 +134,13 @@ These distinction between these two types is illustrated graphically in Figure \
 
 \subsubsection{Point-wise Outliers}
 
-Point-wise outliers are single points that are anomalous in respect to the global dataset. This can cause many problems in machine learning algorithms and a large body of outlier detection research is focused around this area.These outliers can be non-temporal or temporal in nature and often represent phenomenon like intermittent sensor failure. 
+Point-wise outliers are single points that are anomalous in respect to the global dataset. This can cause many problems in machine learning algorithms and a large body of outlier detection research is focused around this area.These outliers can be non-temporal or temporal in nature and often represent phenomenon like intermittent sensor failure.
 
-Additionally, these types of outliers can skew scaling and normalization operations. It is important to consider the presence of these types of outliers when selecting which type of scaler to use. Minimum-Maximum scaling is a popular choice for scaling a dataset but it is not robust to outliers. 
+Additionally, these types of outliers can skew scaling and normalization operations. It is important to consider the presence of these types of outliers when selecting which type of scaler to use. Minimum-Maximum scaling is a popular choice for scaling a dataset but it is not robust to outliers.
 
 \subsubsection{Context-wise Outliers}
 
-Context-wise outliers represent a series of points that are anomalous. Context-wise outliers can be further divided based on their reference frame: 
+Context-wise outliers represent a series of points that are anomalous. Context-wise outliers can be further divided based on their reference frame:
 \begin{inlinelist}
     \item local and
     \item global.
@@ -150,8 +150,8 @@ Local contextual outliers are anomalous in respect to a specific sub-set or wind
 Global contextual outliers are similar to local contextual outliers but the window size is the global dataset. Singular points within the global contextual outlier sub-set are usually not anomalous but the entire pattern is.
 
 Because of this, a distinction is made when necessary but otherwise these two types are treated similarly as pattern-wise contextual outliers with different window sizes.
-These outliers occur often in time-series data because of the interdependence of samples and sampling time. 
- 
+These outliers occur often in time-series data because of the interdependence of samples and sampling time.
+
 Figure \ref{fig:contextual} shows that points in a pattern-wise outlier represent a phenomenon that is anomalous with respect to a reference frame and identifying the anomaly requires selecting the size of the reference frame carefully. This study analyses the detection challenges presented by context-wise outliers.
 
 
@@ -167,7 +167,7 @@ This subset of anomalies represents various anomalous sub-sequences of the data 
 
 \input{tables/context-wise-anomalies}
 
-Figure \ref{fig:contextual-outliers} represents these phenomenon graphically. 
+Figure \ref{fig:contextual-outliers} represents these phenomenon graphically.
 
 \begin{figure}[H]
      \centering
@@ -215,7 +215,7 @@ The Local Outlier Factor (LOF) technique assigns a degree of `outlierness' to ea
 
 \subsubsection{Matrix Profile} % TODO: improve matrix profile section
 \label{ref_matrix-profile-alg}
-The Matrix Profile algorithm computes the distances between neighboring points in a dataset.The matrix profile technique has a variety of advantages including speed and generalizability to a variety of problem domains. 
+The Matrix Profile algorithm computes the distances between neighboring points in a dataset.The matrix profile technique has a variety of advantages including speed and generalizability to a variety of problem domains.
 
 Authors \cite{yeh2016matrix-profile-1} explain that in the algorithm, the results for each point or sub-sequence are stored in a vector and the combination of all the sub-sequences forms the overall matrix. The conventional algorithm utilizes Euclidean distance to determine the distance between points but other distance calculations could be used instead. Z-normalization is traditionally used to scale the data in this technique. It is not required though and the normalization technique can be modified or omitted depending on the specific dataset requirements.
 
@@ -227,7 +227,7 @@ Using a fixed [m] sized window, the algorithm computes the nearest-neighbor dist
     \item Set the position matrix with the index position of the new closest neighbor.
 \end{enumerate}
 
-Using this technique, it is easy to extract information from the data. Motifs which are repeated patterns can be extracted. More importantly, discords which represent anomalies can be discovered from a data stream with the Matrix Profile technique. 
+Using this technique, it is easy to extract information from the data. Motifs which are repeated patterns can be extracted. More importantly, discords which represent anomalies can be discovered from a data stream with the Matrix Profile technique.
 
 % \subsubsection{LSTM}
 
@@ -256,13 +256,13 @@ Using this technique, it is easy to extract information from the data. Motifs wh
      \item quality documentation
      \item is open-source with over 100 stars.
  \end{inlinelist}
- 
- 
-Some libraries were excluded from selection because their focus on production environments makes them difficult to test and perform research with. In further research these libraries may be considered to implement a production outlier detection pipeline. Many of them use the underlying algorithms described in Section \ref{ref_anomaly_detection_alg} for detection. 
- 
+
+
+Some libraries were excluded from selection because their focus on production environments makes them difficult to test and perform research with. In further research these libraries may be considered to implement a production outlier detection pipeline. Many of them use the underlying algorithms described in Section \ref{ref_anomaly_detection_alg} for detection.
+
 Table \ref{tab:anom_detect_lib} compares the selected outlier detection libraries in a systematic way. This table can be used to quickly compare and evaluate libraries for use in implementation. The specific algorithms for each library are classified into a category with a description.
- 
-Each method is classified according to how suitable it is for online learning and its primary use case. For the algorithm to have a yes in the online learning category, the algorithm must be able to iteratively update the model efficiently, and predict specific instance one at a time. Partially in the online category means that there is a pre-trained model, with individual instance detection. No in the online category means that the algorithm is not suited for online detection. 
+
+Each method is classified according to how suitable it is for online learning and its primary use case. For the algorithm to have a yes in the online learning category, the algorithm must be able to iteratively update the model efficiently, and predict specific instance one at a time. Partially in the online category means that there is a pre-trained model, with individual instance detection. No in the online category means that the algorithm is not suited for online detection.
 
 \input{tables/library_comparison}
 
@@ -276,7 +276,7 @@ The libraries from Table \ref{tab:anom_detect_lib} are presented and analyzed fo
 
 \textbf{PyOD} \parencite{zhao2019pyod} is designed for offline data which makes it unsuitable for this study. It includes a vast collection of classic and modern anomaly detection algorithms and some could be adapted to run in a streaming context. There are several performance optimizations present in the library, like multi-core parallelism, which could also be adapted from. The repository has over 5,000 stars on GitHub and is a very popular python framework for anomaly detection.
 
-\textbf{River} \parencite{2020river} is a streaming machine learning library that provides tools for anomaly detection, drift detection, and more. It is the result of a combination of two python libraries: 
+\textbf{River} \parencite{2020river} is a streaming machine learning library that provides tools for anomaly detection, drift detection, and more. It is the result of a combination of two python libraries:
 \begin{inlinelist}
     \item creme
     \item and scikit-multiflow.
@@ -284,7 +284,7 @@ The libraries from Table \ref{tab:anom_detect_lib} are presented and analyzed fo
 
 \textbf{STUMPY} \parencite{law2019stumpy} is a library used to compute the uni-variate or multi-variate matrix profile for provided time series data created by U.S. based investment firm TD Ameritrade. In its simplest form, the algorithm compares element-wise distances between each sub-sequence for each point, known as a self-similarity join. This naive method is very computationally expensive with a complexity of $O(n^2m)$. STUMPY introduces a computationally efficient way to compute the matrix profile defined in Section \ref{ref_matrix-profile-alg}. The library incorporates various gpu-accelerated methods to further improve performance.
 
-With over 2,000 stars on GitHub the libaray is gaining popularity. It is versatile for a variety of anomaly detection tasks and can operate in an online or real-time context. STUMPY is a good choice for this study because its focus on contextual anomalies and its ability to run incrementally in resource constrained environments. Specifically it is well suited to analyzing the contextual shaplet  outliers present in the datasets and finding anomalies, called discords in this library. This library is used to create and analyze a uni-variate Matrix Profile detector for the sample datasets. 
+With over 2,000 stars on GitHub the libaray is gaining popularity. It is versatile for a variety of anomaly detection tasks and can operate in an online or real-time context. STUMPY is a good choice for this study because its focus on contextual anomalies and its ability to run incrementally in resource constrained environments. Specifically it is well suited to analyzing the contextual shaplet  outliers present in the datasets and finding anomalies, called discords in this library. This library is used to create and analyze a uni-variate Matrix Profile detector for the sample datasets.
 
 \textbf{tsod} \parencite{tsod} is a library focused on anomaly detection in relation to water. Although it is designed for the water domain, the techniques can be analyzed and used in a variety of other domains. It includes a gradient detection technique for detecting abrupt changes that was ultimately unsuccessful for detecting the contextual shaplet outliers in this study. tsod includes a contextual anomaly detection method but is only partially online. This library is experimentally tested in this study.
 
@@ -301,16 +301,14 @@ It implements the Singular spectrum transformation (SST) algorithm for change po
 
 \textbf{Darts} \parencite{herzen2021darts} is python machine learning package developed by the Swiss AI company Unit8 for time series data forecasting. The library provides a variety of advanced and classic models with a sci-kit learn compatible interface. It boasts a wide array of features and advanced techniques but does not run in an online context and is not suitable for this study.
 
-\textbf{Merlion} \parencite{bhatnagar2021merlion} is a library developed by the U.S. company SalesForce. It includes many available datasets and techniques for experimentation as well as a full tool chain to benchmark and interpret results. It requires model training and includes an automatic hyper-parameter tuner in the library. Because the library requires prior training of a model and does not operate in an online context, it is not suitable for this study. In the future, some of the techniques and pipelines from the library could be adapted to a streaming context. 
+\textbf{Merlion} \parencite{bhatnagar2021merlion} is a library developed by the U.S. company SalesForce. It includes many available datasets and techniques for experimentation as well as a full tool chain to benchmark and interpret results. It requires model training and includes an automatic hyper-parameter tuner in the library. Because the library requires prior training of a model and does not operate in an online context, it is not suitable for this study. In the future, some of the techniques and pipelines from the library could be adapted to a streaming context.
 
 \textbf{Luminaire} \parencite{chakraborty2020building-luminaire} is a library developed by the U.S. real estate company Zillow. It includes many anomaly detection features for point-wise and contextual outliers. This library provides a technique to monitor data points over a window of time which is helpful in detecting context-wise outliers. Similar to the Merlion library, Luminaire requires prior training of models but can run inference in a streaming enviornment which makes it unsuitable for this study.
 
 \subsection{Summary}
-% In this chapter we presented few methofs, and also explained blablabal. Now we are ready to describe the specific methods used in this thesis....
-
-% Something to make the transition of chapter smoothier
-
-
-
+This section presents the libraries, techniques, and methods available for outlier detection.
+Additionally, the FIREMAN project work packages are sumarized and presented in Seciton \ref{ref_FIREMAN_WP}.
+This work contributes to WP6 in Section \ref{ref_wp6} by creating an anomaly detection system.
+The next section discusses the specific methods used in this work to create that anomaly detection system.
 
 
