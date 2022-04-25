@@ -1,35 +1,31 @@
 \bigskip
-\begin{longtable}{P{2cm} P{3.5cm} l}
+\begin{longtable}{P{3cm} P{11cm}}
 \caption{PEC Dataset Classifications} \\
 \toprule
-\textbf{Fault} & \textbf{Description} & \textbf{Frequency Shape} \\
+\textbf{Fault} & \textbf{Description} \\
 \midrule
 \endfirsthead
-\multicolumn{3}{c}%
+\multicolumn{2}{c}%
 {\tablename\ \thetable\ -- \textit{Continued from previous page}} \\
 \hline
-\textbf{Fault} & \textbf{Description} & \textbf{Frequency Shape} \\
+\textbf{Fault} & \textbf{Description} \\
 \hline
 \endhead
-\hline \multicolumn{3}{r}{\textit{Continued on next page}} \\
+\hline \multicolumn{2}{r}{\textit{Continued on next page}} \\
 \endfoot
 \hline
 \endlastfoot
-    Line-to-Line (LL) Fault & This fault occurs when there is a short circuit between two conductors. & 
-    \raisebox{-0.9\totalheight}{\resizebox{8cm}{!}{\input{"2_pec_sim/base_sig_f_c_f1.pgf"}}}
+    Line-to-Line (LL) Fault & An LL fault is also referred to as an unsymmetrical fault and occurs when there is a short circuit between two conductors. In three phase power, this can occur between two phases of the system. This fault causes a significant decrease in frequency that is orders of magnitude greater than the standard frequency of the system.
       \\
     \midrule
-    Three-Phase Sensor Fault & This fault occurs when there is nothing wrong with the system itself but their is a faulty sensor. & 
-    \raisebox{-0.9\totalheight}{\resizebox{8cm}{!}{\input{"2_pec_sim/base_sig_f_c_f2.pgf"}}}
+    Three-Phase Sensor Fault & During a three phase sensor fault, there is nothing wrong with the system itself but there is faulty sensor in the system. This causes the detected frequency to rise slightly. This slight rise is significantly less than the other examined faults and is very close to the reference frequency of 50 Hz.
       \\
     \midrule
-    Single-Phase Voltage Sag & In this fault, the frequency oscillates continuously until the fault is over. & 
-    \raisebox{-0.9\totalheight}{\resizebox{8cm}{!}{\input{"2_pec_sim/base_sig_f_c_f3.pgf"}}}
+    Single-Phase Voltage Sag & During a single phase voltage sag, the frequency oscillates continuously until the fault is over. This is a significant fault in the system and detection is critical to take remedial action. This is another fault where the magnitude is not very large in comparison to the LL Fault of the Three Phase Grid Fault.
       \\
     \midrule
-    Three-Phase Grid Fault & In this fault, there is a large magnitude drop in frequency for the duration of the fault. & 
-    \raisebox{-0.9\totalheight}{\resizebox{8cm}{!}{\input{"2_pec_sim/base_sig_f_c_f4.pgf"}}}
+    Three-Phase Grid Fault & A three phase grid fault is a severe fault where there is a problem with the grid and corrective action needs to be taken promptly. In this fault there is a large magnitude drop in frequency for the duration of the fault. This is similar behavior to the Three Phase Sensor Fault but the frequency change of the difference is orders of magnitude larger and in the negative direction.
       \\
-\label{tab:pec_faults}
+\label{tab:pec_faults_table}
 \end{longtable}
 

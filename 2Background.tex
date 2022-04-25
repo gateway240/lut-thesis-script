@@ -12,7 +12,7 @@ This subsection outlines the progress and overall goal of the three milestones o
     \label{fig:wp-diagram}
 \end{figure}
 
-This work focuses on Proof-of-Concept Trails and Pilots (WP6) by demonstrating an implementation of a theoretical algorithm for real-world anomaly detection.
+This work focuses on WP6 discussed in Section \ref{ref_wp6} by demonstrating an implementation of a theoretical algorithm for real-world anomaly detection.
 
 \subsubsection{Large Scale Data Acquisition (WP3)}
 
@@ -57,7 +57,7 @@ SEAT, an automotive component manufacturer, provided two use cases and accompany
 
 The goal of this task is to utilize machine intelligence techniques to predict indicators of health for a machine, component, or entire industrial process to determine health and detect premature failure. The main technique proposed in this task is Quantitative Association Rule Mining Algorithm (QARMA).
 
-\enquote{QARMA is a family of algorithms for extracting all (or, depending on user inputs, an important subset of) valid non-dominated quantitative association rules that hold in a dataset, that can then be used for further data analysis such as deriving rule-based classifier ensembles or as explainers of classification results of other black-box classifiers.}\citel{wp5.1}  This technique is one of the most human understandable techniques for machine intelligence and has shown promise for this application. In this WP, QARMA is tested on the SEAT dataset discussed in \ref{ref_wp4}.
+\enquote{QARMA is a family of algorithms for extracting all (or, depending on user inputs, an important subset of) valid non-dominated quantitative association rules that hold in a dataset, that can then be used for further data analysis such as deriving rule-based classifier ensembles or as explainers of classification results of other black-box classifiers.}\citel{wp5.1}  This technique is one of the most human understandable techniques for machine intelligence and has shown promise for this application. In this WP, QARMA is tested on the SEAT dataset discussed in Section \ref{ref_wp4}.
 
 Traditional methods for pruning the rules created by the algorithm were analyzed in this WP as many of them can be extraneous or unreliable. The fastest open source Mixed-Integer Programming (MIP) tool was able to solve this problem in 19 seconds while the parallelized hybrid search algorithm proposed in this WP solved the problem 240 times faster when using parallel threads.
 
@@ -99,103 +99,101 @@ It is important to perform the dropout technique while training and testing the 
 
 \subsection{Outlier Taxonomy}
 
-The term `outlier' or `anomaly' can have a variety of interpretations and meanings depending on the context. In order to select and evaluate appropriate techniques for outlier detection, it is essential to understand and define the various types of outliers that can be present in a dataset. There are three ways that outliers are usually categorized in the literature:
+The term `outlier' or `anomaly' can have a variety of interpretations and meanings depending on the context. In order to select and evaluate appropriate techniques for outlier detection, it is essential to understand and define the various types of outliers that can be present in a dataset. Outliers are primarily categorized as:
 \begin{inlinelist}
-    \item contextual
-    \item point and
-    \item collective.
+    \item point-wise and
+    \item context-wise.
 \end{inlinelist}
-These three types of outliers are illustrated graphically in Figure \ref{fig:outliers-graphic}.
+These distinction between these two types is illustrated graphically in Figure \ref{fig:outliers-graphic}.
 
-\begin{figure}[H]
-    % \centering
-    \includegraphics[width=\textwidth]{Images/outliers_graphic.PNG}
-    \caption{[Point, Contextual, and Collective] Outliers \parencite{lai2021revisiting}}
-    \label{fig:outliers-graphic}
-\end{figure}
+% \begin{figure}[H]
+%     % \centering
+%     \includegraphics[width=\textwidth]{Images/outliers_graphic.PNG}
+%     \caption{[Point, Contextual, and Collective] Outliers \parencite{lai2021revisiting}}
+%     \label{fig:outliers-graphic}
+% \end{figure}
 
 \begin{figure}[H]
      \centering
-     \begin{subfigure}[b]{0.3\textwidth}
+     \begin{subfigure}[b]{0.475\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
-         \caption{Point Outlier}
-         \label{fig:shaplet}
+         {\resizebox{\textwidth}{!}{\input{"outlier_taxonomy/point_outlier.pgf"}}}
+         \caption{Point-wise Outlier}
+         \label{fig:point}
      \end{subfigure}
      \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
+     \begin{subfigure}[b]{0.475\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
-         \caption{Contextual Outlier}
-         \label{fig:seasonal}
+          {\resizebox{\textwidth}{!}{\input{"outlier_taxonomy/contextual_outlier.pgf"}}}
+         \caption{Context-wise Outlier}
+         \label{fig:contextual}
      \end{subfigure}
-     \hfill
-     \begin{subfigure}[b]{0.3\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
-         \caption{Collective Outlier}
-         \label{fig:trend}
-     \end{subfigure}
-        \caption{Outlier Taxonomy Adapted from \cite{lai2021revisiting}}
+        \caption{Outlier Taxonomy (Adapted from \cite{lai2021revisiting})}
         \label{fig:outliers-graphic}
 \end{figure}
 
+\subsubsection{Point-wise Outliers}
 
-Point outliers are single points that are anomalous in respect to the global dataset. This can cause many problems in machine learning algorithms and a large body of outlier detection research is focused around this area.These outliers can be non-temporal or temporal in nature and often represent phenomenon like intermittent sensor failure. 
+Point-wise outliers are single points that are anomalous in respect to the global dataset. This can cause many problems in machine learning algorithms and a large body of outlier detection research is focused around this area.These outliers can be non-temporal or temporal in nature and often represent phenomenon like intermittent sensor failure. 
 
 Additionally, these types of outliers can skew scaling and normalization operations. It is important to consider the presence of these types of outliers when selecting which type of scaler to use. Minimum-Maximum scaling is a popular choice for scaling a dataset but it is not robust to outliers. 
 
-Contextual outliers are points that are anomalous in respect to a specific sub-set or window of the dataset. An example would be an outlier point in a sinusoidal pattern. his represents a phenomenon that is anomalous with respect to a specific sub-window or pattern but it is not anomalous with respect to the global dataset. 
+\subsubsection{Context-wise Outliers}
 
-Collective or pattern-wise outliers are a subset of points that form an anomalous pattern in the context of the global dataset. Singular points within the collective outlier sub-set are usually not anomalous but the entire pattern is. These outliers occur often in time-series data because of the interdependence of samples and sampling time. This outlier type is the focus of the detector developed in this work.
+Context-wise outliers represent a series of points that are anomalous. Context-wise outliers can be further divided based on their reference frame: 
+\begin{inlinelist}
+    \item local and
+    \item global.
+\end{inlinelist}
+Local contextual outliers are anomalous in respect to a specific sub-set or window of the dataset.
 
-\subsubsection{Collective Outliers}
+Global contextual outliers are similar to local contextual outliers but the window size is the global dataset. Singular points within the global contextual outlier sub-set are usually not anomalous but the entire pattern is.
 
-Since collective outliers are the focus of this study, it is possible to further classify this outlier type into three sub-categories:
+Because of this, a distinction is made when necessary but otherwise these two types are treated similarly as pattern-wise contextual outliers with different window sizes.
+These outliers occur often in time-series data because of the interdependence of samples and sampling time. 
+ 
+Figure \ref{fig:contextual} shows that points in a pattern-wise outlier represent a phenomenon that is anomalous with respect to a reference frame and identifying the anomaly requires selecting the size of the reference frame carefully. This study analyses the detection challenges presented by context-wise outliers.
+
+
+\subsection{Context-wise Outlier Sub-Categories}
+
+Since context-wise outliers are the focus of this study, it is possible to further classify this outlier type into three sub-categories:
 \begin{inlinelist}
     \item shaplet
-    \item seasonal
-    \item and trend outliers.
+    \item seasonal and
+    \item trend outliers.
 \end{inlinelist}
-This subset of anomalies represents various anomalous sub-sequences of the data in a given context. Figure \ref{fig:contextual-outliers} represents these phenomenon graphically. 
+This subset of anomalies represents various anomalous sub-sequences of the data in a given context that are described in detail in Table \ref{tab:context-wise-anomalies}.
+
+\input{tables/context-wise-anomalies}
+
+Figure \ref{fig:contextual-outliers} represents these phenomenon graphically. 
 
 \begin{figure}[H]
      \centering
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         {\resizebox{\textwidth}{!}{\input{"outlier_taxonomy/shapelet_outlier.pgf"}}}
          \caption{Shaplet Outlier}
          \label{fig:shaplet}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         {\resizebox{\textwidth}{!}{\input{"outlier_taxonomy/seasonal_outlier.pgf"}}}
          \caption{Seasonal Outlier}
          \label{fig:seasonal}
      \end{subfigure}
      \hfill
      \begin{subfigure}[b]{0.3\textwidth}
          \centering
-         \includegraphics[width=\textwidth]{Images/FIREMAN_pert_diagram.png}
+         {\resizebox{\textwidth}{!}{\input{"outlier_taxonomy/trend_outlier.pgf"}}}
          \caption{Trend Outlier}
          \label{fig:trend}
      \end{subfigure}
-        \caption{Collective Outliers Adapted from \cite{lai2021revisiting}}
+        \caption{Context-wise Outlier Taxonomy (Adapted from \cite{lai2021revisiting})}
         \label{fig:contextual-outliers}
 \end{figure}
-
-\begin{figure}[H]
-    % \centering
-    \includegraphics[width=\textwidth]{Images/contextual_outliers_graphic.PNG}
-    \caption{Three types of Pattern-wise Outliers  \parencite{lai2021revisiting}}
-    \label{fig:contextual-outliers}
-\end{figure}
-Shaplet outliers are classified by a shaplet or pattern that significantly differs from the normal data pattern. This outlier type classifies abrupt faults in a system and is an important outlier type for this study.
-
-Seasonal outliers are classified by an increased or decrease pattern frequency during a specific time period. Identifying seasonal outliers is important in understanding specific phenomenon like a spike in web traffic related to a major holiday. Another example is an increased demand in residential electrical demand because of a large televised sporting event.
-
-Trend outliers are classified by a sub-sequence of the dataset that modifies the underlying distribution of the data. Trend outliers are present in certain faults in the PEC dataset and in certain attacks in the BETH dataset. This is discussed further in Section \ref{ref_datasets}.
 
 \subsection{Anomaly Detection Algorithms}
 \label{ref_anomaly_detection_alg}
@@ -286,9 +284,9 @@ The libraries from Table \ref{tab:anom_detect_lib} are presented and analyzed fo
 
 \textbf{STUMPY} \parencite{law2019stumpy} is a library used to compute the uni-variate or multi-variate matrix profile for provided time series data created by U.S. based investment firm TD Ameritrade. In its simplest form, the algorithm compares element-wise distances between each sub-sequence for each point, known as a self-similarity join. This naive method is very computationally expensive with a complexity of $O(n^2m)$. STUMPY introduces a computationally efficient way to compute the matrix profile defined in Section \ref{ref_matrix-profile-alg}. The library incorporates various gpu-accelerated methods to further improve performance.
 
-With over 2,000 stars on GitHub the libaray is gaining popularity. It is versatile for a variety of anomaly detection tasks and can operate in an online or real-time context. STUMPY is a good choice for this study because its focus on contextual anomalies and its ability to run incrementally in resource constrained environments. Specifically it is well suited to analyzing the pattern-wise contextual outliers present in the datasets and finding anomalies, called discords in this library. This library is used to create and analyze a uni-variate Matrix Profile detector for the sample datasets. 
+With over 2,000 stars on GitHub the libaray is gaining popularity. It is versatile for a variety of anomaly detection tasks and can operate in an online or real-time context. STUMPY is a good choice for this study because its focus on contextual anomalies and its ability to run incrementally in resource constrained environments. Specifically it is well suited to analyzing the contextual shaplet  outliers present in the datasets and finding anomalies, called discords in this library. This library is used to create and analyze a uni-variate Matrix Profile detector for the sample datasets. 
 
-\textbf{tsod} \parencite{tsod} is a library focused on anomaly detection in relation to water. Although it is designed for the water domain, the techniques can be analyzed and used in a variety of other domains. It includes a gradient detection technique for detecting abrupt changes that was ultimately unsuccessful for detecting the contextual outliers in this study. tsod includes a contextual anomaly detection method but is only partially online. This library is experimentally tested in this study.
+\textbf{tsod} \parencite{tsod} is a library focused on anomaly detection in relation to water. Although it is designed for the water domain, the techniques can be analyzed and used in a variety of other domains. It includes a gradient detection technique for detecting abrupt changes that was ultimately unsuccessful for detecting the contextual shaplet outliers in this study. tsod includes a contextual anomaly detection method but is only partially online. This library is experimentally tested in this study.
 
 \textbf{TODS} \parencite{Lai_2021_TODS} provides techniques for partially online, multi-variate anomaly detection. It is still gaining popularity with slightly more than 500 stars. Although it includes many modern techniques and optimizations, it requires the training models and the creation of complex pipelines. Because of this, TODS is not an ideal choice for this study.
 
@@ -308,9 +306,9 @@ It implements the Singular spectrum transformation (SST) algorithm for change po
 \textbf{Luminaire} \parencite{chakraborty2020building-luminaire} is a library developed by the U.S. real estate company Zillow. It includes many anomaly detection features for point-wise and contextual outliers. This library provides a technique to monitor data points over a window of time which is helpful in detecting context-wise outliers. Similar to the Merlion library, Luminaire requires prior training of models but can run inference in a streaming enviornment which makes it unsuitable for this study.
 
 \subsection{Summary}
-In this chapter we presented few methofs, and also explained blablabal. Now we are ready to describe the specific methods used in this thesis....
+% In this chapter we presented few methofs, and also explained blablabal. Now we are ready to describe the specific methods used in this thesis....
 
-Something to make the transition of chapter smoothier
+% Something to make the transition of chapter smoothier
 
 
 

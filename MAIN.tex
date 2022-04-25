@@ -1,4 +1,4 @@
- %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % LaTeX-template LUT 
 % Version 2.0. 
@@ -28,7 +28,7 @@
 
 % Loads also "colortbl"
 \usepackage[table]{xcolor} 
-\usepackage{pgf-pie}
+% \usepackage{pgf-pie}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.18}
 \usepackage[singlelinecheck=false,justification=justified,labelsep=period]{caption}
@@ -36,6 +36,8 @@
 \usepackage{etoolbox}% http://ctan.org/pkg/etoolbox figure space
 \AtBeginEnvironment{figure}{\bigskip}
 \AtBeginEnvironment{table}{\bigskip}
+\AfterEndEnvironment{figure}{\vskip-4ex} % backup figures
+
 \usepackage[titles]{tocloft} %chapter heading fonts
 \usepackage[skip=24pt plus2pt]{parskip} % Paragraph spacing
 

@@ -45,6 +45,7 @@ Aalborg University and LUT University have collaborated to implement and test th
 This work creates the foundation for the implementation of a production, real-time anomaly detection solution. The preliminary anomaly detector and results on the PEC dataset serve as a feasibility study for further implementation. In the future, this work can be expanded to a production solution for real power electronic systems. Many of the research problems and questions posed below were formulated through the FIREMAN collaboration.
 
 \subsection{Research Problem}
+\label{ref_research_problem}
 
 There are many existing techniques for outlier detection in a variety of disciplines from batch machine learning to conventional statistical approaches. These techniques are generally incompatible and siloed. This research proposes to break that barrier and utilize the best techniques and approaches for the problem.
 
@@ -56,20 +57,23 @@ The resultant algorithm provides an explainable model that can be used to contro
 
 
 \subsection{Research Questions}
-This work answers the following questions:
-\begin{itemize}
-    \item Why do machine learning techniques lack general adoption in the power systems domain?
-    \item How can machine learning techniques be used to enable increased explainability, performance, and security in system critical applications?
-    \item What existing machine learning libraries are available for streaming time series analysis and how can their performance be improved?
-    \item Why is there a lack of standardization in modern datasets to test and benchmark anomaly detection machine learning algorithms?
-    \item How can different anomaly detection techniques (conventional statistics, deep learning, etc.) be combined (ensembled) to increase overall prediction capability and accuracy?
-\end{itemize}
 
-The fundamental questions for the field of power electronics proposed by Authors \cite{black-box-explainability} that this work explores are:
+In order to improve the relevance and usability of this study, a practical application of anomaly detection was investigated in relation to the field of power electronics.
+Authors \cite{black-box-explainability} propose two fundamental questions for the field of power electronics:
 \begin{inlinelist}
     \item How can researchers ensure \textit{trust} and \textit{confidence} in the output of machine learning algorithms in power electronics?
     \item How does the physical power electronics system correspond to the output of machine learning algorithms?
 \end{inlinelist}
+
+Using the research problems presented in Section \ref{ref_research_problem} and the power electronics questions above, the research questions this study will answer were created as follows:
+\begin{itemize}
+    \item What are the different anomaly classification types?
+    \item What datasets are best for testing and benchmark anomaly detection algorithms?
+    \item How can algorithmic techniques be used to enable increased explainability, performance, and security in system critical applications?
+    \item What existing machine learning libraries are available for streaming time series analysis and how can they be implemented into a detection strategy?
+\end{itemize}
+
+
 
 
 
