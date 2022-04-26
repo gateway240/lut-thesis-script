@@ -199,6 +199,7 @@ New techniques were selected from libraries that met the following criteria:
 This significantly reduces the list of available algorithms and libraries as many required model training and do not operate well outside a batch context. The author evaluated the banpei \parencite{banpei} library's Singular Spectrum Transformation (SST) and Hotelling methods and the library was unable to detect the desired anomalies. The author also evaluated the Gradient and Difference detectors in TSOD \parencite{tsod} which were also unable to detect the contextual anomalies.
 
 \subsubsection{Matrix Profile Detector}
+\label{ref_matrix_profile_detector}
 
 The Matrix Profile algorithm for contextual outlier detection from the STUMPY library \parencite{law2019stumpy} was selected for implementation. Initial testing with the multivariate matrix profile demonstrated good performance but was very computationally expensive and slow. Additionally, the library did not facilitate an iterative computation for this method so each iteration would need to recompute the entire matrix profile across the whole window.
 

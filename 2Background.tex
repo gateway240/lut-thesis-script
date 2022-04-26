@@ -66,7 +66,14 @@ Authors \cite{wp5.1} used a breadth first search approach to compute a `small' s
 \subsubsection{Proof-of-Concept Trails and Pilots (WP6)}
 \label{ref_wp6}
 
-% TODO
+The primary objectives of this task as stated by Authors \parencite{wp6.1} using FIREMAN approaches are:
+\begin{inlinelist}
+    \item testing and deployment of theoretical techniques presented thus far;
+    \item specific proof-of-concept demonstrations and simulations ; and
+    \item implementation plans for production, real-time monitoring.
+\end{inlinelist}
+
+Authors \parencite{wp6.3} describe the Power Electronic Converter (PEC) setup at Aalborg University (AAU) that is discussed in this work. The test setup facilities studying microgrids and the impact of disturbances or faults on power transmission and reliability. With the test setup, it is possible to perturb system parameters and measure their impact on the overall system with various sensor measurements. These simulation conditions are used to create the PEC dataset discussed in Section \ref{ref_pec_dataset}.
 
 \subsection{Algorithm Explainability}
 
@@ -87,15 +94,29 @@ Aleatoric uncertainty arise from probabilistic errors in sampling that follow a 
 
 For illustration, suppose someone is recording audio at a train station. There are three announcements each hour that disrupt the recording but you do not know when in the hour they occur. Having more data (hours), does not change the amount of announcements that occur.
 
-\subsubsection{Combating Model Uncertainty}
+\subsection{Combating Model Uncertainty}
 
 With deep learning algorithms, it is important to know the level of confidence the model is predicting the outcome with. Authors \cite{explaining-adversarial-examples} explain that adding simple adversarial data (like small noise to a photo) makes an image recognition algorithm incorrectly classify one animal as a completely different one. This is further concerning since adversarial data does not need to be tailored to a specific algorithm. The transferability of this type of adversarial data allows it to be applied to many black box algorithms to achieve an unintended or potentially malicious result.
 
 A malfunctioning sensor or bad connection can generate noise (a type of aleatoric uncertainty), which cannot be fixed by more measurements or more data. Data imputation can be used as a technique to correct for or understand this type of uncertainty. If you can identify that the uncertainty is present, then you can use data imputation to form a well educated guess as to what the value should actually be. The significance of identifying it as aleatoric uncertainty is that no amount of model tuning or data collection can fix the underlying issue, so data imputation presents an opportunity to move forward that standard techniques would not.
 
-Bayseaian techniques can be used to create a probability distribution over the weights to determine a level of uncertainty for the weights. Unfortunately, retraining a large number of models on a variety of datasets is computationally expensive and time consuming. Authors \cite{gal2016dropout} proposed using a dropout technique to approximate the Bayseaian representation. This technique avoids over-fitting by randomly sampling and dropping network nodes across many different training iterations.
+\subsubsection{Bayesian Dropout}
+
+Bayesian techniques can be used to create a probability distribution over the weights to determine a level of uncertainty for the weights of each neuron. Authors \cite{bayesian-weight-uncertainty-neural-networks} introduce a standard Bayesian neural network implementation with back-propagation that can determine these probability distributions.
+
+This method is effective at improving model accuracy but Authors \cite{gal2016dropout} explain that retraining a large number of models on a variety of datasets is computationally expensive and time consuming. A dropout technique can be used to approximate the Bayesian representation with significantly less computational cost. Authors \cite{gal2016dropout} explain that this technique avoids over-fitting by randomly sampling and dropping network nodes across many different training iterations.
 
 It is important to perform the dropout technique while training and testing the algorithm and then compute the variance to determine the uncertainty. This enables researchers to determine that for specific values the algorithm is providing a best guess answer with high levels of uncertainty, which could then signal the need for human intervention or review in decision making.
+
+\subsubsection{Shapely Additive Explanations (SHAP)}
+
+Using reverse engineering, the output of a machine learning algorithm can be analyzed and explained. Authors \cite{SHAP-og-paper} introduce \textbf{SH}apely \textbf{A}dditive ex\textbf{P}lanations (SHAP) to interpret and explain the \textit{why} behind machine learning algorithm results.
+
+Machine learning models usually output the likelihood of a certain prediction given a set of inputs, but SHAP explains why the model made that classification decision. SHAP determines how significantly each input contributes to the output of the model by analyzing every possible combination of input weights.
+
+While this technique yields accurate explanations of black-box machine learning outputs, it is still a reverse-engineering technique. It cannot explain a model that is not yet trained and where the outputs are not known. This is problematic for unsupervised or online techniques where the model is created and retrained as new data inputs enter the pipeline. As the model is updated, the decision making parameters that affect the output change and the output looses explainability.
+
+This demonstrates the importance of explainability in unsupervised learning or with techniques that do not have traditional models. In this case, it is important to have an explainable set of rules or behaviors that govern the model \textit{a priori}. This type of model cannot be reverse-engineered since the inputs are constantly updating the model and explanations from reverse-engineering would only be valid for the present iteration and not generalizeable to subsequent predictions.
 
 \subsection{Outlier Taxonomy}
 
