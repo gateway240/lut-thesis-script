@@ -28,9 +28,15 @@ Examiners: Dr. Pedro H. J. Nardelli and Dr. Heikki Handroos \bigskip\bigskip
 Keywords: Anomaly Detection, Time Series, Matrix Profile \bigskip
 }
 
-This work provides a review of anomaly detection techniques and a practical implementation of the selected algorithm. The author conducted an additional review to determine the most used datasets in the literature. Following this review, the author consulted with industry experts to determine shortcomings of existing datasets.
+This work presents a review of anomaly detection algorithms and libraries and the strengths and weaknesses of the most commonly used benchmarking datasets. With this information, the experimental datasets are selected and a practical implementation of an anomaly detector is created.
 
-With the results from these two reviews, the experimental datasets and algorithms were selected for implementation. The author selected the matrix profile algorithm as a generalizeable method for detecting real-time anomalies in streaming time series data. The STUMPY python library implementation of the Iterative Matrix Profile was used for the development of the detector. The author additionally implemented a custom rolling range filter for the detector to tune its sensitivity to previous anomalies. 
+The matrix profile algorithm is selected for implementation because of its generalizeable approach for detecting real-time anomalies in streaming time series data.
+The STUMPY python library implementation of the iterative matrix profile is used for the creation of the detector.
+A series of custom filters is created and added to the detector to tune its sensitivity, recall, and detection accuracy. 
 
-The author conducted three experiments with significantly different experimental conditions to demonstrate the generalizability and performance of the detector. The experimential datasets used in this study include a mechatronic simulation, Power Electronic Converter (PEC) simulation, and a cyber-security intrusion detection dataset.  With basic parameter tuning, the detector provided high detection accuracy and performance in a variety of difficult circumstances. In the future, the detector can be improved to increase precision in more complex and challenging circumstances. Additionally, the detector can be developed for use in a real-time, production system for monitoring and decision making.
+Three experiments with significantly different conditions are presented to demonstrate the generalizability and performance of the detector.
+The experimential datasets used in this study include a hydraulic simulation, Power Electronic Converter (PEC), and cyber-security intrusion detection dataset.
+With simple parameter tuning, the detector provides high accuracy and performance in a variety of difficult circumstances.
+In the future, the detector can be improved to further increase precision and accuracy in more complex circumstances.
+Additionally, the detector can be developed for use in a real-time, production system for monitoring and decision making.
 \end{singlespace}

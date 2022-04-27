@@ -193,7 +193,7 @@ New techniques were selected from libraries that met the following criteria:
 \begin{inlinelist}
     \item does not require training of a model or previous knowledge of the data.
     \item operates in a streaming context
-    \item can use a windowed or fix memory and processing allocation
+    \item can use a windowed or fix memory and processing allocation.
 \end{inlinelist}.
 
 This significantly reduces the list of available algorithms and libraries as many required model training and do not operate well outside a batch context. The author evaluated the banpei \parencite{banpei} library's Singular Spectrum Transformation (SST) and Hotelling methods and the library was unable to detect the desired anomalies. The author also evaluated the Gradient and Difference detectors in TSOD \parencite{tsod} which were also unable to detect the contextual anomalies.
@@ -248,4 +248,7 @@ Using the matrix profile and the filters developed above, each data point is eva
     \end{cases}
 \end{equation}
 
-The values are calculated using Equations \eqref{eqn:mp_decission}, \eqref{eqn:mp_geq_zero}, and \eqref{eqn:mp_rolling_range} respectively. To be determined anomalous, the point ($i$) must satisfy all the conditions in Equation \eqref{eqn:mp_cumulative}. If a point does not satisfy these conditions it is not considered an anomaly and it does not trigger the detector. The combination of the matrix profile algorithm and targeted filters allows the developed detector to be flexible and extensible to a wide range of datasets and window sizes as shown in Section \ref{ref_results}.
+The values are calculated using Equations \eqref{eqn:mp_decission}, \eqref{eqn:mp_geq_zero}, and \eqref{eqn:mp_rolling_range} respectively.
+To be determined anomalous, the point ($i$) must satisfy all the conditions in Equation \eqref{eqn:mp_cumulative}.
+If a point does not satisfy these conditions it is not considered an anomaly and it does not trigger the detector.
+The combination of the matrix profile algorithm and targeted filters allows the developed detector to be flexible and extensible to a wide range of datasets and window sizes as shown in Section \ref{ref_results}.

@@ -1,74 +1,78 @@
 \section{Introduction}
 \label{ref_intro}
 
-This work presents a review of anomaly detection algorithms, research datasets and an implementation of an anomaly detector that is robust to anomalies of different scales and characteristics. This section presents the knowledge gaps that are present that prompted this work and the problems and research questions this work answers. Additionally, an introduction to the FIREMAN project which accompanies the primary dataset and the research problems are presented in this section.
+This work presents a review of anomaly detection algorithms, research datasets and an implementation of an anomaly detector that is robust to anomalies of different scales and characteristics. This section introduces the current knowledge gaps that prompted this work and the problems and research questions this work addresses. Additionally, an introduction to the FIREMAN project which accompanies the primary dataset are presented in this section.
 
 \subsection{Motivation}
 
-There is currently an implementation gap in the field of engineering between the cutting edge theoretical research and applications in relevant problem areas and domains. To implement new theoretical work, engineers must first study and understand relevant theoretical research. After understanding the algorithm, developing and implementing a practical solution take a  considerable amount of time. This explains why there is a long implementation delay between new scientific developments and industry usage.
+There is currently an implementation gap in the field of engineering between seminal theoretical research and applications in relevant domains. To implement new theoretical work, engineers must first study and understand relevant theoretical research. After understanding the research, developing and implementing a practical solution takes a considerable amount of time. This explains the long implementation delay between new scientific developments and industry usage.
 
-This work presents a practical implementation of a theoretical algorithm and demonstrates its usage on three real-world datasets. Researchers, engineers, and industry professionals can utilize this work as a toolkit to develop new solutions without the time-consuming algorithm implementation process. This improves knowledge sharing and interdisciplinary collaboration.
+This work presents a practical usage of a theoretical algorithm and demonstrates its applicability in three real-world datasets. Researchers, engineers, and industry professionals can utilize this work as a toolkit to develop new solutions without the time-consuming algorithm implementation process. This improves knowledge sharing and interdisciplinary collaboration.
 
-Using the proposed toolkit, anomalies can be accurately detected in systems from a wide variety of disciplines. This improves the sharing of knowledge and allow multiple domains to benefit from breakthroughs in specific areas. This yields many benefits including:
+The proposed toolkit enables accurate anomaly detection in systems from a wide variety of disciplines. This improves the sharing of knowledge and allows multiple domains to benefit from breakthroughs in specific areas. This yields many benefits including:
 \begin{inlinelist}
-  \item power savings from improved industrial control of electrical processes;
-  \item improved profit from better control over electrical production output; and
+  \item power savings from improved industrial control of processes;
+  \item improved profit from better control over production output; and
   \item improved efficiency and accuracy in decision making processes.
 \end{inlinelist}
 
-Detecting anomalies in production systems is critical because current industrial control processes struggle with detecting and handling anomalies. A standard proportional–integral–derivative (PID) controller cannot determine or compensate for sensor failure or adversarial data. Additionally, applying machine learning algorithms to the domain of power systems and industrial processes rapidly gaining interest from stakeholders.
+Detecting anomalies in production systems is critical because current industrial control processes struggle with detecting and handling anomalies. A standard proportional–integral–derivative (PID) controller cannot determine or compensate for sensor failure or adversarial data. Additionally, applying machine learning algorithms to the domain of power systems and industrial processes is rapidly gaining interest from stakeholders.
 
-In this domain, it is critical to provide algorithmic explainability to confirm the algorithms react in a predictable way to adversarial inputs. If an algorithm produces an unpredictable output it could create an attack vector. If a unpredictable input or cyber-attack exploits this, it can lead to significant safety hazards and financial implications.
-
+In this domain, it is critical to provide algorithmic explainability to confirm algorithms react in a predictable way to adversarial inputs. If an algorithm produces an unpredictable output it could create an attack vector. If a unpredictable input or cyber-attack exploits this it can lead to significant safety hazards and financial implications.
 
 \subsection{The FIREMAN Project}
 
 Over the course of 3 years, 6 partner universities are developing a \enquote{\textbf{F}ramework for the \textbf{I}dentification of \textbf{R}are \textbf{E}vents Via \textbf{Ma}chine Learning and IoT \textbf{N}etworks known as the FIREMAN project} \parencite{fireman-homepage}. FIREMAN is a multidisciplinary cooperation between 6 universities in 4 different countries. Lappeenranta--Lahti University of Technology (LUT) serves as the project coordinator and is involved in all aspects of the project.
 
-The project is partitioned into seven overall Work Packages (WPs) that define overall sub-tasks to meet the general project objective.
+The project is partitioned into overall Work Packages (WPs) that define overall sub-tasks to meet the general project objective.
 Although there are many research components of the FIREMAN project which are described in detail in Section \ref{ref_FIREMAN_WP}, the primary focus of this work is on the anomaly detection. This work provides both theoretical and concrete approaches for anomaly detection in streaming time-series data.
 
 The project goals include:
 \begin{inlinelist}
-    \item improving interdisciplinary collaboration to create end-to-end cyber-physical system solutions;
+    \item improving interdisciplinary collaboration to create end-to-end cyber-physical systems solutions;
     \item creating a framework that integrates the entire cyber-physical ecosystem from remote sensing and data acquisition to analysis and decision making; and
     \item detecting, processing, and handling anomalies in a diverse set of environments and application areas.
 \end{inlinelist}
 
-
-Throughout the project, it is important to ensure that all stakeholders remain informed. Conveying complex information to stakeholders from a variety of disciplines is challenging. This work contributes to solving this problem by demonstrating the effectiveness and viability of a component of the FIREMAN system. This creates a value proposition for the diverse group of project stakeholders.
+It is essential to ensure that all stakeholders remain informed throughout the project. Conveying complex information to stakeholders from a variety of disciplines is challenging. This work demonstrates the efficacy and viability of a component of the FIREMAN project and contributes to solving this problem. This creates a value proposition for the diverse group of project stakeholders.
 
 \subsubsection{Power Electronics Converter Collaboration}
 
-Aalborg University and LUT University have collaborated to implement and test the theoretical work developed in FIREMAN on a real-world problem. Aalborg has a Power Electronics Converter simulation environment where different anomalies and perturbations can be introduced into a real-world system. The inputs and outputs of the system are recorded and a collection of these trials has been used to create the Power Electronic Converter (PEC) Dataset referenced in this work.
+Aalborg University (AAU) and LUT University have collaborated to implement and test the theoretical work developed in FIREMAN on a real-world problem. AAU has a Power Electronics Converter simulation environment where different anomalies and perturbations can be introduced into a real-world power system. The inputs and outputs of the system are recorded and a collection of these trials has been used to create the Power Electronic Converter (PEC) Dataset referenced in this work.
 
-This work creates the foundation for the implementation of a production, real-time anomaly detection solution. The preliminary anomaly detector and results on the PEC dataset serve as a feasibility study for further implementation. In the future, this work can be expanded to a production solution for real power electronic systems. Many of the research problems and questions posed below were formulated through the FIREMAN collaboration.
+This work creates the foundation for the implementation of a production, real-time anomaly detection solution. The preliminary anomaly detector and results on the PEC dataset serve as a feasibility study for further implementation. In the future, this work can be expanded to a production solution for real power electronics systems. Many of the research problems and questions posed below were formulated through this FIREMAN collaboration.
 
 \subsection{Research Problem}
 \label{ref_research_problem}
 
 There are many existing techniques for outlier detection in a variety of disciplines from batch machine learning to conventional statistical approaches. These techniques are generally incompatible and siloed. This research proposes to break that barrier and utilize the best techniques and approaches for the problem.
 
-An emerging area of research is applying machine learning techniques to data streams. Streaming or `online' machine learning algorithms are unable to look at the data multiple times and must act on and update the model as new datapoints arrive. There is a research gap in implementing and testing these algorithms against existing methods for stream anomaly detection (ex. Half-Space Trees) in popular libraries as many of them are two or three years behind current breakthroughs.
+An emerging area of research is applying machine learning techniques to data streams.
+Streaming or `online' machine learning algorithms are unable to look at the data multiple times and must act on and update the model as new datapoints arrive.
+There is a research gap in implementing and testing these algorithms against existing methods for stream anomaly detection (ex. Half-Space Trees) in popular libraries as many of them are two or three years behind current breakthroughs.
 
-These techniques for anomaly detection and machine learning in general are also new in the field of power electronics. Using a machine learning pipeline to improve over an existing static controlled system presents many opportunities. Many machine learning algorithms rely on a black box that outputs answers provided inputs. This presents challenges for system critical applications, like power systems, where it is essential to understand why an algorithm is making a specific decision. The algorithms explainability is analyzed and methods are proposed so that it is precisely clear why the algorithm is making certain decisions based on input data. This is used to analyze what happens when adversarial data enters the system and analyzed from a cyber-security standpoint to design a controller that can defend against potential threats from adversarial inputs.
+These techniques for anomaly detection and machine learning in general are also new in the field of power electronics.
+Using a machine learning pipeline to improve over an existing static controlled system presents many opportunities.
+Many machine learning algorithms a black-box system where the reasons for the output classifications are unknown.
+This presents challenges for system critical applications, like power systems, where it is essential to understand why an algorithm is making a specific decision.
 
-The resultant algorithm provides an explainable model that can be used to control industrial processes. The goal is to detect adversarial or anomalous data, and take preventative measures to mitigate its impact.
-
+In this work, algorithm explainability is analyzed and methods are introduced that explain why the algorithm is making certain decisions based on input data.
+This is used to analyze the impact of adversarial data on the system in the context of cyber-security to design a controller that can defend against potential threats from adversarial inputs.
+The developed detector provides an explainable model that can be used to control industrial processes.
 
 \subsection{Research Questions}
 
-In order to improve the relevance and usability of this study, a practical application of anomaly detection was investigated in relation to the field of power electronics.
+In order to improve the relevance and usability of this study, a practical application of anomaly detection is investigated in relation to the field of power electronics.
 Authors \cite{black-box-explainability} propose two fundamental questions for the field of power electronics:
 \begin{inlinelist}
     \item How can researchers ensure \textit{trust} and \textit{confidence} in the output of machine learning algorithms in power electronics?
     \item How does the physical power electronics system correspond to the output of machine learning algorithms?
 \end{inlinelist}
 
-Using the research problems presented in Section \ref{ref_research_problem} and the power electronics questions above, the research questions this study will answer were created as follows:
+With the research problems presented in Section \ref{ref_research_problem} and the power electronics questions above, the research questions are formulated as follows:
 \begin{itemize}
     \item What are the different anomaly classification types?
-    \item What datasets are best for testing and benchmark anomaly detection algorithms?
+    \item What datasets are best for testing and benchmarking anomaly detection algorithms?
     \item How can algorithmic techniques be used to enable increased explainability, performance, and security in system critical applications?
     \item What existing machine learning libraries are available for streaming time series analysis and how can they be implemented into a detection strategy?
 \end{itemize}
