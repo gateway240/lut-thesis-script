@@ -1,7 +1,10 @@
 \section{Methods}
 \label{ref_methods}
 
-To understand and evaluate effective algorithms and techniques for outlier detection, a literature review is presented in this study. This review includes scientific literature, library documentation, and online resources. The goal of this review is to understand the cutting edge techniques and the logic behind the decision-making of the algorithms. Additionally, a variety of interdisciplinary methods (ex. statistics, Deep Learning, etc.) are used to compare ideal use cases for building an anomaly detection pipeline and toolkit.
+In this study, a literature review is conducted to understand and evaluate effective algorithms and techniques for outlier detection.
+This review includes scientific literature, library documentation, and online resources.
+The goal of this review is to understand the cutting edge techniques and the logic behind algorithm decision-making.
+Additionally, a variety of interdisciplinary methods (\textit{e.g.}, Statistics, Deep Learning, etc.) are used to compare ideal use cases for building an anomaly detection pipeline and toolkit.
 
 A review is also presented that determines the most common datasets used to benchmark anomaly detection techniques. Since anomalies are by nature rare, most datasets contain a very small number of them. It is critical that the anomalies they do contain are a good representative sample. Results in Section \ref{ref_dataset_survey} show the most common datasets currently used in literature.
 
@@ -101,37 +104,37 @@ Four faults are considered in the PEC dataset. This study examines the frequency
 \input{tables/pec_faults}
 
 The faults explained in Table \ref{tab:pec_faults_table} are presented visually in Figure \ref{fig:pec-faults-overall-fig}.
- 
+
 \begin{figure}[H]
     \centering
     \begin{subfigure}[b]{0.475\textwidth}
         \centering
         \resizebox{\textwidth}{!}{\input{"2_pec_sim/base_sig_f_c_f1.pgf"}}
-        \caption{Line-to-Line (LL) Fault}  
+        \caption{Line-to-Line (LL) Fault}
         \label{fig:ll-fault}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.475\textwidth}  
-        \centering 
+    \begin{subfigure}[b]{0.475\textwidth}
+        \centering
         \resizebox{\textwidth}{!}{\input{"2_pec_sim/base_sig_f_c_f2.pgf"}}
-        \caption{Three-Phase Sensor Fault}  
+        \caption{Three-Phase Sensor Fault}
         \label{fig:three-phase-sensor-fault}
     \end{subfigure}
     \vskip\baselineskip
-    \begin{subfigure}[b]{0.475\textwidth}   
-        \centering 
+    \begin{subfigure}[b]{0.475\textwidth}
+        \centering
         \resizebox{\textwidth}{!}{\input{"2_pec_sim/base_sig_f_c_f3.pgf"}}
-        \caption{Single-Phase Voltage Sag}    
+        \caption{Single-Phase Voltage Sag}
         \label{fig:single-phase-voltage-sag}
     \end{subfigure}
     \hfill
-    \begin{subfigure}[b]{0.475\textwidth}   
-        \centering 
+    \begin{subfigure}[b]{0.475\textwidth}
+        \centering
         \resizebox{\textwidth}{!}{\input{"2_pec_sim/base_sig_f_c_f4.pgf"}}
-        \caption{Three-Phase Grid Fault}     
+        \caption{Three-Phase Grid Fault}
         \label{fig:three-phase-grid-fault}
     \end{subfigure}
-    \caption{PEC Dataset Fault Visualization}  
+    \caption{PEC Dataset Fault Visualization}
     \label{fig:pec-faults-overall-fig}
 \end{figure}
 
@@ -139,7 +142,7 @@ The faults explained in Table \ref{tab:pec_faults_table} are presented visually 
 \subsubsection{Cyber Security BETH Dataset}
 \label{ref_beth_dataset}
 
-On the Github Discussion Board \parencite{RiverGithub2022} for the popular River \parencite{2020river} Machine Learning library, I proposed using a streaming Local Outlier Factor (LOF) methodology for outlier detection. Through this discussion, Authors \cite{beth-dataset}, added the BETH dataset to a public repository at Imperial College London which provides easy access for researchers wishing to work on the dataset. The LOF method proved to be unsuitable for the contextual outliers in this study and is not implemented in the River library. 
+On the Github Discussion Board \parencite{RiverGithub2022} for the popular River \parencite{2020river} Machine Learning library, I proposed using a streaming Local Outlier Factor (LOF) methodology for outlier detection. Through this discussion, Authors \cite{beth-dataset}, added the BETH dataset to a public repository at Imperial College London which provides easy access for researchers wishing to work on the dataset. The LOF method proved to be unsuitable for the contextual outliers in this study and is not implemented in the River library.
 
 The BPF-extended tracking honeypot (BETH) cyber security dataset \parencite{beth-dataset} was released in 2021 and is still under active development and testing. A cybersecurity honeypot is a set of computer resources that present a benefit to a hacker if they are exploited but are actively being monitored by an organization or individual. This makes it an attractive dataset for this study since it reflects the current state of the art in cybersecurity and is one of the first to be designed for uncertainty analysis and anomaly detection.
 
@@ -181,7 +184,10 @@ The code development and experimentation for this work is uploaded to a public G
 
 Many libraries and algorithms outlined in Section \ref{ref_code_libraries} were tested in this study. The first attempt utilized techniques from the river ML \parencite{2020river} and pysad \parencite{pysad} libraries. The tested algorithms in the pysad library include IForestASD, LODA, RSHash, xStream, and Robust Random Cut Forest. The tested (and only) algorithm from the river library is Half Space Trees.
 
-The algorithms demonstrated good performance for point-wise outliers on a simulated noisy sine wave. The algorithms was then tested against the contextual outliers in the Power Electronics Dataset and all techniques performed poorly. The outliers present in the dataets in this study are not pointwise but contextual shaplet outliers.
+The tested algorithms demonstrated good performance for point-wise outliers on a simulated noisy sine wave.
+The algorithms was then tested against the contextual outliers in the Power Electronics Dataset and all techniques performed poorly.
+A review of the outlier taxonomies discussed is presented in Section \ref{ref_outlier_taxonomy}.
+The outliers present in the dataets in this study are not pointwise but contextual shaplet outliers.
 % I think this is an important poit, and you may tell the reader what is the difference of these "anomalies" in a nutshell.
 % At this point, the author realized that the kind of anomalies
 % present in the Power Electronics Dataset (and other datasets in this study) are not

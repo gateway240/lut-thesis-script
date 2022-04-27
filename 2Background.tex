@@ -155,6 +155,7 @@ Reverse-engineering is not effective for this use case since the inputs are cons
 Explanations from reverse-engineering would only be valid for the present iteration and not generalizeable to subsequent predictions.
 
 \subsection{Outlier Taxonomy}
+\label{ref_outlier_taxonomy}
 
 The term `outlier' or `anomaly' can have a variety of meanings depending on the context. In order to select appropriate techniques for outlier detection, it is essential to create a taxonomy for various outlier types. Outliers are primarily categorized as:
 \begin{inlinelist}
@@ -279,7 +280,7 @@ Many researchers including Authors \cite{dilof-data-streams} and \cite{fast-memo
 These extensions modify the algorithm to be suitable for stream learning by improving speed, memory usage, and computational efficiency.
 This algorithm is well suited to point-wise contextual outlier detection.
 
-\subsubsection{Matrix Profile} 
+\subsubsection{Matrix Profile}
 \label{ref_matrix-profile-alg}
 The Matrix Profile algorithm computes the distances between neighboring points in a dataset.
 The matrix profile technique has a variety of advantages including speed and generalizability to a variety of problem domains.
@@ -366,7 +367,7 @@ It is the result of a combination of two python libraries:
 \begin{inlinelist}
     \item creme
     \item and scikit-multiflow.
-\end{inlinelist} 
+\end{inlinelist}
 It is a fast and efficient library that can learn and predict with single instances.
 With over 3,000 start on GitHub it is a popular library.
 It includes only one anomaly detection model which is focused on point-wise anomaly detection that is not suitable for this study.
