@@ -1,23 +1,35 @@
 \section{Results}
 \label{ref_results}
 
-The results from the the two literature reviews and the development of the anomaly detector are utilized here. The anomaly detector was created in Python with the STUMPY library implementation of the Iterative Matrix Profile detector. In this section, the datasets from Section \ref{ref_datasets} are tested using the developed matrix profile anomaly detection technique against different properties and anomaly types. The parameters for each trail are listed and the results are explain. Further analysis is performed in Section \ref{sec:discussion}.
+The results from the literature reviews and the development of the anomaly detector are presented in this section.
+The anomaly detector is created in Python with the STUMPY library implementation of the iterative matrix profile.
+The datasets from Section \ref{ref_datasets} are tested here using the developed detector against different properties and anomaly types.
+The parameters for each trail are listed and the results are explained.
+Further analysis is performed in Section \ref{sec:discussion}.
 
 \subsection{Hydraulic Simulation Dataset}
 \label{ref_results_hydraulic_sim}
-In this section, the hydraulic simulation dataset presented in Section \ref{ref_hydraulic_dataset} is tested  with the parameters in Table \ref{tab:hydraulic_sim_params} using the developed anomaly detector. The hydraulic dataset is the smallest dataset in this study and it outlines the performance and characteristics of the anomaly detector when using small window sizes.
+In this section, the hydraulic simulation dataset presented in Section \ref{ref_hydraulic_dataset} is tested  with the parameters in Table \ref{tab:hydraulic_sim_params} using the developed anomaly detector.
+The hydraulic dataset is the smallest dataset in this study and it outlines the performance and characteristics of the anomaly detector when using small window sizes.
 
-% TODO: fix this section
-In this experiment, the standard deviation multiplier is set at two for the detector. If the data follows a standard Gaussian distribution, the detected points would fall outside 95\% of the data present in the window, which would represent a high chance of a motif change at this small window size. The same principal applies to the rolling range multiplier. The recent range detection debounce multiplier is also standard given the small window size and ensures that there are not over-noisy or duplicate detections.
+In this experiment, the standard deviation multiplier is set to two for the detector.
+If the data follows a standard Gaussian distribution, the detected points would fall outside 95\% of the data present in the window.
+This would represent a high chance of a motif change at this small window size.
+The rolling range detector is set similarly to a value of two to weight recall equally with present results.
+The recent range detection debounce multiplier is also set to the standard value of two to ensure that there are not overly-noisy or duplicate detections.
 
-This experiment demonstrate that the developed detector is robust to changes in scale. Figure \ref{fig:hydraulic_result_fp} shows that the pressure and force signals in the system have similar shape but different magnitude. 
+This experiment demonstrates that the developed detector is robust to changes in scale.
+Figure \ref{fig:hydraulic_result_fp} shows that the pressure and force signals in the system have similar shape but different magnitude. 
 
 \begin{equation}
     \label{eqn:cylinder_force}
     F = (A_1 \cdot p_A) - \dot{x}  | A_1 \cdot p_A | (1 - \eta)
 \end{equation}
 
-This relationship in the shape of the pressure and force signals is derived from the force pressure relationship described in Equation \ref{eqn:cylinder_force}. As the pressure increases, the force exerted by the hydraulic cylinder increase proportionally. Since the boom arm and end effector in the system are fixed, the end effector moves proportionally to the change in force. Figure \ref{fig:hydraulic_result_fp} shows small differences between the force and pressure which is a result of the modeling of the hydraulic boom arm as a flexible body, which introduces additional oscillation which affects the pressure.
+This relationship in the shape of the pressure and force signals is derived from Equation \ref{eqn:cylinder_force}.
+As the pressure increases, the force exerted by the hydraulic cylinder increase proportionally.
+Since the boom arm and end effector in the system are fixed, the end effector moves proportionally to the change in force.
+Figure \ref{fig:hydraulic_result_fp} shows small differences between the force and pressure which is a result of the modeling of the hydraulic boom arm as a flexible body, which introduces oscillation that affects system pressure.
 
 \begin{table}[H]
 %%\centering
@@ -34,17 +46,15 @@ This relationship in the shape of the pressure and force signals is derived from
 \label{tab:hydraulic_sim_params}
 \end{table}
 
-Figure \ref{fig:hydraulic_result_fp} shows the detector was able to locate all of the motif changes which represent inflection points without false positives. This is a 100\% accuracy rate for the detector. The amplitude and waveform of the signals presented here are identical to the force signal presented above. The primary difference is the different amplitudes. The pressure signal is two orders of magnitude larger in amplitude, which illustrates the detector is robust to scale variations.
+Figure \ref{fig:hydraulic_result_fp} shows the detector was able to locate all of the motif changes present in the signal which represent inflection points.
+This is a 100\% accuracy rate for this experiment without any false positives.
+The amplitude and waveform of the signals presented here are identical with the primary difference being in the signal amplitudes.
+The pressure signal is two orders of magnitude larger in amplitude but still triggers at the same time as the force signal.
+This illustrates the detector is robust to scale variations.
 
-The shape of the matrix profile values in Figure \ref{fig:hydraulic_mp_hist_fp} is nearly identical for the force and pressure values. The two signals have dramatically different magnitudes but similar shapes. This shows the algorithm is robust to different macro data scales and explains the results obtained in Figure \ref{fig:hydraulic_result_fp}.
-
-\begin{figure}[H]
-    %\centering
-    \input{1_hydraulic_sim/results/outlier_result_scale_variant_detection.pgf}
-    \caption{Hydraulic Crane Motif Changes}
-    \label{fig:hydraulic_result_fp}
-\end{figure}
-
+The shape of the matrix profile values in Figure \ref{fig:hydraulic_mp_hist_fp} are nearly identical for the force and pressure values.
+The two signals have dramatically different magnitudes but similar shapes.
+This shows the algorithm is robust to different macro data scales and explains the results obtained in Figure \ref{fig:hydraulic_result_fp}.
 
 \begin{figure}[H]
     %\centering
@@ -53,12 +63,26 @@ The shape of the matrix profile values in Figure \ref{fig:hydraulic_mp_hist_fp} 
     \label{fig:hydraulic_mp_hist_fp}
 \end{figure}
 
+\begin{figure}[H]
+    %\centering
+    \input{1_hydraulic_sim/results/outlier_result_scale_variant_detection.pgf}
+    \caption{Hydraulic Crane Motif Changes}
+    \label{fig:hydraulic_result_fp}
+\end{figure}
 
 \subsection{Power Electronic Converter Dataset}
 \label{ref_results_pec_sim}
-In this section, the Power Electronic Converter (PEC) dataset is tested with the parameters from Table \ref{tab:pec_sim_params} using the developed anomaly detector. The PEC dataset is significantly larger than the Hydraluic Simulation dataset, containing approximately 300,000 time steps (~83 hour of signal data). The PEC dataset outlines the scenarios at which this detector excels and its performance for medium window sizes. The standard deviation multiplier is significant.
+In this section, the Power Electronic Converter (PEC) dataset is tested with the parameters from Table \ref{tab:pec_sim_params} using the developed anomaly detector.
+The PEC dataset is significantly larger than the Hydraulic Simulation dataset, containing approximately 300,000 time steps (~83 hour of signal data).
+The PEC dataset outlines the scenarios at which this detector excels, and highlights its performance with medium window sizes.
 
-If the data follows a standard Gaussian distribution, the detected points would fall outside 99.999\% of the data present in the window, which would represent a significant outlier comparative to the rest of the data. The rolling range multiplier is disabled for this experiment since the outliers are not relational to each other. There are 4 different types of outliers which all have radically different behaviors and signal shapes, so it is not desired to compare or remember them in the context of the next outlier. The recent range detection debounce multiplier is only one due to the larger size of the time series window and overall window size.
+The standard deviation multiplier in this trial is significant.
+If the data follows a standard Gaussian distribution, the detected points would fall outside 99.999\% of the data present in the window.
+This would represent a significant outlier comparative to the rest of the data.
+
+The rolling range multiplier is disabled for this experiment since the outliers are not relational to each other.
+There are 4 different types of outliers which all have radically different behaviors and signal shapes, so it is not desired to compare or remember them in the context of the next outlier.
+The recent range detection debounce multiplier is set to one due to the larger size of the time series window and overall window size.
 
 \begin{table}[H]
 %%\centering
@@ -76,6 +100,17 @@ If the data follows a standard Gaussian distribution, the detected points would 
 \end{table}
 
 Because of the scale variance of the anomalies, only 2 of the 4 detected anomalies are visually represented in Figure \ref{fig:pec_mp_hist}. The two anomalies that are not depicted show similar patterns, but at much smaller scale. This shows the detector is able to perform on signals with widely differing anomaly characteristics and patterns.
+
+\begin{figure}[H]
+    %%\centering
+    \input{2_pec_sim/mp_hist_f_c.pgf}
+    \caption{PEC Dataset Matrix Profile Values}
+    \label{fig:pec_mp_hist}
+\end{figure}
+
+Figure \ref{fig:mp-pec-faults-overall-fig} shows a zoomed in window of the matrix profile values during each fault type examined in this experiment.
+A description of the characteristics of these fault types is found in Section \ref{ref_pec_dataset}.
+The detector behaves robustly and accurately for all the fault types presented.
 
 \begin{figure}[H]
     \centering
@@ -110,14 +145,9 @@ Because of the scale variance of the anomalies, only 2 of the 4 detected anomali
     \label{fig:mp-pec-faults-overall-fig}
 \end{figure}
 
-\begin{figure}[H]
-    %%\centering
-    \input{2_pec_sim/mp_hist_f_c.pgf}
-    \caption{PEC Dataset Matrix Profile Values}
-    \label{fig:pec_mp_hist}
-\end{figure}
-
-Figure \ref{fig:pec_outliers} shows the detector accurately determined the start and end of each anomaly (100\% detection rate) with no false positives (0\% error rate). It detects the start and end of each anomaly within 1 window size (from Table \ref{tab:pec_sim_params}), although detecting the ending of an anomaly sometimes takes more time than detecting the start. By nature, anomalies are rare so interpreting the detection and false positive rates in a traditional way is not possible. The interpretation of the results and significance are provided in Section \ref{sec:discussion}.
+Figure \ref{fig:pec_outliers} shows the detector accurately determined the start and end of each anomaly (100\% detection rate) with no false positives (0\% error rate).
+It performs this detection within 1 window size (from Table \ref{tab:pec_sim_params}).
+Although detecting the ending of an anomaly sometimes takes more time than detecting the start.
  
 \begin{figure}[H]
     %%\centering
@@ -126,9 +156,20 @@ Figure \ref{fig:pec_outliers} shows the detector accurately determined the start
     \label{fig:pec_outliers}
 \end{figure}
 
+By nature, anomalies are rare so interpreting the detection and false positive rates in a traditional way is not advisable.
+The interpretation of the results of this trial are presented in Section \ref{ref_pec_discussion}.
+
 \subsection{Cyber Security BETH Dataset}
 \label{ref_results_beth_sim}
-In this section, the BETH dataset presented in Section \ref{ref_beth_dataset} is tested  using the parameters in Table \ref{tab:beth_sim_params} with the developed detector. The BETH is the largest in the study, containing approximately 800,000 time steps (~9 days of signal data). It outlines the most challenging of the test scenarios for the detector and its performance for large window sizes. If the data follows a standard Gaussian distribution, the detected points would fall outside 99.7\% of the data present in the window. The rolling range multiplier is set to one below the standard deviation multiplier for this experiment which enables recall of previous outliers, but more heavily weights the present outlier detection score. The attacks have been manually labelled and although there are different kinds of attacks, the baseline signal (userId) remains the same. The recent range detection debounce multiplier is two due to the nature and volatility of the data.
+In this section, the BETH dataset from Section \ref{ref_beth_dataset} is tested  using the parameters in Table \ref{tab:beth_sim_params} with the developed detector.
+The BETH dataset is the largest in the study, containing approximately 800,000 time steps (~9 days of signal data).
+It outlines the most challenging test scenario presented for the detector in this study and highlights its performance on large window size data.
+
+If the data follows a standard Gaussian distribution, the detected points would fall outside 99.7\% of the data present in the window.
+The rolling range multiplier is set to one below the standard deviation multiplier for this experiment.
+This enables recall of previous outliers, but more heavily weights the present outlier detection score.
+The anomalies in this dataset have been manually labeled and although there are different kinds of attacks, the baseline signal (userId) remains the same.
+The recent range detection debounce multiplier is set to two due to the nature and volatility of the data.
 
 \begin{table}[H]
 %%\centering
@@ -145,7 +186,10 @@ In this section, the BETH dataset presented in Section \ref{ref_beth_dataset} is
 \label{tab:beth_sim_params}
 \end{table}
  
-In this study, the outliers are only present when there is a significantly large range spike as shown near time step 200,000. The regular and periodic small peaks shown in Figure \ref{fig:beth_mp_hist} are not outliers and the rolling range technique ensures they do not trigger the detector. This provides an example of how the rolling range parameter can be used to tune the memory and ability of the detector. 
+In this study, the outliers are only present when there is a significantly large range spike in the matrix profile.
+An example of this is shown near time step 200,000 in Figure \ref{fig:beth_mp_hist}.
+The regular and periodic small peaks  in the data are not outliers and the rolling range technique ensures they do not trigger the detector.
+This illustrates how the rolling range filter can be used to tune the memory and accuracy of the detector. 
 
 \begin{figure}[H]
     %%\centering
@@ -154,9 +198,12 @@ In this study, the outliers are only present when there is a significantly large
     \label{fig:beth_mp_hist}
 \end{figure}
 
-Figure \ref{fig:beth_detection_results} illustrates that the algorithm was able to detect the starts of the outliers within the debounce threshold and was able to detect the end of the faults with some delay. There are 2 false positives from the detector, which correspond to high UserID values in the dataset. These two locations are marked as suspicious so in this case the false positive would still be worth investigating even if it is deemed not dangerous.
+Figure \ref{fig:beth_detection_results} illustrates that the algorithm was able to detect the starts of the outliers within the debounce threshold and detect the faults' endings with some delay.
+There are 2 false positives from the detector, which correspond to high UserID values in the dataset.
+These two locations are marked as suspicious so in this case the false positive is worth investigating even if it is not labeled as dangerous.
 
-Figure \ref{fig:beth_detection_results} shows that Authors \cite{beth-dataset} determined that many of the data points are considered suspicious. The Figure shows that only a few of the suspicious outliers are actually dangerous (evil in their taxonomy). 
+Authors \cite{beth-dataset} determined that many of the data points present are considered suspicious.
+Figure \ref{fig:beth_detection_results} shows that only a few of the suspicious outliers are actually dangerous.
 
 \begin{figure}[H]
     %%\centering
@@ -164,28 +211,9 @@ Figure \ref{fig:beth_detection_results} shows that Authors \cite{beth-dataset} d
     \caption{BETH Ground Truth Comparison [Normal: Green, Anomaly: Red]}
     \label{fig:beth_detection_results}
 \end{figure}
-% TODO: Redo axis labels
-% \begin{figure}[H]
-%      \centering
-%      \begin{subfigure}[b]{0.475\textwidth}
-%          \centering
-%          {\resizebox{\textwidth}{!}{\input{"3_beth_sim/outlier_result_sus_userId.pgf"}}}
-%          \caption{Suspicious Outliers}
-%          \label{fig:beth_sus_outliers}
-%      \end{subfigure}
-%      \hfill
-%      \begin{subfigure}[b]{0.475\textwidth}
-%          \centering
-%          {\resizebox{\textwidth}{!}{\input{"3_beth_sim/outlier_result_evil_userId.pgf"}}}
-%          \caption{Dangerous Outliers}
-%          \label{fig:beth_evil_outliers}
-%      \end{subfigure}
-%         \caption{BETH Dataset Detection Results [Red Line = Anomaly]}
-%         \label{fig:beth_detection_results2}
-% \end{figure}
 
-In this case, the detector is able to discern where the dangerous outliers lie among the very noisy suspicious data points.
-The final fault that appears as two spikes is part of the same attack and as such can be classified as one fault instead of two.
+In this experiment, the detector is able to discern where the dangerous outliers lie among the very noisy suspicious data points.
+The final fault that appears as two spikes is part of the same attack and can be classified as one fault instead of two.
 While this is the most challenging dataset analyzed, the detector still provides a 100\% true positive identification rate.
 For this experiment, the false positive detection was higher than in the other experiments.
-This is problamatic but not critical as a false positive can be manually ignored.
+This is problematic, but not critical, as a false positive can be manually examined and ultimately ignored.

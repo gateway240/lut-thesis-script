@@ -1,17 +1,46 @@
 \section{Conclusion}
 \label{sec:conclusion}
 
-This work begins by providing an introduction of the overall structure of the FIREMAN project and introduces the research objectives and team. This work is principally concerned with identifying a technique for detecting real-time anomalies in streaming time series data. Two broad outlier taxonomies are outlined with three sub-taxonomies for the contextual outliers present in the studied datasets. This focuses the research problem to context-wise shaplet outliers.
+This work begins by providing an introduction to the research objectives and overall structure of the FIREMAN project.
+This work is principally focused on identifying detection strategies for real-time anomalies in streaming time series data.
+Two broad outlier taxonomies are presented with three sub-taxonomies for the contextual outliers present in the experimental datasets.
+These outliers focus the research problem to context-wise shaplet outlier detection.
 
-A review of modern anomaly detection algorithms and libraries in Python is presented in Section \ref{ref_anomaly_detection_alg} and \ref{ref_code_libraries} respectively. This review evaluated the strengths and weaknesses of the libraries as well as their applicability for use in building the anomaly detector. This review provides the foundation for the development of the anomaly detector utilizing the Stumpy Matrix Profile library and a rolling range techniques in Section \ref{ref_matrix_profile_detector}. 
+A review of modern anomaly detection algorithms and libraries in Python is presented in Section \ref{ref_anomaly_detection_alg} and \ref{ref_code_libraries} respectively.
+This review evaluates the strengths and weaknesses of the libraries as well as their applicability for use in building an anomaly detector.
+This review provides the foundation for the development of the anomaly detector utilizing the Stumpy Matrix Profile library and detection filters in Section \ref{ref_matrix_profile_detector}. 
 
-Additionally, the author conduced a survey of the most common datasets used in the literature in this field and discovered the KDD-CUP99 dataset is still very commonly used, even though it has many shortcomings and is over 20 years old. This is problematic since cyber-attacks have changed dramatically since then and now have a different ontology and language.
+A survey of the most common datasets used in the literature is presented in Section \ref{ref_dataset_survey}.
+This survey found the KDD-CUP99 dataset is still very commonly used, even though it has many shortcomings and is over 20 years old.
+This is problematic since cyber-attacks have changed dramatically since then and now have a different ontology and language.
 
-The author contacted experts in the field. The author contacted industry experts to understand how current datasets are used and why. These discussions led to the selection of the BETH dataset for one of the experiments as it presents an extensive set of labelled data points for modern cloud-based cyber-attacks.
+The author contacted industry experts to understand how current datasets are used and why.
+These discussions led to the selection of the BETH dataset for one of the experiments.
+It presents an extensive set of labeled data points for modern cloud-based cyber-attacks which make it ideal for experimentation in this study.
 
-The author introduced three datasets utilized in the project for the experimental results. The first dataset is a mechatronic simulation of a boom arm where the control signal is modified. For this experiment, the goal is to detect the change points of the signal or where the pattern changes in the signal. The second dataset is a Power Electronic Converter (PEC) dataset where different fault conditions are introduced during normal operation. The goal of this experiment is to detect anomalies that fall outside the normal operating conditions or pattern of the converter. The third dataset is a cyber-security dataset where attacks are manually identified in a target system after normal system operation.
+Three datasets are tested and examined in Section \ref{ref_results}.
+The first dataset is a mechatronic simulation of a boom arm.
+In this experiment, the control signal is modified to modulate the position of the end effector of the boom arm.
+The pressure and force signals of the hydraulics in the experiment are examined and used to demonstrate the detector is robust to changes in scale.
 
-The developed anomaly detector performed well on the three experimental datasets. The system accurately detected each change points in the small scale mechatronic simulation test. The detector identified 100\% of the start and ends of the 4 faults in the PEC dataset. In the BETH dataset, the detector had some false positive defections but was able to identify 100\% of the intrusions classified as dangerous. Overall the proposed detection methodology provided a high rate of accuracy and precision in the experimental test cases. The detector can be further developed and improved to provide improved detection in increasingly challenging circumstances.
+The second dataset is a Power Electronic Converter (PEC) dataset where different fault conditions are introduced during normal operation.
+The goal of this experiment is to detect anomalies that fall outside the normal operating conditions or pattern of the converter.
+The faults in this experiment have significantly different characteristics and scale which demonstrate the detectors versatility.
 
-This work presents preliminary results demonstrating the applicability and performance of the proposed anomaly detection system. In the future, the detector can be developed further and incorporated into a production system for real-time monitoring and decision making to improve outcomes in a variety of interdisciplinary applications. 
+The third dataset is a cyber-security dataset where attacks are identified in a target system following normal system operation.
+The goal of this experiment is to detect cyber-attacks and intrusions in computer infrastructure.
+This dataset is the largest and most complex presented in the study and the detector performs well on it.
+
+Section \ref{sec:discussion} presents an analysis of the experimental datasets.
+Additionally the shortcomings of existing datasets and open research questions are discussed.
+The developed anomaly detector performed well on the three experimental datasets.
+The system accurately detected each change points in the small scale mechatronic simulation test.
+The detector identified 100\% of the start and ends of the 4 faults in the PEC dataset.
+In the BETH dataset, the detector had some false positive defections but was able to identify 100\% of the intrusions classified as dangerous.
+
+Overall the proposed detection methodology provided a high rate of accuracy and precision in the experimental test cases.
+The detector can be further developed and improved to provide improved detection in increasingly challenging circumstances.
+
+This work presents preliminary results demonstrating the applicability and performance of the proposed anomaly detection system.
+In the future, the detector can be developed further and incorporated into a production system for real-time monitoring and decision making to improve outcomes in a variety of interdisciplinary applications. 
 
